@@ -416,6 +416,40 @@
             letter-spacing: 1px;
         }
 
+        /* --- Portfolio Filter Buttons --- */
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .filter-btn {
+            background-color: transparent;
+            color: var(--color-secondary);
+            border: 1px solid var(--color-border);
+            padding: 0.6rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all var(--transition-speed) ease;
+        }
+
+        .filter-btn:hover {
+            background-color: var(--color-primary-glow);
+            color: var(--color-primary);
+            border-color: var(--color-primary);
+        }
+
+        .filter-btn.active {
+            background-color: var(--color-primary);
+            color: var(--color-background);
+            border-color: var(--color-primary);
+            box-shadow: 0 0 20px var(--color-primary-glow);
+        }
+
         /* --- Contact Section --- */
         .contact-container {
             max-width: 800px;
@@ -693,31 +727,87 @@
 
     <header id="hero">
         <div class="container">
-            <h1 class="reveal">Crafting Digital Experiences<span>.</span></h1>
-            <p class="subtitle reveal" style="transition-delay: 0.2s;">
-                A passionate Full-Stack Developer & UI/UX enthusiast creating modern and responsive web applications.
-            </p>
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 2.5rem;">
+                <!-- Profile Image -->
+                <img src="img/NPK-WEB_MANAGEMENT/S__20832269.jpg" alt="Profile Picture" class="about-image"
+                    style="box-shadow: 0 0 60px var(--color-primary-glow); border-width: 6px; max-width: 180px; height: 180px; margin-bottom: 1.5rem;">
+                <!-- Main Title -->
+                <h1 class="reveal" style="margin-bottom: 0.5rem;">
+                    Crafting Digital Experiences<span>.</span>
+                </h1>
+                <!-- Subtitle -->
+                <p class="subtitle reveal" style="transition-delay: 0.2s; margin-bottom: 1.5rem;">
+                    นักพัฒนา Full-Stack และผู้หลงใหลใน UI/UX ที่มุ่งมั่นสร้างสรรค์เว็บไซต์และแอปพลิเคชันสมัยใหม่<br>
+                    ใส่ใจทุกรายละเอียด ตั้งแต่การออกแบบประสบการณ์ผู้ใช้ การพัฒนาระบบที่มีประสิทธิภาพ<br>
+                    ไปจนถึงการนำเทคโนโลยีใหม่ๆ มาประยุกต์ใช้
+                    เพื่อให้ทุกโซลูชันตอบโจทย์ธุรกิจและสร้างประสบการณ์ที่ดีที่สุดสำหรับผู้ใช้งาน
+                </p>
+                <!-- Short Profile Info -->
+                <div class="reveal"
+                    style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem; color: var(--color-secondary); font-size: 1.05rem;">
+                    <span><strong>ล้อ'แม็ค</strong> | Full-Stack Developer & UI/UX Enthusiast</span>
+                    <span>Bangkok, Thailand &nbsp;·&nbsp; <span style="color: var(--color-primary);">Available for
+                            freelance</span></span>
+                </div>
+                <!-- CTA Buttons -->
+                <div class="reveal" style="display: flex; gap: 1.2rem; margin-top: 1.7rem;">
+                    <a href="#portfolio" class="submit-btn" style="font-size: 1.05rem;">ดูผลงาน</a>
+                    <a href="#contact" class="submit-btn"
+                        style="background: transparent; color: var(--color-primary); border: 2px solid var(--color-primary); box-shadow: none;">ติดต่อฉัน</a>
+                </div>
+                <!-- Social Icons -->
+                <div class="reveal" style="display: flex; gap: 1.1rem; margin-top: 2.2rem;">
+                    <a href="https://github.com/" target="_blank"
+                        style="color: var(--color-secondary); font-size: 1.7rem; transition: color 0.3s;">
+                        <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.34-1.3-1.7-1.3-1.7-1.06-.73.08-.72.08-.72 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.73 1.27 3.4.97.11-.75.41-1.27.74-1.56-2.55-.29-5.23-1.28-5.23-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.1 11.1 0 012.9-.39c.98 0 1.97.13 2.9.39 2.2-1.49 3.17-1.18 3.17-1.18.63 1.58.23 2.75.11 3.04.74.81 1.19 1.84 1.19 3.1 0 4.43-2.68 5.41-5.23 5.7.42.36.79 1.08.79 2.18 0 1.57-.01 2.84-.01 3.23 0 .31.21.68.8.56C20.71 21.39 24 17.08 24 12c0-6.27-5.23-11.5-12-11.5z" />
+                        </svg>
+                    </a>
+                    <a href="https://www.linkedin.com/" target="_blank"
+                        style="color: var(--color-secondary); font-size: 1.7rem; transition: color 0.3s;">
+                        <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.27c-.97 0-1.75-.79-1.75-1.76s.78-1.76 1.75-1.76 1.75.79 1.75 1.76-.78 1.76-1.75 1.76zm13.5 11.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-10h2.88v1.36h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.59v5.61z" />
+                        </svg>
+                    </a>
+                    <a href="mailto:your.email@example.com"
+                        style="color: var(--color-secondary); font-size: 1.7rem; transition: color 0.3s;">
+                        <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12 13.065l-11.99-8.065h23.98l-11.99 8.065zm11.99-9.065h-23.98c-1.104 0-2 .896-2 2v14c0 1.104.896 2 2 2h23.98c1.104 0 2-.896 2-2v-14c0-1.104-.896-2-2-2zm-11.99 10.935l-12-8.065v14.13c0 .553.447 1 1 1h22c.553 0 1-.447 1-1v-14.13l-12 8.065z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
         </div>
     </header>
-
     <main>
         <section id="about">
             <div class="container">
                 <h2 class="reveal">About Me</h2>
                 <div class="about-content reveal">
-                    <img src="https://i.pravatar.cc/300" alt="My Profile Picture" class="about-image">
+                    <img src="img/NPK-WEB_MANAGEMENT/S__20832269.jpg" alt="My Profile Picture" class="about-image">
                     <div>
-                        <h3>Hello, I'm John Doe.</h3>
+                        <h3>สวัสดีครับ ผมชื่อ ล้อ'แม็ค</h3>
                         <p>
-                            I am a detail-oriented developer with a passion for building intuitive and performant web
-                            applications. With a background in both front-end and back-end technologies, I enjoy
-                            bringing ideas to life, from the initial concept and UI/UX design all the way to a deployed,
-                            scalable product.
+                            ผมเป็นนักพัฒนาซอฟต์แวร์สาย Full-stack ที่มีประสบการณ์พัฒนาระบบทั้ง Web Application,
+                            Windows Application, Windows Service และ RESTful API
+                            โดยให้ความสำคัญกับโครงสร้างระบบที่ดี ความเสถียร และประสิทธิภาพในการใช้งานจริง
                         </p>
                         <p>
-                            When I'm not coding, you can find me exploring the latest design trends, contributing to
-                            open-source projects, or enjoying a cup of coffee.
+                            มีความถนัดทั้งฝั่ง Front-end และ Back-end
+                            สามารถออกแบบและพัฒนาระบบตั้งแต่การวิเคราะห์ความต้องการ
+                            ออกแบบฐานข้อมูล ไปจนถึงการเชื่อมต่อระบบและนำขึ้นใช้งานจริง
+                            รองรับการขยายระบบในอนาคต
                         </p>
+                        <p>
+                            ผมมีประสบการณ์ทำงานกับฐานข้อมูลหลากหลายรูปแบบ เช่น
+                            MySQL, SQL Server และ MongoDB
+                            รวมถึงการพัฒนา API เพื่อเชื่อมต่อกับระบบภายนอก
+                            และการสร้าง Service สำหรับทำงานเบื้องหลังอัตโนมัติ
+                        </p>
+
                         <div class="skills-list">
                             <div class="skill-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
                                     fill="currentColor">
@@ -746,6 +836,19 @@
                                         d="M19.127 7.623a.75.75 0 00-1.06 0l-3.5 3.5a.75.75 0 000 1.06l3.5 3.5a.75.75 0 001.06-1.06L16.71 12.75l2.44-2.44a.75.75 0 00-1.06-1.06z"
                                         clip-rule="evenodd" />
                                 </svg> Back-End Dev</div>
+
+                            <div class="skill-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                    fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M11.213 2.123a.75.75 0 00-1.06 0l-3.5 3.5a.75.75 0 000 1.06l3.5 3.5a.75.75 0 001.06-1.06L8.81 7.25l2.44-2.44a.75.  75 0 00-1.06-1.06z"
+                                        clip-rule="evenodd" />
+                                    <path fill-rule="evenodd"
+                                        d="M4.713 7.623a.75.75 0 00-1.06 0l-3.5 3.5a.75.75 0 000 1.06l3.5 3.5a.75.75 0 001.06-1.06L2.31 12.75l2.44-2.44a.75.75 0 00-1.06-1.06z"
+                                        clip-rule="evenodd" />
+                                    <path fill-rule="evenodd"
+                                        d="M19.127 7.623a.75.75 0 00-1.06 0l-3.5 3.5a.75.75 0 000 1.06l3.5 3.5a.75.75 0 001.06-1.06L16.71 12.75l2.44-2.44a.75.75 0 00-1.06-1.06z"
+                                        clip-rule="evenodd" />
+                                </svg> App Service</div>
                         </div>
                     </div>
                 </div>
@@ -796,6 +899,12 @@
         <section id="portfolio">
             <div class="container">
                 <h2 class="reveal">Selected Works</h2>
+                <!-- Filter Buttons Start -->
+                <div class="filter-buttons" id="filter-buttons">
+                    <button class="filter-btn active" data-project="all">All</button>
+                    <!-- ปุ่มจะถูกเติมโดย JS ตาม projectName ที่มีใน projectsData -->
+                </div>
+                <!-- Filter Buttons End -->
                 <div class="portfolio-grid" id="portfolio-grid"></div>
             </div>
         </section>
@@ -854,17 +963,49 @@
                 const portfolioGrid = document.getElementById('portfolio-grid');
                 const modal = document.getElementById('portfolio-modal');
                 const modalClose = document.getElementById('modal-close');
+                const filterButtons = document.getElementById('filter-buttons');
                 let projectsData = [];
+                let currentProject = 'all';
 
                 // --- 1. Fetch and Render Portfolio Data ---
                 const fetchProjects = async () => {
                     try {
-                        //  const response = await fetch('dataPortfolio.json');
-                        //  if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                        //projectsData = await response.json();
                         projectsData = [
                             {
                                 "id": 1,
+                                "projectName": "ระบบจ่ายยา IPD รพ.ในสังกัดสำนักการแพทย์",
+                                "title": "Service Generate File IRIS",
+                                "description": "Service Generate File IRIS เป็น Windows Service ที่พัฒนาขึ้นเพื่อรองรับระบบจ่ายยา IPD ของโรงพยาบาลในสังกัดสำนักการแพทย์ทำหน้าที่สร้างไฟล์ข้อมูลในรูปแบบ XML จากฐานข้อมูลระบบจ่ายยา และส่งต่อให้เครื่อง IRIS (เครื่องตรวจซองยา) เพื่อใช้ตรวจสอบความถูกต้องของรายการยา ชื่อผู้ป่วย และข้อมูลการจ่ายยา ก่อนนำส่งถึงผู้ป่วยระบบทำงานแบบอัตโนมัติ ทำงานเบื้องหลังตลอดเวลา ลดความผิดพลาดจากการทำงานของมนุษย์ (Human Error) เพิ่มความปลอดภัยในการจ่ายยา และช่วยให้กระบวนการจ่ายยามีความรวดเร็วและแม่นยำมากยิ่งขึ้นพัฒนาด้วย VB.NET ในรูปแบบ Windows Service สามารถทำงานร่วมกับระบบโรงพยาบาลได้อย่างเสถียร และรองรับการใช้งานต่อเนื่องตลอด 24 ชั่วโมง",
+                                "category": "Windows Service",
+                                "technologies": [
+                                    "VB.NET","Windows Service"
+                                ],
+                                "year": 2023,
+                                "coverImage": "img/NPK-WEB_MANAGEMENT/Medical_Office_Service Generate File IRIS.png",
+                                "gallery": [
+                                    "img/NPK-WEB_MANAGEMENT/Medical_Office_Service Generate File IRIS.png"
+                                ],
+                                "link": null
+                            },
+                            {
+                                "id": 2,
+                                "projectName": "ระบบจ่ายยา IPD รพ.ในสังกัดสำนักการแพทย์",
+                                "title": "Service Sync Abstract",
+                                "description": "Service Sync Abstract เป็น Windows Service ที่พัฒนาขึ้นเพื่อเชื่อมต่อและซิงโครไนซ์ข้อมูลการสั่งยาระหว่างระบบโรงพยาบาล (HIS) กับระบบจัดยาแบบอัตโนมัติระบบทำหน้าที่อ่านไฟล์ข้อมูลในรูปแบบ JSON ซึ่งถูกสร้างโดยระบบ HIS และจัดเก็บไว้ในโฟลเดอร์ที่ Robot ทำการแชร์ไว้ จากนั้น Service จะทำการประมวลผลและบันทึกข้อมูลการสั่งยาเข้าสู่ฐานข้อมูลของระบบจัดยา ก่อนย้ายไฟล์ที่ประมวลผลแล้วออกจากโฟลเดอร์เพื่อป้องกันการอ่านซ้ำการทำงานแบบ Background Service ช่วยให้การแลกเปลี่ยนข้อมูลเป็นไปอย่างต่อเนื่อง ลดภาระการทำงานของเจ้าหน้าที่ และเพิ่มความถูกต้องของข้อมูลการสั่งยาในกระบวนการจ่ายยา IPDพัฒนาด้วย VB.NET ในรูปแบบ Windows Service ที่มีความเสถียร และเหมาะสำหรับการใช้งานในระบบโรงพยาบาล",
+                                "category": "Windows Service",
+                                "technologies": [
+                                    "VB.NET","Windows Service"
+                                ],
+                                "year": 2023,
+                                "coverImage": "img/NPK-WEB_MANAGEMENT/Medical_Office_Service Sync Abstract.png",
+                                "gallery": [
+                                    "img/NPK-WEB_MANAGEMENT/Medical_Office_Service Sync Abstract.png"
+                                ],
+                                "link": null
+                            },
+                            {
+                                "id": 11,
+                                "projectName": "NPK Automation",
                                 "title": "RFID Basket Tracking System",
                                 "description": "A web application designed to track baskets on a conveyor belt using RFID technology. It provides real-time location, status visualization, and a comprehensive dashboard for monitoring the entire process.",
                                 "category": "Web Application",
@@ -880,7 +1021,8 @@
                                 "link": null
                             },
                             {
-                                "id": 2,
+                                "id": 12,
+                                "projectName": "NPK Automation",
                                 "title": "Modern Kiosk UI/UX Design",
                                 "description": "A complete redesign of a self-service kiosk interface for a retail environment. The focus was on creating an intuitive, user-friendly, and accessible experience for all customers, featuring large touch targets and clear visual hierarchy.",
                                 "category": "UI/UX Design",
@@ -895,7 +1037,8 @@
                                 "link": "https://www.figma.com/your-prototype-link"
                             },
                             {
-                                "id": 3,
+                                "id": 13,
+                                "projectName": "Personal Portfolio",
                                 "title": "Professional Portfolio Website",
                                 "description": "A personal portfolio landing page built from scratch to showcase projects and skills. Designed with a modern, minimal aesthetic and built with performance and responsiveness in mind.",
                                 "category": "Web Development",
@@ -909,7 +1052,8 @@
                                 "link": "#"
                             },
                             {
-                                "id": 4,
+                                "id": 14,
+                                "projectName": "NPK Automation",
                                 "title": "Automated Pharmacy System",
                                 "description": "An internal management system for an automated pharmacy, controlling drug dispensing robots, managing inventory, and generating reports on workload and medication errors.",
                                 "category": "System Development",
@@ -923,18 +1067,30 @@
                                 ],
                                 "link": null
                             }
-                        ]
+                        ];
 
-                        renderProjects(projectsData);
+                        renderProjectFilters(projectsData);
+                        renderProjects(projectsData, currentProject);
                     } catch (error) {
                         console.error("Could not fetch projects:", error);
                         portfolioGrid.innerHTML = '<p>Error loading projects.</p>';
                     }
                 };
 
-                const renderProjects = (projects) => {
+                // Render filter buttons by unique projectName
+                function renderProjectFilters(projects) {
+                    const uniqueNames = [...new Set(projects.map(p => p.projectName))];
+                    filterButtons.innerHTML = `<button class="filter-btn${currentProject === 'all' ? ' active' : ''}" data-project="all">All</button>`;
+                    uniqueNames.forEach(name => {
+                        filterButtons.innerHTML += `<button class="filter-btn${currentProject === name ? ' active' : ''}" data-project="${name}">${name}</button>`;
+                    });
+                }
+
+                // Render projects by projectName
+                function renderProjects(projects, projectName = 'all') {
+                    const filtered = projectName === 'all' ? projects : projects.filter(p => p.projectName === projectName);
                     portfolioGrid.innerHTML = '';
-                    projects.forEach((project) => {
+                    filtered.forEach((project) => {
                         const card = document.createElement('div');
                         card.className = 'portfolio-card reveal';
                         card.dataset.id = project.id;
@@ -942,7 +1098,17 @@
                         portfolioGrid.appendChild(card);
                     });
                     setupScrollObservers();
-                };
+                }
+
+                // --- Filter Button Logic ---
+                filterButtons.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('filter-btn')) {
+                        document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                        e.target.classList.add('active');
+                        currentProject = e.target.dataset.project;
+                        renderProjects(projectsData, currentProject);
+                    }
+                });
 
                 // --- 2. Modal Logic ---
                 const openModal = (projectId) => {
