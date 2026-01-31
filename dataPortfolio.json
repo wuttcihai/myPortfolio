@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "title": "RFID Basket Tracking System",
+    "description": "A web application designed to track baskets on a conveyor belt using RFID technology. It provides real-time location, status visualization, and a comprehensive dashboard for monitoring the entire process.",
+    "category": "Web Application",
+    "technologies": ["HTML", "CSS", "JavaScript", "Node.js", "WebSocket"],
+    "year": 2025,
+    "coverImage": "img/NPK-WEB_MANAGEMENT/ค้นหาตะกร้ายา1.png",
+    "gallery": [
+      "img/NPK-WEB_MANAGEMENT/ค้นหาตะกร้ายา1.png",
+      "img/NPK-WEB_MANAGEMENT/ค้นหาตะกร้ายา2.png",
+      "img/NPK-WEB_MANAGEMENT/ค้นหาตะกร้ายา3.png",
+      "img/NPK-WEB_MANAGEMENT/ค้นหาตะกร้ายา4.png"
+    ],
+    "link": null
+  },
+  {
+    "id": 2,
+    "title": "Modern Kiosk UI/UX Design",
+    "description": "A complete redesign of a self-service kiosk interface for a retail environment. The focus was on creating an intuitive, user-friendly, and accessible experience for all customers, featuring large touch targets and clear visual hierarchy.",
+    "category": "UI/UX Design",
+    "technologies": ["Figma", "User Research", "Prototyping"],
+    "year": 2024,
+    "coverImage": "img/NPK-WEB_MANAGEMENT/จัดการผู้ใช้งาน.png",
+    "gallery": [
+      "img/NPK-WEB_MANAGEMENT/จัดการผู้ใช้งาน.png",
+      "img/NPK-WEB_MANAGEMENT/จัดการผู้ใช้งาน1.png",
+      "img/NPK-WEB_MANAGEMENT/จัดการผู้ใช้งาน2.png"
+    ],
+    "link": "https://www.figma.com/your-prototype-link"
+  },
+  {
+    "id": 3,
+    "title": "Professional Portfolio Website",
+    "description": "A personal portfolio landing page built from scratch to showcase projects and skills. Designed with a modern, minimal aesthetic and built with performance and responsiveness in mind.",
+    "category": "Web Development",
+    "technologies": ["HTML5", "CSS3", "Vanilla JS", "Responsive Design"],
+    "year": 2025,
+    "coverImage": "img/NPK-WEB_MANAGEMENT/login.png",
+    "gallery": [
+      "img/NPK-WEB_MANAGEMENT/login.png",
+      "img/NPK-WEB_MANAGEMENT/Configuration.png"
+    ],
+    "link": "#"
+  },
+  {
+    "id": 4,
+    "title": "Automated Pharmacy System",
+    "description": "An internal management system for an automated pharmacy, controlling drug dispensing robots, managing inventory, and generating reports on workload and medication errors.",
+    "category": "System Development",
+    "technologies": ["Vue.js", "Express.js", "MySQL", "Chart.js"],
+    "year": 2023,
+    "coverImage": "img/NPK-WEB_MANAGEMENT/Stock Robot.png",
+    "gallery": [
+      "img/NPK-WEB_MANAGEMENT/Stock Robot.png",
+      "img/NPK-WEB_MANAGEMENT/รายงานการเบิก.png",
+      "img/NPK-WEB_MANAGEMENT/รายงานการคาดเคลื่อนทางยา.png"
+    ],
+    "link": null
+  }
+]
