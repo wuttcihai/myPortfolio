@@ -1,1213 +1,1192 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="th">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio | Advanced</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-
-    <style>
-        /* --- CSS Variables for Modern Dark Theme --- */
-        :root {
-            --color-background: #0d1117;
-            --color-text: #e6edf3;
-            --color-primary: #22d3ee;
-            /* Vibrant Cyan */
-            --color-primary-glow: rgba(34, 211, 238, 0.3);
-            --color-secondary: #8b949e;
-            --color-card-bg: rgba(31, 41, 55, 0.4);
-            --color-border: rgba(139, 148, 158, 0.2);
-            --color-shadow: rgba(0, 0, 0, 0.2);
-            --font-family: 'Poppins', sans-serif;
-            --border-radius: 16px;
-            --transition-speed: 0.4s;
-        }
-
-        /* --- Keyframes for Animations --- */
-        @keyframes background-pan {
-            0% {
-                background-position: 0% 50%;
-            }
-
-            50% {
-                background-position: 100% 50%;
-            }
-
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
-        /* --- Base & Reset --- */
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: var(--font-family);
-            background: linear-gradient(300deg, #0d1117, #1f2937, #0d1117);
-            background-size: 200% 200%;
-            animation: background-pan 15s ease infinite;
-            color: var(--color-text);
-            line-height: 1.7;
-        }
-
-        /* --- Layout & Containers --- */
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        section {
-            padding: 7rem 0;
-            overflow: hidden;
-        }
-
-        /* --- Typography --- */
-        h1,
-        h2,
-        h3 {
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 1.5rem;
-            letter-spacing: -1px;
-        }
-
-        h1 {
-            font-size: clamp(2.5rem, 5vw, 4.5rem);
-            text-shadow: 0 0 30px var(--color-primary-glow);
-        }
-
-        h2 {
-            font-size: clamp(2rem, 4vw, 3rem);
-            text-align: center;
-            margin-bottom: 5rem;
-        }
-
-        h3 {
-            font-size: 1.4rem;
-            color: var(--color-text);
-        }
-
-        p {
-            margin-bottom: 1rem;
-            color: var(--color-secondary);
-            max-width: 65ch;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            max-width: 600px;
-            margin: -4rem auto 5rem;
-            color: var(--color-secondary);
-        }
-
-        /* --- Navigation Bar --- */
-        .main-nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 100;
-            padding: 1rem 0;
-            background: rgba(13, 17, 23, 0.7);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--color-border);
-            transition: all var(--transition-speed) ease;
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .nav-logo {
-            font-weight: 700;
-            font-size: 1.5rem;
-            color: var(--color-text);
-            text-decoration: none;
-        }
-
-        .nav-logo span {
-            color: var(--color-primary);
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--color-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            position: relative;
-            transition: color var(--transition-speed) ease;
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: var(--color-primary);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: var(--color-primary);
-            transform: scaleX(0);
-            transform-origin: right;
-            transition: transform var(--transition-speed) cubic-bezier(0.25, 1, 0.5, 1);
-        }
-
-        .nav-links a.active::after,
-        .nav-links a:hover::after {
-            transform: scaleX(1);
-            transform-origin: left;
-        }
-
-        /* --- Hero Section --- */
-        #hero {
-            padding-top: 12rem;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        #hero h1 {
-            color: var(--color-text);
-        }
-
-        #hero h1 span {
-            color: var(--color-primary);
-        }
-
-        #hero .subtitle {
-            font-size: 1.25rem;
-            max-width: 600px;
-            margin: 0 auto;
-            font-weight: 300;
-        }
-
-        /* --- About Section --- */
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            align-items: center;
-            gap: 4rem;
-        }
-
-        .about-image {
-            width: 100%;
-            max-width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid var(--color-border);
-            box-shadow: 0 0 40px var(--color-primary-glow);
-            justify-self: center;
-        }
-
-        .skills-list {
-            margin-top: 2rem;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .skill-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: var(--color-card-bg);
-            padding: 0.5rem 1rem;
-            border-radius: var(--border-radius);
-            border: 1px solid var(--color-border);
-            font-weight: 500;
-        }
-
-        .skill-item svg {
-            width: 20px;
-            height: 20px;
-            color: var(--color-primary);
-        }
-
-        /* --- Experience Timeline --- */
-        .timeline {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .timeline::after {
-            content: '';
-            position: absolute;
-            width: 4px;
-            background-color: var(--color-border);
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            margin-left: -2px;
-            border-radius: 2px;
-        }
-
-        .timeline-item {
-            padding: 1rem 3rem;
-            position: relative;
-            background-color: inherit;
-            width: 50%;
-        }
-
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            right: -10px;
-            background-color: var(--color-background);
-            border: 4px solid var(--color-primary);
-            top: 25px;
-            border-radius: 50%;
-            z-index: 1;
-            transition: all var(--transition-speed);
-        }
-
-        .timeline-item.left {
-            left: 0;
-        }
-
-        .timeline-item.right {
-            left: 50%;
-        }
-
-        .timeline-item.left::before {
-            content: " ";
-            height: 0;
-            position: absolute;
-            top: 30px;
-            width: 0;
-            z-index: 1;
-            right: 20px;
-            border: medium solid var(--color-border);
-            border-width: 10px 0 10px 10px;
-            border-color: transparent transparent transparent var(--color-border);
-        }
-
-        .timeline-item.right::before {
-            content: " ";
-            height: 0;
-            position: absolute;
-            top: 30px;
-            width: 0;
-            z-index: 1;
-            left: 20px;
-            border: medium solid var(--color-border);
-            border-width: 10px 10px 10px 0;
-            border-color: transparent var(--color-border) transparent transparent;
-        }
-
-        .timeline-item.right::after {
-            left: -10px;
-        }
-
-        .timeline-content {
-            padding: 2rem;
-            background: var(--color-card-bg);
-            border: 1px solid var(--color-border);
-            position: relative;
-            border-radius: var(--border-radius);
-            backdrop-filter: blur(10px);
-            transition: all var(--transition-speed);
-        }
-
-        .timeline-item:hover .timeline-content {
-            border-color: var(--color-primary);
-            box-shadow: 0 0 30px var(--color-primary-glow);
-        }
-
-        .timeline-item:hover::after {
-            background-color: var(--color-primary);
-        }
-
-        .timeline-date {
-            font-weight: 600;
-            color: var(--color-primary);
-            margin-bottom: 0.5rem;
-        }
-
-        /* --- Portfolio Section --- */
-        #portfolio {
-            background-color: rgba(0, 0, 0, 0.1);
-        }
-
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 2.5rem;
-        }
-
-        .portfolio-card {
-            background: var(--color-card-bg);
-            border-radius: var(--border-radius);
-            border: 1px solid var(--color-border);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            box-shadow: 0 8px 32px 0 var(--color-shadow);
-            overflow: hidden;
-            cursor: pointer;
-            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease, border-color var(--transition-speed) ease;
-        }
-
-        .portfolio-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--color-primary);
-            box-shadow: 0 0 40px var(--color-primary-glow);
-        }
-
-        .card-image img {
-            width: 100%;
-            height: 240px;
-            object-fit: cover;
-            display: block;
-            transition: transform var(--transition-speed) ease;
-        }
-
-        .portfolio-card:hover .card-image img {
-            transform: scale(1.05);
-        }
-
-        .card-content {
-            padding: 1.5rem;
-        }
-
-        .card-content h3 {
-            font-size: 1.25rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .card-category {
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: var(--color-primary);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* --- Portfolio Filter Buttons --- */
-        .filter-buttons {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 3rem;
-        }
-
-        .filter-btn {
-            background-color: transparent;
-            color: var(--color-secondary);
-            border: 1px solid var(--color-border);
-            padding: 0.6rem 1.5rem;
-            border-radius: 30px;
-            font-weight: 500;
-            font-size: 0.95rem;
-            cursor: pointer;
-            transition: all var(--transition-speed) ease;
-        }
-
-        .filter-btn:hover {
-            background-color: var(--color-primary-glow);
-            color: var(--color-primary);
-            border-color: var(--color-primary);
-        }
-
-        .filter-btn.active {
-            background-color: var(--color-primary);
-            color: var(--color-background);
-            border-color: var(--color-primary);
-            box-shadow: 0 0 20px var(--color-primary-glow);
-        }
-
-        /* --- Contact Section --- */
-        .contact-container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: var(--color-card-bg);
-            padding: 3rem;
-            border-radius: var(--border-radius);
-            border: 1px solid var(--color-border);
-        }
-
-        .contact-form {
-            display: grid;
-            gap: 1.5rem;
-        }
-
-        .form-group {
-            position: relative;
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 1rem;
-            background: rgba(13, 17, 23, 0.5);
-            border: 1px solid var(--color-border);
-            border-radius: 10px;
-            color: var(--color-text);
-            font-size: 1rem;
-            transition: border-color var(--transition-speed);
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: var(--color-primary);
-        }
-
-        .submit-btn {
-            background: var(--color-primary);
-            color: var(--color-background);
-            padding: 1rem 2rem;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all var(--transition-speed);
-            box-shadow: 0 0 20px var(--color-primary-glow);
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 30px var(--color-primary-glow);
-        }
-
-        /* --- Footer & Modal (styles mostly reused/unchanged) --- */
-        footer {
-            text-align: center;
-            padding: 3rem 0;
-            border-top: 1px solid var(--color-border);
-            margin-top: 4rem;
-            font-size: 0.9rem;
-            color: var(--color-secondary);
-        }
-
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(13, 17, 23, 0.7);
-            backdrop-filter: blur(8px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity var(--transition-speed) ease, visibility 0s var(--transition-speed);
-            z-index: 1000;
-        }
-
-        .modal.active {
-            opacity: 1;
-            visibility: visible;
-            transition-delay: 0s;
-        }
-
-        .modal-content {
-            background: var(--color-card-bg);
-            border: 1px solid var(--color-border);
-            border-radius: var(--border-radius);
-            width: 90%;
-            /* max-width: 950px;
-            max-height: 90vh; */
-            overflow-y: auto;
-            position: relative;
-            padding: 2.5rem;
-            transform: scale(0.95);
-            transition: transform var(--transition-speed) cubic-bezier(0.25, 1, 0.5, 1);
-        }
-
-        .modal.active .modal-content {
-            transform: scale(1);
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
-            font-size: 2rem;
-            font-weight: 400;
-            color: var(--color-secondary);
-            cursor: pointer;
-            line-height: 1;
-            transition: color var(--transition-speed) ease, transform var(--transition-speed) ease;
-        }
-
-        .modal-close:hover {
-            color: var(--color-text);
-            transform: rotate(90deg);
-        }
-
-        .modal-body {
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 2.5rem;
-        }
-
-        .modal-main-image {
-            width: 100%;
-            border-radius: var(--border-radius);
-            margin-bottom: 1rem;
-            border: 1px solid var(--color-border);
-        }
-
-        .modal-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
-            gap: 0.75rem;
-        }
-
-        .modal-gallery img {
-            width: 100%;
-            height: 60px;
-            object-fit: cover;
-            border-radius: 8px;
-            cursor: pointer;
-            border: 2px solid transparent;
-            opacity: 0.7;
-            transition: all var(--transition-speed);
-        }
-
-        .modal-gallery img.selected,
-        .modal-gallery img:hover {
-            border-color: var(--color-primary);
-            opacity: 1;
-            transform: scale(1.05);
-        }
-
-        #modal-technologies {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            margin: 1.5rem 0;
-        }
-
-        .tech-tag {
-            background-color: rgba(34, 211, 238, 0.1);
-            color: var(--color-primary);
-            padding: 0.4rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-
-        .modal-link {
-            display: inline-block;
-            background: var(--color-primary);
-            color: var(--color-background);
-            padding: 0.75rem 2rem;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all var(--transition-speed);
-            box-shadow: 0 0 20px var(--color-primary-glow);
-        }
-
-        .modal-link:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 30px var(--color-primary-glow);
-        }
-
-        /* --- Scroll Reveal & Responsive Design --- */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 1s cubic-bezier(0.5, 0, 0, 1), transform 1s cubic-bezier(0.5, 0, 0, 1);
-        }
-
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        @media (max-width: 900px) {
-            .modal-body {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-            section {
-                padding: 4rem 0;
-            }
-
-            .nav-links {
-                display: none;
-                /* Hide for mobile view, can be replaced by a burger menu */
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .about-image {
-                max-width: 200px;
-                height: 200px;
-            }
-
-            .timeline::after {
-                left: 20px;
-                margin-left: 0;
-            }
-
-            .timeline-item {
-                width: 100%;
-                padding-left: 50px;
-                padding-right: 1rem;
-            }
-
-            .timeline-item.left,
-            .timeline-item.right {
-                left: 0%;
-            }
-
-            .timeline-item.left::after,
-            .timeline-item.right::after {
-                left: 10px;
-            }
-
-            .timeline-item.left::before,
-            .timeline-item.right::before {
-                left: 30px;
-                border-width: 10px 10px 10px 0;
-                border-color: transparent var(--color-border) transparent transparent;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio v2 | Full-Stack Developer & Pharmacy Systems</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Sarabun:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== CSS Variables ===== */
+    :root {
+      --color-background: #0d1117;
+      --color-text: #e6edf3;
+      --color-primary: #22d3ee;
+      --color-primary-glow: rgba(34, 211, 238, 0.3);
+      --color-secondary: #8b949e;
+      --color-card-bg: rgba(31, 41, 55, 0.4);
+      --color-border: rgba(139, 148, 158, 0.2);
+      --color-shadow: rgba(0, 0, 0, 0.2);
+      --color-red: #dc2626;
+      --color-blue: #3b82f6;
+      --color-green: #22c55e;
+      --font-family: 'Poppins', 'Sarabun', sans-serif;
+      --border-radius: 16px;
+      --transition-speed: 0.4s;
+      /* Pharmacy dark palette */
+      --dark: #0a0a12;
+      --dark2: #13131f;
+      --dark3: #1e1e2e;
+      --dark4: #252535;
+      --muted: #64748b;
+    }
+
+    /* ===== Keyframes ===== */
+    @keyframes background-pan {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== Reset & Base ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-family);
+      background: linear-gradient(300deg, #0d1117, #1f2937, #0d1117);
+      background-size: 200% 200%;
+      animation: background-pan 15s ease infinite;
+      color: var(--color-text);
+      line-height: 1.7;
+    }
+
+    /* ===== Layout ===== */
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
+    section { padding: 7rem 0; overflow: hidden; }
+
+    /* ===== Typography ===== */
+    h1, h2, h3 { font-weight: 700; line-height: 1.2; margin-bottom: 1.5rem; letter-spacing: -1px; }
+    h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); text-shadow: 0 0 30px var(--color-primary-glow); }
+    h2 { font-size: clamp(2rem, 4vw, 3rem); text-align: center; margin-bottom: 5rem; }
+    h3 { font-size: 1.4rem; color: var(--color-text); }
+    p  { margin-bottom: 1rem; color: var(--color-secondary); max-width: 65ch; }
+    .section-subtitle { text-align: center; max-width: 600px; margin: -4rem auto 5rem; color: var(--color-secondary); }
+
+    /* ===== Navigation ===== */
+    .main-nav {
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+      padding: 1rem 0;
+      background: rgba(13, 17, 23, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--color-border);
+      transition: all var(--transition-speed) ease;
+    }
+    .nav-container {
+      display: flex; justify-content: space-between; align-items: center;
+      max-width: 1280px; margin: 0 auto; padding: 0 2rem;
+    }
+    .nav-logo { font-weight: 700; font-size: 1.5rem; color: var(--color-text); text-decoration: none; }
+    .nav-logo span { color: var(--color-primary); }
+    .nav-links { display: flex; list-style: none; gap: 2rem; align-items: center; }
+    .nav-links a {
+      color: var(--color-secondary); text-decoration: none; font-weight: 500;
+      position: relative; transition: color var(--transition-speed) ease; font-size: 0.95rem;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--color-primary); }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -5px; left: 0; width: 100%; height: 2px;
+      background: var(--color-primary); transform: scaleX(0); transform-origin: right;
+      transition: transform var(--transition-speed) cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .nav-links a.active::after, .nav-links a:hover::after { transform: scaleX(1); transform-origin: left; }
+    .nav-badge {
+      background: linear-gradient(135deg, var(--color-primary), #0ea5e9);
+      color: #0d1117; padding: .3rem .9rem; border-radius: 20px; font-size: .75rem; font-weight: 700; white-space: nowrap;
+    }
+
+    /* ===== Hero ===== */
+    #hero {
+      padding-top: 12rem; text-align: center;
+      display: flex; flex-direction: column; align-items: center; min-height: 100vh;
+    }
+    #hero h1 span { color: var(--color-primary); }
+    #hero .subtitle { font-size: 1.15rem; max-width: 640px; margin: 0 auto; font-weight: 300; }
+    .about-image {
+      width: 100%; max-width: 300px; height: 300px; border-radius: 50%; object-fit: cover;
+      border: 5px solid var(--color-border); box-shadow: 0 0 40px var(--color-primary-glow); justify-self: center;
+    }
+
+    /* ===== About ===== */
+    .about-content { display: grid; grid-template-columns: 1fr 2fr; align-items: center; gap: 4rem; }
+    .skills-list { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 1rem; }
+    .skill-item {
+      display: flex; align-items: center; gap: 0.5rem;
+      background: var(--color-card-bg); padding: 0.5rem 1rem;
+      border-radius: var(--border-radius); border: 1px solid var(--color-border); font-weight: 500;
+    }
+    .skill-item svg { width: 20px; height: 20px; color: var(--color-primary); }
+
+    /* ===== Timeline ===== */
+    .timeline { position: relative; max-width: 800px; margin: 0 auto; }
+    .timeline::after {
+      content: ''; position: absolute; width: 4px; background-color: var(--color-border);
+      top: 0; bottom: 0; left: 50%; margin-left: -2px; border-radius: 2px;
+    }
+    .timeline-item { padding: 1rem 3rem; position: relative; background-color: inherit; width: 50%; }
+    .timeline-item::after {
+      content: ''; position: absolute; width: 20px; height: 20px; right: -10px;
+      background-color: var(--color-background); border: 4px solid var(--color-primary);
+      top: 25px; border-radius: 50%; z-index: 1; transition: all var(--transition-speed);
+    }
+    .timeline-item.left { left: 0; }
+    .timeline-item.right { left: 50%; }
+    .timeline-item.left::before {
+      content: " "; height: 0; position: absolute; top: 30px; width: 0; z-index: 1;
+      right: 20px; border: medium solid var(--color-border);
+      border-width: 10px 0 10px 10px; border-color: transparent transparent transparent var(--color-border);
+    }
+    .timeline-item.right::before {
+      content: " "; height: 0; position: absolute; top: 30px; width: 0; z-index: 1;
+      left: 20px; border: medium solid var(--color-border);
+      border-width: 10px 10px 10px 0; border-color: transparent var(--color-border) transparent transparent;
+    }
+    .timeline-item.right::after { left: -10px; }
+    .timeline-content {
+      padding: 2rem; background: var(--color-card-bg); border: 1px solid var(--color-border);
+      position: relative; border-radius: var(--border-radius);
+      backdrop-filter: blur(10px); transition: all var(--transition-speed);
+    }
+    .timeline-item:hover .timeline-content { border-color: var(--color-primary); box-shadow: 0 0 30px var(--color-primary-glow); }
+    .timeline-item:hover::after { background-color: var(--color-primary); }
+    .timeline-date { font-weight: 600; color: var(--color-primary); margin-bottom: 0.5rem; }
+
+    /* ===== Portfolio Section ===== */
+    #portfolio { background-color: rgba(0, 0, 0, 0.1); }
+    .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 2.5rem; }
+    .portfolio-card {
+      background: var(--color-card-bg); border-radius: var(--border-radius);
+      border: 1px solid var(--color-border); backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px 0 var(--color-shadow); overflow: hidden; cursor: pointer;
+      transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease, border-color var(--transition-speed) ease;
+    }
+    .portfolio-card:hover { transform: translateY(-10px); border-color: var(--color-primary); box-shadow: 0 0 40px var(--color-primary-glow); }
+    .card-image img { width: 100%; height: 240px; object-fit: cover; display: block; transition: transform var(--transition-speed) ease; }
+    .portfolio-card:hover .card-image img { transform: scale(1.05); }
+    .card-content { padding: 1.5rem; }
+    .card-content h3 { font-size: 1.25rem; margin-bottom: 0.5rem; }
+    .card-category { font-size: 0.9rem; font-weight: 500; color: var(--color-primary); text-transform: uppercase; letter-spacing: 1px; }
+    .filter-buttons { display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 3rem; }
+    .filter-btn {
+      background-color: transparent; color: var(--color-secondary); border: 1px solid var(--color-border);
+      padding: 0.6rem 1.5rem; border-radius: 30px; font-weight: 500; font-size: 0.95rem;
+      cursor: pointer; transition: all var(--transition-speed) ease; font-family: var(--font-family);
+    }
+    .filter-btn:hover { background-color: var(--color-primary-glow); color: var(--color-primary); border-color: var(--color-primary); }
+    .filter-btn.active { background-color: var(--color-primary); color: var(--color-background); border-color: var(--color-primary); box-shadow: 0 0 20px var(--color-primary-glow); }
+
+    /* ===== Contact ===== */
+    .contact-container { max-width: 800px; margin: 0 auto; background: var(--color-card-bg); padding: 3rem; border-radius: var(--border-radius); border: 1px solid var(--color-border); }
+    .contact-form { display: grid; gap: 1.5rem; }
+    .form-group { position: relative; }
+    .form-input {
+      width: 100%; padding: 1rem; background: rgba(13, 17, 23, 0.5);
+      border: 1px solid var(--color-border); border-radius: 10px;
+      color: var(--color-text); font-size: 1rem; transition: border-color var(--transition-speed);
+      font-family: var(--font-family);
+    }
+    .form-input:focus { outline: none; border-color: var(--color-primary); }
+    .submit-btn {
+      background: var(--color-primary); color: var(--color-background); padding: 1rem 2rem;
+      border-radius: 30px; text-decoration: none; font-weight: 600; transition: all var(--transition-speed);
+      box-shadow: 0 0 20px var(--color-primary-glow); border: none; cursor: pointer; font-size: 1rem;
+      font-family: var(--font-family);
+    }
+    .submit-btn:hover { transform: translateY(-3px); box-shadow: 0 5px 30px var(--color-primary-glow); }
+
+    /* ===== Modal ===== */
+    .modal {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background-color: rgba(13, 17, 23, 0.7); backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; visibility: hidden;
+      transition: opacity var(--transition-speed) ease, visibility 0s var(--transition-speed);
+      z-index: 1000;
+    }
+    .modal.active { opacity: 1; visibility: visible; transition-delay: 0s; }
+    .modal-content {
+      background: var(--color-card-bg); border: 1px solid var(--color-border);
+      border-radius: var(--border-radius); width: 90%; overflow-y: auto;
+      position: relative; padding: 2.5rem;
+      transform: scale(0.95); transition: transform var(--transition-speed) cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .modal.active .modal-content { transform: scale(1); }
+    .modal-close {
+      position: absolute; top: 1.5rem; right: 1.5rem; font-size: 2rem; font-weight: 400;
+      color: var(--color-secondary); cursor: pointer; line-height: 1;
+      transition: color var(--transition-speed) ease, transform var(--transition-speed) ease;
+    }
+    .modal-close:hover { color: var(--color-text); transform: rotate(90deg); }
+    .modal-body { display: grid; grid-template-columns: 1.2fr 1fr; gap: 2.5rem; }
+    .modal-main-image { width: 100%; border-radius: var(--border-radius); margin-bottom: 1rem; border: 1px solid var(--color-border); }
+    .modal-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); gap: 0.75rem; }
+    .modal-gallery img {
+      width: 100%; height: 60px; object-fit: cover; border-radius: 8px;
+      cursor: pointer; border: 2px solid transparent; opacity: 0.7; transition: all var(--transition-speed);
+    }
+    .modal-gallery img.selected, .modal-gallery img:hover { border-color: var(--color-primary); opacity: 1; transform: scale(1.05); }
+    #modal-technologies { display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1.5rem 0; }
+    .tech-tag {
+      background-color: rgba(34, 211, 238, 0.1); color: var(--color-primary);
+      padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 500;
+    }
+    .modal-link {
+      display: inline-block; background: var(--color-primary); color: var(--color-background);
+      padding: 0.75rem 2rem; border-radius: 30px; text-decoration: none; font-weight: 600;
+      transition: all var(--transition-speed); box-shadow: 0 0 20px var(--color-primary-glow);
+    }
+    .modal-link:hover { transform: translateY(-3px); box-shadow: 0 5px 30px var(--color-primary-glow); }
+
+    /* ===== Scroll Reveal ===== */
+    .reveal {
+      opacity: 0; transform: translateY(40px);
+      transition: opacity 1s cubic-bezier(0.5, 0, 0, 1), transform 1s cubic-bezier(0.5, 0, 0, 1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .fade { opacity: 0; transform: translateY(24px); transition: all .55s ease; }
+    .fade.visible { opacity: 1; transform: translateY(0); }
+
+    /* ===== Pharmacy Section ===== */
+    #pharmacy { background: var(--dark); padding: 7rem 0; }
+    .sec-label {
+      display: inline-block; color: var(--color-red); font-size: .73rem; font-weight: 700;
+      letter-spacing: .18em; text-transform: uppercase; margin-bottom: .6rem;
+    }
+    .sec-title-ph { font-size: clamp(1.6rem, 3.5vw, 2.2rem); font-weight: 800; margin-bottom: .9rem; letter-spacing: -.01em; text-align: center; }
+    .sec-desc { color: var(--muted); font-size: .98rem; max-width: 580px; margin: 0 auto; line-height: 1.85; }
+    .sec-header { text-align: center; margin-bottom: 3rem; }
+    .divider { width: 48px; height: 3px; background: var(--color-red); border-radius: 4px; margin: .75rem auto 0; }
+
+    /* KPI Row */
+    .kpi-row { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin: 2rem 0 3.5rem; }
+    .kpi { text-align: center; }
+    .kpi-val {
+      font-size: 2.2rem; font-weight: 800;
+      background: linear-gradient(135deg, var(--color-primary), #0ea5e9);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .kpi-label { font-size: .78rem; color: var(--muted); letter-spacing: .05em; }
+
+    /* Clients Grid */
+    .clients-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; }
+    .client-card {
+      background: var(--dark3); border: 1px solid rgba(255,255,255,.06);
+      border-radius: 20px; overflow: hidden; transition: all .3s; position: relative;
+    }
+    .client-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,.4); }
+    .client-header { padding: 2rem; display: flex; align-items: center; gap: 1rem; border-bottom: 1px solid rgba(255,255,255,.05); }
+    .client-icon { width: 56px; height: 56px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; flex-shrink: 0; }
+    .client-icon.red { background: rgba(220,38,38,.15); }
+    .client-icon.blue { background: rgba(59,130,246,.15); }
+    .client-icon.green { background: rgba(34,197,94,.15); }
+    .client-info h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: .2rem; }
+    .client-info p { font-size: .8rem; color: var(--muted); margin-bottom: 0; }
+    .client-badge { position: absolute; top: 1rem; right: 1rem; font-size: .68rem; font-weight: 700; padding: .25rem .7rem; border-radius: 20px; }
+    .badge-red   { background: rgba(220,38,38,.2); color: #fca5a5; border: 1px solid rgba(220,38,38,.3); }
+    .badge-blue  { background: rgba(59,130,246,.2); color: #93c5fd; border: 1px solid rgba(59,130,246,.3); }
+    .badge-green { background: rgba(34,197,94,.2); color: #86efac; border: 1px solid rgba(34,197,94,.3); }
+    .client-body { padding: 1.5rem; }
+    .client-meta { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+    .client-meta-item { display: flex; align-items: center; gap: .4rem; font-size: .8rem; color: var(--muted); }
+    .client-tags { display: flex; gap: .4rem; flex-wrap: wrap; }
+    .tag { background: rgba(255,255,255,.05); color: var(--muted); padding: .2rem .65rem; border-radius: 20px; font-size: .72rem; }
+    .tag.red   { background: rgba(220,38,38,.1); color: #fca5a5; }
+    .tag.blue  { background: rgba(59,130,246,.1); color: #93c5fd; }
+    .tag.green { background: rgba(34,197,94,.1); color: #86efac; }
+    .tag.cyan  { background: rgba(34,211,238,.1); color: var(--color-primary); }
+
+    /* Project Tabs */
+    .project-tabs { display: flex; gap: .5rem; flex-wrap: wrap; justify-content: center; margin-bottom: 2.5rem; }
+    .project-tab {
+      padding: .6rem 1.4rem; border-radius: 8px; font-size: .87rem; font-weight: 600;
+      cursor: pointer; transition: all .2s; border: 1px solid rgba(255,255,255,.1);
+      background: transparent; color: var(--muted); font-family: var(--font-family);
+    }
+    .project-tab.active, .project-tab:hover { color: var(--color-text); border-color: var(--color-primary); background: rgba(34,211,238,.1); }
+    .project-panel { display: none; animation: fadeInUp .3s ease; }
+    .project-panel.active { display: block; }
+
+    /* Split Layout */
+    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; }
+    .split-info h2 { font-size: 1.6rem; font-weight: 800; margin-bottom: .75rem; text-align: left; }
+    .split-info p { color: var(--muted); line-height: 1.8; margin-bottom: 1rem; font-size: .95rem; }
+    .split-screen { background: var(--dark3); border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,.08); }
+    .screen-bar { background: var(--dark4); padding: .6rem 1rem; display: flex; align-items: center; gap: .4rem; border-bottom: 1px solid rgba(255,255,255,.06); }
+    .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .dot-r { background: #ff5f57; } .dot-y { background: #febc2e; } .dot-g { background: #28c840; }
+    .screen-url { font-size: .7rem; color: var(--muted); margin-left: .75rem; font-family: monospace; }
+    .screen-content { padding: 1.5rem; }
+
+    /* Modules Grid */
+    .modules-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
+    .mod-group { background: var(--dark3); border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,.06); }
+    .mod-head { padding: .875rem 1rem; display: flex; align-items: center; gap: .6rem; font-weight: 700; font-size: .87rem; background: rgba(255,255,255,.03); border-bottom: 1px solid rgba(255,255,255,.05); }
+    .mod-count { margin-left: auto; background: var(--color-red); color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: .68rem; font-weight: 700; flex-shrink: 0; }
+    .mod-list { padding: .6rem; }
+    .mod-item { display: flex; align-items: center; gap: .6rem; padding: .4rem .65rem; border-radius: 7px; }
+    .mod-item:hover { background: rgba(255,255,255,.04); }
+    .mod-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--color-red); flex-shrink: 0; }
+    .mod-name { font-size: .83rem; }
+    .mod-path { font-size: .68rem; color: var(--muted); font-family: monospace; margin-left: auto; }
+
+    /* Tech Grid */
+    .tech-grid-ph { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: .875rem; }
+    .tech-card {
+      background: var(--dark3); border: 1px solid rgba(255,255,255,.06);
+      border-radius: 12px; padding: 1.25rem 1rem; text-align: center; transition: all .3s;
+    }
+    .tech-card:hover { border-color: rgba(34,211,238,.35); transform: translateY(-3px); }
+    .tech-card .icon { font-size: 2rem; margin-bottom: .5rem; }
+    .tech-card .name { font-size: .85rem; font-weight: 700; margin-bottom: .2rem; }
+    .tech-card .type { font-size: .7rem; color: var(--muted); }
+
+    /* Comparison Table */
+    .comparison-wrap { background: var(--dark3); border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,.06); margin-bottom: 3rem; }
+    .comparison-head { padding: 1.25rem 1.5rem; border-bottom: 1px solid rgba(255,255,255,.06); font-weight: 700; font-size: .95rem; }
+    .comparison-wrap table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+    .comparison-wrap thead tr { background: rgba(255,255,255,.03); }
+    .comparison-wrap th { padding: .875rem 1.5rem; text-align: center; font-weight: 600; color: var(--muted); }
+    .comparison-wrap th:first-child { text-align: left; }
+    .comparison-wrap td { padding: .75rem 1.5rem; text-align: center; border-top: 1px solid rgba(255,255,255,.04); }
+    .comparison-wrap td:first-child { text-align: left; color: var(--muted); }
+
+    /* ===== Footer ===== */
+    footer {
+      background: var(--dark2); border-top: 1px solid var(--color-border);
+      padding: 3rem 0; text-align: center; font-size: 0.9rem; color: var(--color-secondary);
+    }
+    .footer-inner { max-width: 700px; margin: 0 auto; padding: 0 2rem; }
+    .footer-logo-text { font-size: 1.3rem; font-weight: 800; margin-bottom: .75rem; color: var(--color-text); }
+    .footer-badges { display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; margin: 1rem 0; }
+    .footer-copy { color: rgba(255,255,255,.3); font-size: .75rem; margin-top: 1rem; }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 900px) {
+      .modal-body { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      section { padding: 4rem 0; }
+      .nav-links { display: none; }
+      .about-content { grid-template-columns: 1fr; gap: 2rem; }
+      .about-image { max-width: 200px; height: 200px; }
+      .timeline::after { left: 20px; margin-left: 0; }
+      .timeline-item { width: 100%; padding-left: 50px; padding-right: 1rem; }
+      .timeline-item.left, .timeline-item.right { left: 0%; }
+      .timeline-item.left::after, .timeline-item.right::after { left: 10px; }
+      .timeline-item.left::before, .timeline-item.right::before { left: 30px; border-width: 10px 10px 10px 0; border-color: transparent var(--color-border) transparent transparent; }
+      .split { grid-template-columns: 1fr; }
+      .kpi-row { gap: 1.25rem; }
+    }
+  </style>
 </head>
-
 <body>
 
-    <nav class="main-nav" id="main-nav">
-        <div class="nav-container">
-            <a href="#hero" class="nav-logo">PORT<span>FOLIO</span></a>
-            <ul class="nav-links">
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#experience" class="nav-link">Experience</a></li>
-                <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-                 <li><a href="/portfolio-opd-robotV2.html" class="nav-link">Project</a></li>
-            </ul>
+<!-- ===== NAVIGATION ===== -->
+<nav class="main-nav" id="main-nav">
+  <div class="nav-container">
+    <a href="#hero" class="nav-logo">PORT<span>FOLIO</span></a>
+    <ul class="nav-links">
+      <li><a href="#about"      class="nav-link">About</a></li>
+      <li><a href="#experience" class="nav-link">Experience</a></li>
+      <li><a href="#portfolio"  class="nav-link">Portfolio</a></li>
+      <li><a href="#pharmacy"   class="nav-link">Pharmacy Projects</a></li>
+      <li><a href="#contact"    class="nav-link">Contact</a></li>
+    </ul>
+    <span class="nav-badge">v1.4.1</span>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<header id="hero">
+  <div class="container">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:2.5rem;">
+      <img
+        src="img/NPK-WEB_MANAGEMENT/S__20832269.jpg"
+        alt="Profile Picture"
+        class="about-image reveal"
+        style="box-shadow:0 0 60px var(--color-primary-glow);border-width:6px;max-width:180px;height:180px;margin-bottom:1.5rem;"
+      >
+      <h1 class="reveal" style="margin-bottom:0.5rem;">
+        Crafting Digital <span>Experiences</span><span style="color:var(--color-secondary);">.</span>
+      </h1>
+      <p class="subtitle reveal" style="transition-delay:0.2s;margin-bottom:1.5rem;">
+        นักพัฒนา Full-Stack และผู้หลงใหลใน UI/UX ที่มุ่งมั่นสร้างสรรค์เว็บไซต์และแอปพลิเคชันสมัยใหม่<br>
+        ใส่ใจทุกรายละเอียด ตั้งแต่การออกแบบประสบการณ์ผู้ใช้ การพัฒนาระบบที่มีประสิทธิภาพ<br>
+        ไปจนถึงการนำเทคโนโลยีใหม่ๆ มาประยุกต์ใช้ เพื่อให้ทุกโซลูชันตอบโจทย์ธุรกิจและสร้างประสบการณ์ที่ดีที่สุดสำหรับผู้ใช้งาน
+      </p>
+      <div class="reveal" style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;color:var(--color-secondary);font-size:1.05rem;">
+        <span><strong style="color:var(--color-text);">ล้อ'แม็ค</strong> | Full-Stack Developer &amp; UI/UX Enthusiast</span>
+        <span>Bangkok, Thailand &nbsp;·&nbsp; <span style="color:var(--color-primary);">Available for freelance</span></span>
+      </div>
+      <div class="reveal" style="display:flex;gap:1.2rem;margin-top:1.7rem;flex-wrap:wrap;justify-content:center;">
+        <a href="#portfolio" class="submit-btn" style="font-size:1.05rem;">ดูผลงาน</a>
+        <a href="#contact" class="submit-btn" style="background:transparent;color:var(--color-primary);border:2px solid var(--color-primary);box-shadow:none;">ติดต่อฉัน</a>
+      </div>
+      <div class="reveal" style="display:flex;gap:1.1rem;margin-top:2.2rem;">
+        <a href="https://github.com/" target="_blank" rel="noopener" style="color:var(--color-secondary);transition:color 0.3s;" onmouseover="this.style.color='var(--color-primary)'" onmouseout="this.style.color='var(--color-secondary)'">
+          <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.34-1.3-1.7-1.3-1.7-1.06-.73.08-.72.08-.72 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.73 1.27 3.4.97.11-.75.41-1.27.74-1.56-2.55-.29-5.23-1.28-5.23-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.1 11.1 0 012.9-.39c.98 0 1.97.13 2.9.39 2.2-1.49 3.17-1.18 3.17-1.18.63 1.58.23 2.75.11 3.04.74.81 1.19 1.84 1.19 3.1 0 4.43-2.68 5.41-5.23 5.7.42.36.79 1.08.79 2.18 0 1.57-.01 2.84-.01 3.23 0 .31.21.68.8.56C20.71 21.39 24 17.08 24 12c0-6.27-5.23-11.5-12-11.5z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/" target="_blank" rel="noopener" style="color:var(--color-secondary);transition:color 0.3s;" onmouseover="this.style.color='var(--color-primary)'" onmouseout="this.style.color='var(--color-secondary)'">
+          <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.27c-.97 0-1.75-.79-1.75-1.76s.78-1.76 1.75-1.76 1.75.79 1.75 1.76-.78 1.76-1.75 1.76zm13.5 11.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-10h2.88v1.36h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.59v5.61z"/></svg>
+        </a>
+        <a href="mailto:your.email@example.com" style="color:var(--color-secondary);transition:color 0.3s;" onmouseover="this.style.color='var(--color-primary)'" onmouseout="this.style.color='var(--color-secondary)'">
+          <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ===== ABOUT ===== -->
+<section id="about">
+  <div class="container">
+    <h2 class="reveal">About Me</h2>
+    <div class="about-content reveal">
+      <img src="img/NPK-WEB_MANAGEMENT/S__20832269.jpg" alt="My Profile Picture" class="about-image">
+      <div>
+        <h3>สวัสดีครับ ผมชื่อ ล้อ'แม็ค</h3>
+        <p>ผมเป็นนักพัฒนาซอฟต์แวร์สาย Full-Stack ที่มีประสบการณ์พัฒนาระบบทั้ง Web Application, Windows Application, Windows Service และ RESTful API โดยให้ความสำคัญกับโครงสร้างระบบที่ดี ความเสถียร และประสิทธิภาพในการใช้งานจริง</p>
+        <p>มีความถนัดทั้งฝั่ง Front-end และ Back-end สามารถออกแบบและพัฒนาระบบตั้งแต่การวิเคราะห์ความต้องการ ออกแบบฐานข้อมูล ไปจนถึงการเชื่อมต่อระบบและนำขึ้นใช้งานจริง รองรับการขยายระบบในอนาคต</p>
+        <p>ผมมีประสบการณ์ทำงานกับฐานข้อมูลหลากหลายรูปแบบ เช่น MySQL, SQL Server และ MongoDB รวมถึงการพัฒนา API เพื่อเชื่อมต่อกับระบบภายนอก และการสร้าง Service สำหรับทำงานเบื้องหลังอัตโนมัติ</p>
+        <div class="skills-list">
+          <div class="skill-item">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 1a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 0110 1zM5.05 3.55a.75.75 0 00-1.06 1.06l1.06-1.06zM14.95 3.55a.75.75 0 011.06 1.06l-1.06-1.06zM10 18a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 0110 18zM3.55 5.05a.75.75 0 011.06-1.06l-1.06 1.06zM16.45 5.05a.75.75 0 00-1.06-1.06l1.06 1.06zM18 10a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0118 10zM2 10a.75.75 0 01.75-.75h1.5a.75.75 0 010 1.5h-1.5A.75.75 0 012 10zM5.05 16.45a.75.75 0 00-1.06-1.06l1.06 1.06zM14.95 16.45a.75.75 0 011.06-1.06l-1.06 1.06zM10 5a5 5 0 100 10 5 5 0 000-10z" clip-rule="evenodd"/></svg>
+            UI/UX Design
+          </div>
+          <div class="skill-item">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.373 2.97a.75.75 0 00-1.054.22l-5.5 9.5a.75.75 0 001.27.734l5.5-9.5a.75.75 0 00-.216-1.004z" clip-rule="evenodd"/><path fill-rule="evenodd" d="M16.127 8.97a.75.75 0 00-1.054.22l-5.5 9.5a.75.75 0 001.27.734l5.5-9.5a.75.75 0 00-.216-1.004z" clip-rule="evenodd"/></svg>
+            Front-End Dev
+          </div>
+          <div class="skill-item">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path d="M10.75 2.75a.75.75 0 00-1.5 0v8.614L6.295 8.235a.75.75 0 10-1.09 1.03l4.25 4.5a.75.75 0 001.09 0l4.25-4.5a.75.75 0 00-1.09-1.03l-2.955 3.129V2.75z"/><path d="M3.5 12.75a.75.75 0 00-1.5 0v2.5A2.75 2.75 0 004.75 18h10.5A2.75 2.75 0 0018 15.25v-2.5a.75.75 0 00-1.5 0v2.5c0 .69-.56 1.25-1.25 1.25H4.75c-.69 0-1.25-.56-1.25-1.25v-2.5z"/></svg>
+            Back-End Dev
+          </div>
+          <div class="skill-item">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path d="M3.196 12.87l-.825.483a.75.75 0 000 1.294l7.25 4.25a.75.75 0 00.758 0l7.25-4.25a.75.75 0 000-1.294l-.825-.484-5.666 3.322a1.75 1.75 0 01-1.756 0L3.196 12.87z"/><path d="M3.196 8.87l-.825.483a.75.75 0 000 1.294l7.25 4.25a.75.75 0 00.758 0l7.25-4.25a.75.75 0 000-1.294l-.825-.484-5.666 3.322a1.75 1.75 0 01-1.756 0L3.196 8.87z"/><path d="M10.38 1.103a.75.75 0 00-.76 0l-7.25 4.25a.75.75 0 000 1.294l7.25 4.25a.75.75 0 00.76 0l7.25-4.25a.75.75 0 000-1.294l-7.25-4.25z"/></svg>
+            App Service
+          </div>
         </div>
-    </nav>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <header id="hero">
-        <div class="container">
-            <div style="display: flex; flex-direction: column; align-items: center; gap: 2.5rem;">
-                <!-- Profile Image -->
-                <img src="img/NPK-WEB_MANAGEMENT/S__20832269.jpg" alt="Profile Picture" class="about-image"
-                    style="box-shadow: 0 0 60px var(--color-primary-glow); border-width: 6px; max-width: 180px; height: 180px; margin-bottom: 1.5rem;">
-                <!-- Main Title -->
-                <h1 class="reveal" style="margin-bottom: 0.5rem;">
-                    Crafting Digital Experiences<span>.</span>
-                </h1>
-                <!-- Subtitle -->
-                <p class="subtitle reveal" style="transition-delay: 0.2s; margin-bottom: 1.5rem;">
-                    นักพัฒนา Full-Stack และผู้หลงใหลใน UI/UX ที่มุ่งมั่นสร้างสรรค์เว็บไซต์และแอปพลิเคชันสมัยใหม่<br>
-                    ใส่ใจทุกรายละเอียด ตั้งแต่การออกแบบประสบการณ์ผู้ใช้ การพัฒนาระบบที่มีประสิทธิภาพ<br>
-                    ไปจนถึงการนำเทคโนโลยีใหม่ๆ มาประยุกต์ใช้
-                    เพื่อให้ทุกโซลูชันตอบโจทย์ธุรกิจและสร้างประสบการณ์ที่ดีที่สุดสำหรับผู้ใช้งาน
-                </p>
-                <!-- Short Profile Info -->
-                <div class="reveal"
-                    style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem; color: var(--color-secondary); font-size: 1.05rem;">
-                    <span><strong>ล้อ'แม็ค</strong> | Full-Stack Developer & UI/UX Enthusiast</span>
-                    <span>Bangkok, Thailand &nbsp;·&nbsp; <span style="color: var(--color-primary);">Available for
-                            freelance</span></span>
-                </div>
-                <!-- CTA Buttons -->
-                <div class="reveal" style="display: flex; gap: 1.2rem; margin-top: 1.7rem;">
-                    <a href="#portfolio" class="submit-btn" style="font-size: 1.05rem;">ดูผลงาน</a>
-                    <a href="#contact" class="submit-btn"
-                        style="background: transparent; color: var(--color-primary); border: 2px solid var(--color-primary); box-shadow: none;">ติดต่อฉัน</a>
-                </div>
-                <!-- Social Icons -->
-                <div class="reveal" style="display: flex; gap: 1.1rem; margin-top: 2.2rem;">
-                    <a href="https://github.com/" target="_blank"
-                        style="color: var(--color-secondary); font-size: 1.7rem; transition: color 0.3s;">
-                        <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.34-1.3-1.7-1.3-1.7-1.06-.73.08-.72.08-.72 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.73 1.27 3.4.97.11-.75.41-1.27.74-1.56-2.55-.29-5.23-1.28-5.23-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.1 11.1 0 012.9-.39c.98 0 1.97.13 2.9.39 2.2-1.49 3.17-1.18 3.17-1.18.63 1.58.23 2.75.11 3.04.74.81 1.19 1.84 1.19 3.1 0 4.43-2.68 5.41-5.23 5.7.42.36.79 1.08.79 2.18 0 1.57-.01 2.84-.01 3.23 0 .31.21.68.8.56C20.71 21.39 24 17.08 24 12c0-6.27-5.23-11.5-12-11.5z" />
-                        </svg>
-                    </a>
-                    <a href="https://www.linkedin.com/" target="_blank"
-                        style="color: var(--color-secondary); font-size: 1.7rem; transition: color 0.3s;">
-                        <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.27c-.97 0-1.75-.79-1.75-1.76s.78-1.76 1.75-1.76 1.75.79 1.75 1.76-.78 1.76-1.75 1.76zm13.5 11.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-10h2.88v1.36h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.59v5.61z" />
-                        </svg>
-                    </a>
-                    <a href="mailto:your.email@example.com"
-                        style="color: var(--color-secondary); font-size: 1.7rem; transition: color 0.3s;">
-                        <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M12 13.065l-11.99-8.065h23.98l-11.99 8.065zm11.99-9.065h-23.98c-1.104 0-2 .896-2 2v14c0 1.104.896 2 2 2h23.98c1.104 0 2-.896 2-2v-14c0-1.104-.896-2-2-2zm-11.99 10.935l-12-8.065v14.13c0 .553.447 1 1 1h22c.553 0 1-.447 1-1v-14.13l-12 8.065z" />
-                        </svg>
-                    </a>
-                </div>
-            </div>
+<!-- ===== EXPERIENCE ===== -->
+<section id="experience">
+  <div class="container">
+    <h2 class="reveal">Experience &amp; Training</h2>
+    <p class="section-subtitle reveal">A summary of my professional journey and key qualifications.</p>
+    <div class="timeline">
+      <div class="timeline-item left reveal">
+        <div class="timeline-content">
+          <p class="timeline-date">2022 - Present</p>
+          <h3>Senior Developer at Tech Solutions Inc.</h3>
+          <p>Leading the development of scalable web applications for enterprise clients. Responsible for architecture design, code reviews, and mentoring junior developers.</p>
         </div>
-    </header>
-    <main>
-        <section id="about">
-            <div class="container">
-                <h2 class="reveal">About Me</h2>
-                <div class="about-content reveal">
-                    <img src="img/NPK-WEB_MANAGEMENT/S__20832269.jpg" alt="My Profile Picture" class="about-image">
-                    <div>
-                        <h3>สวัสดีครับ ผมชื่อ ล้อ'แม็ค</h3>
-                        <p>
-                            ผมเป็นนักพัฒนาซอฟต์แวร์สาย Full-stack ที่มีประสบการณ์พัฒนาระบบทั้ง Web Application,
-                            Windows Application, Windows Service และ RESTful API
-                            โดยให้ความสำคัญกับโครงสร้างระบบที่ดี ความเสถียร และประสิทธิภาพในการใช้งานจริง
-                        </p>
-                        <p>
-                            มีความถนัดทั้งฝั่ง Front-end และ Back-end
-                            สามารถออกแบบและพัฒนาระบบตั้งแต่การวิเคราะห์ความต้องการ
-                            ออกแบบฐานข้อมูล ไปจนถึงการเชื่อมต่อระบบและนำขึ้นใช้งานจริง
-                            รองรับการขยายระบบในอนาคต
-                        </p>
-                        <p>
-                            ผมมีประสบการณ์ทำงานกับฐานข้อมูลหลากหลายรูปแบบ เช่น
-                            MySQL, SQL Server และ MongoDB
-                            รวมถึงการพัฒนา API เพื่อเชื่อมต่อกับระบบภายนอก
-                            และการสร้าง Service สำหรับทำงานเบื้องหลังอัตโนมัติ
-                        </p>
-
-                        <div class="skills-list">
-                            <div class="skill-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                                    fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M10 1a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 0110 1zM5.05 3.55a.75.75 0 00-1.06 1.06l1.06-1.06zM14.95 3.55a.75.75 0 011.06 1.06l-1.06-1.06zM10 18a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 0110 18zM3.55 5.05a.75.75 0 011.06-1.06l-1.06 1.06zM16.45 5.05a.75.75 0 00-1.06-1.06l1.06 1.06zM18 10a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0118 10zM2 10a.75.75 0 01.75-.75h1.5a.75.75 0 010 1.5h-1.5A.75.75 0 012 10zM5.05 16.45a.75.75 0 00-1.06-1.06l1.06 1.06zM14.95 16.45a.75.75 0 011.06-1.06l-1.06 1.06zM10 5a5 5 0 100 10 5 5 0 000-10z"
-                                        clip-rule="evenodd" />
-                                </svg> UI/UX Design</div>
-                            <div class="skill-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                                    fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M12.373 2.97a.75.75 0 00-1.054.22l-5.5 9.5a.75.75 0 001.27.734l5.5-9.5a.75.75 0 00-.216-1.004z"
-                                        clip-rule="evenodd" />
-                                    <path fill-rule="evenodd"
-                                        d="M16.127 8.97a.75.75 0 00-1.054.22l-5.5 9.5a.75.75 0 001.27.734l5.5-9.5a.75.75 0 00-.216-1.004z"
-                                        clip-rule="evenodd" />
-                                </svg> Front-End Dev</div>
-                            <div class="skill-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                                    fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M11.213 2.123a.75.75 0 00-1.06 0l-3.5 3.5a.75.75 0 000 1.06l3.5 3.5a.75.75 0 001.06-1.06L8.81 7.25l2.44-2.44a.75.  75 0 00-1.06-1.06z"
-                                        clip-rule="evenodd" />
-                                    <path fill-rule="evenodd"
-                                        d="M4.713 7.623a.75.75 0 00-1.06 0l-3.5 3.5a.75.75 0 000 1.06l3.5 3.5a.75.75 0 001.06-1.06L2.31 12.75l2.44-2.44a.75.75 0 00-1.06-1.06z"
-                                        clip-rule="evenodd" />
-                                    <path fill-rule="evenodd"
-                                        d="M19.127 7.623a.75.75 0 00-1.06 0l-3.5 3.5a.75.75 0 000 1.06l3.5 3.5a.75.75 0 001.06-1.06L16.71 12.75l2.44-2.44a.75.75 0 00-1.06-1.06z"
-                                        clip-rule="evenodd" />
-                                </svg> Back-End Dev</div>
-
-                            <div class="skill-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                                    fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M11.213 2.123a.75.75 0 00-1.06 0l-3.5 3.5a.75.75 0 000 1.06l3.5 3.5a.75.75 0 001.06-1.06L8.81 7.25l2.44-2.44a.75.  75 0 00-1.06-1.06z"
-                                        clip-rule="evenodd" />
-                                    <path fill-rule="evenodd"
-                                        d="M4.713 7.623a.75.75 0 00-1.06 0l-3.5 3.5a.75.75 0 000 1.06l3.5 3.5a.75.75 0 001.06-1.06L2.31 12.75l2.44-2.44a.75.75 0 00-1.06-1.06z"
-                                        clip-rule="evenodd" />
-                                    <path fill-rule="evenodd"
-                                        d="M19.127 7.623a.75.75 0 00-1.06 0l-3.5 3.5a.75.75 0 000 1.06l3.5 3.5a.75.75 0 001.06-1.06L16.71 12.75l2.44-2.44a.75.75 0 00-1.06-1.06z"
-                                        clip-rule="evenodd" />
-                                </svg> App Service</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="experience">
-            <div class="container">
-                <h2 class="reveal">Experience & Training</h2>
-                <p class="section-subtitle reveal">A summary of my professional journey and key qualifications.</p>
-                <div class="timeline">
-                    <div class="timeline-item left reveal">
-                        <div class="timeline-content">
-                            <p class="timeline-date">2022 - Present</p>
-                            <h3>Senior Developer at Tech Solutions Inc.</h3>
-                            <p>Leading the development of scalable web applications for enterprise clients. Responsible
-                                for architecture design, code reviews, and mentoring junior developers.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item right reveal">
-                        <div class="timeline-content">
-                            <p class="timeline-date">2020 - 2022</p>
-                            <h3>Mid-Level Developer at Web Innovators</h3>
-                            <p>Developed and maintained features for a high-traffic e-commerce platform using React and
-                                Node.js. Collaborated in an agile team to deliver bi-weekly sprints.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item left reveal">
-                        <div class="timeline-content">
-                            <p class="timeline-date">Training - 2021</p>
-                            <h3>Advanced Cloud Architect Certification</h3>
-                            <p>Completed an intensive certification on cloud infrastructure, focusing on AWS services,
-                                serverless architecture, and cost optimization strategies.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item right reveal">
-                        <div class="timeline-content">
-                            <p class="timeline-date">2018 - 2020</p>
-                            <h3>Junior Developer at Creative Agency</h3>
-                            <p>Built responsive websites and landing pages for various clients. Gained foundational
-                                experience in HTML, CSS, JavaScript, and client communication.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="portfolio">
-            <div class="container">
-                <h2 class="reveal">Selected Works</h2>
-                <!-- Filter Buttons Start -->
-                <div class="filter-buttons" id="filter-buttons">
-                    <button class="filter-btn active" data-project="all">All</button>
-                    <!-- ปุ่มจะถูกเติมโดย JS ตาม projectName ที่มีใน projectsData -->
-                </div>
-                <!-- Filter Buttons End -->
-                <div class="portfolio-grid" id="portfolio-grid"></div>
-            </div>
-        </section>
-
-        <section id="contact">
-            <div class="container">
-                <h2 class="reveal">Get In Touch</h2>
-                <p class="section-subtitle reveal">Have a project in mind or just want to say hello? Feel free to reach
-                    out.</p>
-                <div class="contact-container reveal">
-                    <form action="#" class="contact-form">
-                        <div class="form-group">
-                            <input type="text" name="name" class="form-input" placeholder="Your Name" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" name="email" class="form-input" placeholder="Your Email" required>
-                        </div>
-                        <div class="form-group">
-                            <textarea name="message" class="form-input" rows="5" placeholder="Your Message"
-                                required></textarea>
-                        </div>
-                        <button type="submit" class="submit-btn">Send Message</button>
-                    </form>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 John Doe. All Rights Reserved.</p>
+      </div>
+      <div class="timeline-item right reveal">
+        <div class="timeline-content">
+          <p class="timeline-date">2020 - 2022</p>
+          <h3>Mid-Level Developer at Web Innovators</h3>
+          <p>Developed and maintained features for a high-traffic e-commerce platform using React and Node.js. Collaborated in an agile team to deliver bi-weekly sprints.</p>
         </div>
-    </footer>
-
-    <!-- Modal remains the same -->
-    <div class="modal" id="portfolio-modal">
-        <div class="modal-content"><span class="modal-close" id="modal-close">&times;</span>
-            <div class="modal-body">
-                <div class="modal-images"><img src="" alt="Main project image" class="modal-main-image"
-                        id="modal-main-image">
-                    <div class="modal-gallery" id="modal-gallery"></div>
-                </div>
-                <div class="modal-details">
-                    <h3 id="modal-title"></h3>
-                    <p><strong>Category:</strong> <span id="modal-category"></span></p>
-                    <p id="modal-description"></p>
-                    <p><strong>Technologies Used:</strong></p>
-                    <div id="modal-technologies"></div><a href="#" target="_blank" rel="noopener noreferrer"
-                        class="modal-link" id="modal-link">Visit Website</a>
-                </div>
-            </div>
+      </div>
+      <div class="timeline-item left reveal">
+        <div class="timeline-content">
+          <p class="timeline-date">Training - 2021</p>
+          <h3>Advanced Cloud Architect Certification</h3>
+          <p>Completed an intensive certification on cloud infrastructure, focusing on AWS services, serverless architecture, and cost optimization strategies.</p>
         </div>
+      </div>
+      <div class="timeline-item right reveal">
+        <div class="timeline-content">
+          <p class="timeline-date">2018 - 2020</p>
+          <h3>Junior Developer at Creative Agency</h3>
+          <p>Built responsive websites and landing pages for various clients. Gained foundational experience in HTML, CSS, JavaScript, and client communication.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <script>
-            document.addEventListener('DOMContentLoaded', () => {
-                const portfolioGrid = document.getElementById('portfolio-grid');
-                const modal = document.getElementById('portfolio-modal');
-                const modalClose = document.getElementById('modal-close');
-                const filterButtons = document.getElementById('filter-buttons');
-                let projectsData = [];
-                let currentProject = 'all';
+<!-- ===== PORTFOLIO ===== -->
+<section id="portfolio">
+  <div class="container">
+    <h2 class="reveal">Selected Works</h2>
+    <div class="filter-buttons" id="filter-buttons">
+      <button class="filter-btn active" data-project="all">All</button>
+    </div>
+    <div class="portfolio-grid" id="portfolio-grid"></div>
+  </div>
+</section>
 
-                // --- 1. Fetch and Render Portfolio Data ---
-                const fetchProjects = async () => {
-                    try {
-                        projectsData = [
-                            {
-                                "id": 1,
-                                "projectName": "ระบบจ่ายยา IPD รพ.ในสังกัดสำนักการแพทย์",
-                                "title": "Service Generate File IRIS",
-                                "description": "Service Generate File IRIS เป็น Windows Service ที่พัฒนาขึ้นเพื่อรองรับระบบจ่ายยา IPD ของโรงพยาบาลในสังกัดสำนักการแพทย์ทำหน้าที่สร้างไฟล์ข้อมูลในรูปแบบ XML จากฐานข้อมูลระบบจ่ายยา และส่งต่อให้เครื่อง IRIS (เครื่องตรวจซองยา) เพื่อใช้ตรวจสอบความถูกต้องของรายการยา ชื่อผู้ป่วย และข้อมูลการจ่ายยา ก่อนนำส่งถึงผู้ป่วยระบบทำงานแบบอัตโนมัติ ทำงานเบื้องหลังตลอดเวลา ลดความผิดพลาดจากการทำงานของมนุษย์ (Human Error) เพิ่มความปลอดภัยในการจ่ายยา และช่วยให้กระบวนการจ่ายยามีความรวดเร็วและแม่นยำมากยิ่งขึ้นพัฒนาด้วย VB.NET ในรูปแบบ Windows Service สามารถทำงานร่วมกับระบบโรงพยาบาลได้อย่างเสถียร และรองรับการใช้งานต่อเนื่องตลอด 24 ชั่วโมง",
-                                "category": "Windows Service",
-                                "technologies": [
-                                    "VB.NET","Windows Service"
-                                ],
-                                "year": 2023,
-                                "coverImage": "img/NPK-WEB_MANAGEMENT/Medical_Office_Service Generate File IRIS.png",
-                                "gallery": [
-                                    "img/NPK-WEB_MANAGEMENT/Medical_Office_Service Generate File IRIS.png"
-                                ],
-                                "link": null
-                            },
-                            {
-                                "id": 2,
-                                "projectName": "ระบบจ่ายยา IPD รพ.ในสังกัดสำนักการแพทย์",
-                                "title": "Service Sync Abstract",
-                                "description": "Service Sync Abstract เป็น Windows Service ที่พัฒนาขึ้นเพื่อเชื่อมต่อและซิงโครไนซ์ข้อมูลการสั่งยาระหว่างระบบโรงพยาบาล (HIS) กับระบบจัดยาแบบอัตโนมัติระบบทำหน้าที่อ่านไฟล์ข้อมูลในรูปแบบ JSON ซึ่งถูกสร้างโดยระบบ HIS และจัดเก็บไว้ในโฟลเดอร์ที่ Robot ทำการแชร์ไว้ จากนั้น Service จะทำการประมวลผลและบันทึกข้อมูลการสั่งยาเข้าสู่ฐานข้อมูลของระบบจัดยา ก่อนย้ายไฟล์ที่ประมวลผลแล้วออกจากโฟลเดอร์เพื่อป้องกันการอ่านซ้ำการทำงานแบบ Background Service ช่วยให้การแลกเปลี่ยนข้อมูลเป็นไปอย่างต่อเนื่อง ลดภาระการทำงานของเจ้าหน้าที่ และเพิ่มความถูกต้องของข้อมูลการสั่งยาในกระบวนการจ่ายยา IPDพัฒนาด้วย VB.NET ในรูปแบบ Windows Service ที่มีความเสถียร และเหมาะสำหรับการใช้งานในระบบโรงพยาบาล",
-                                "category": "Windows Service",
-                                "technologies": [
-                                    "VB.NET","Windows Service"
-                                ],
-                                "year": 2023,
-                                "coverImage": "img/NPK-WEB_MANAGEMENT/Medical_Office_Service Sync Abstract.png",
-                                "gallery": [
-                                    "img/NPK-WEB_MANAGEMENT/Medical_Office_Service Sync Abstract.png"
-                                ],
-                                "link": null
-                            },
-                            {
-                                "id": 11,
-                                "projectName": "NPK Automation",
-                                "title": "RFID Basket Tracking System",
-                                "description": "A web application designed to track baskets on a conveyor belt using RFID technology. It provides real-time location, status visualization, and a comprehensive dashboard for monitoring the entire process.",
-                                "category": "Web Application",
-                                "technologies": ["HTML", "CSS", "JavaScript", "Node.js", "WebSocket"],
-                                "year": 2025,
-                                "coverImage": "img/NPK-WEB_MANAGEMENT/ค้นหาตะกร้ายา1.png",
-                                "gallery": [
-                                    "img/NPK-WEB_MANAGEMENT/ค้นหาตะกร้ายา1.png",
-                                    "img/NPK-WEB_MANAGEMENT/ค้นหาตะกร้ายา2.png",
-                                    "img/NPK-WEB_MANAGEMENT/ค้นหาตะกร้ายา3.png",
-                                    "img/NPK-WEB_MANAGEMENT/ค้นหาตะกร้ายา4.png"
-                                ],
-                                "link": null
-                            },
-                            {
-                                "id": 12,
-                                "projectName": "NPK Automation",
-                                "title": "Modern Kiosk UI/UX Design",
-                                "description": "A complete redesign of a self-service kiosk interface for a retail environment. The focus was on creating an intuitive, user-friendly, and accessible experience for all customers, featuring large touch targets and clear visual hierarchy.",
-                                "category": "UI/UX Design",
-                                "technologies": ["Figma", "User Research", "Prototyping"],
-                                "year": 2024,
-                                "coverImage": "img/NPK-WEB_MANAGEMENT/จัดการผู้ใช้งาน.png",
-                                "gallery": [
-                                    "img/NPK-WEB_MANAGEMENT/จัดการผู้ใช้งาน.png",
-                                    "img/NPK-WEB_MANAGEMENT/จัดการผู้ใช้งาน1.png",
-                                    "img/NPK-WEB_MANAGEMENT/จัดการผู้ใช้งาน2.png"
-                                ],
-                                "link": "https://www.figma.com/your-prototype-link"
-                            },
-                            {
-                                "id": 13,
-                                "projectName": "Personal Portfolio",
-                                "title": "Professional Portfolio Website",
-                                "description": "A personal portfolio landing page built from scratch to showcase projects and skills. Designed with a modern, minimal aesthetic and built with performance and responsiveness in mind.",
-                                "category": "Web Development",
-                                "technologies": ["HTML5", "CSS3", "Vanilla JS", "Responsive Design"],
-                                "year": 2025,
-                                "coverImage": "img/NPK-WEB_MANAGEMENT/login.png",
-                                "gallery": [
-                                    "img/NPK-WEB_MANAGEMENT/login.png",
-                                    "img/NPK-WEB_MANAGEMENT/Configuration.png"
-                                ],
-                                "link": "#"
-                            },
-                            {
-                                "id": 14,
-                                "projectName": "NPK Automation",
-                                "title": "Automated Pharmacy System",
-                                "description": "An internal management system for an automated pharmacy, controlling drug dispensing robots, managing inventory, and generating reports on workload and medication errors.",
-                                "category": "System Development",
-                                "technologies": ["Vue.js", "Express.js", "MySQL", "Chart.js"],
-                                "year": 2023,
-                                "coverImage": "img/NPK-WEB_MANAGEMENT/Stock Robot.png",
-                                "gallery": [
-                                    "img/NPK-WEB_MANAGEMENT/Stock Robot.png",
-                                    "img/NPK-WEB_MANAGEMENT/รายงานการเบิก.png",
-                                    "img/NPK-WEB_MANAGEMENT/รายงานการคาดเคลื่อนทางยา.png"
-                                ],
-                                "link": null
-                            }
-                        ];
+<!-- ===== PHARMACY PROJECTS ===== -->
+<section id="pharmacy">
+  <div class="container">
+    <div class="sec-header fade">
+      <div class="sec-label">🏥 PHARMACY PROJECTS</div>
+      <h2 class="sec-title-ph">🏥 Pharmacy Robot Management</h2>
+      <div class="divider"></div>
+      <p class="sec-desc" style="margin-top:1rem">ระบบบริหารจัดการเภสัชกรรมอัตโนมัติ 2 สถานประกอบการ 3 ระบบ</p>
+    </div>
 
-                        renderProjectFilters(projectsData);
-                        renderProjects(projectsData, currentProject);
-                    } catch (error) {
-                        console.error("Could not fetch projects:", error);
-                        portfolioGrid.innerHTML = '<p>Error loading projects.</p>';
-                    }
-                };
+    <!-- KPI Row -->
+    <div class="kpi-row fade">
+      <div class="kpi"><div class="kpi-val">3</div><div class="kpi-label">SYSTEMS</div></div>
+      <div class="kpi"><div class="kpi-val">2</div><div class="kpi-label">สถานประกอบการ</div></div>
+      <div class="kpi"><div class="kpi-val">70+</div><div class="kpi-label">MODULES</div></div>
+      <div class="kpi"><div class="kpi-val">v1.4.1</div><div class="kpi-label">LATEST VERSION</div></div>
+    </div>
 
-                // Render filter buttons by unique projectName
-                function renderProjectFilters(projects) {
-                    const uniqueNames = [...new Set(projects.map(p => p.projectName))];
-                    filterButtons.innerHTML = `<button class="filter-btn${currentProject === 'all' ? ' active' : ''}" data-project="all">All</button>`;
-                    uniqueNames.forEach(name => {
-                        filterButtons.innerHTML += `<button class="filter-btn${currentProject === name ? ' active' : ''}" data-project="${name}">${name}</button>`;
-                    });
-                }
+    <!-- Clients Grid -->
+    <div class="clients-grid fade">
+      <!-- Client 1: โรงพยาบาลจุฬาลงกรณ์ -->
+      <div class="client-card" style="border-color:rgba(220,38,38,.25)">
+        <span class="client-badge badge-red">OPD Robot</span>
+        <div class="client-header">
+          <div class="client-icon red">🏥</div>
+          <div class="client-info">
+            <h3>โรงพยาบาลจุฬาลงกรณ์</h3>
+            <p>สภากาชาดไทย • กรุงเทพฯ</p>
+          </div>
+        </div>
+        <div class="client-body">
+          <div class="client-meta">
+            <div class="client-meta-item">⚙️ OPD Robot Management System</div>
+            <div class="client-meta-item">📅 Version 1.0.6</div>
+            <div class="client-meta-item">🌐 kcmh-pharma.chula.or.th</div>
+            <div class="client-meta-item">👥 296+ Users</div>
+          </div>
+          <p style="font-size:.87rem;color:var(--muted);line-height:1.7;margin-bottom:1rem">ระบบบริหารจัดการหุ่นยนต์จ่ายยาผู้ป่วยนอก ครอบคลุมทั้งกระบวนการ รับ-จัด-จ่ายยา, คลังยา, Prepack และรายงานสถิติ</p>
+          <div class="client-tags">
+            <span class="tag red">Vue 3</span><span class="tag red">Vite</span><span class="tag red">45 Routes</span><span class="tag red">LDAP Auth</span><span class="tag red">IoT/Robot</span>
+          </div>
+        </div>
+      </div>
 
-                // Render projects by projectName
-                function renderProjects(projects, projectName = 'all') {
-                    const filtered = projectName === 'all' ? projects : projects.filter(p => p.projectName === projectName);
-                    portfolioGrid.innerHTML = '';
-                    filtered.forEach((project) => {
-                        const card = document.createElement('div');
-                        card.className = 'portfolio-card reveal';
-                        card.dataset.id = project.id;
-                        card.innerHTML = `<div class="card-image"><img src="${project.coverImage}" alt="${project.title}"></div><div class="card-content"><h3>${project.title}</h3><p class="card-category">${project.category}</p></div>`;
-                        portfolioGrid.appendChild(card);
-                    });
-                    setupScrollObservers();
-                }
+      <!-- Client 2: โรงพยาบาลนครพิงค์ OPD -->
+      <div class="client-card" style="border-color:rgba(59,130,246,.25)">
+        <span class="client-badge badge-blue">OPD Management</span>
+        <div class="client-header">
+          <div class="client-icon blue">🏨</div>
+          <div class="client-info">
+            <h3>โรงพยาบาลนครพิงค์</h3>
+            <p>จังหวัดเชียงใหม่ • OPD System</p>
+          </div>
+        </div>
+        <div class="client-body">
+          <div class="client-meta">
+            <div class="client-meta-item">⚙️ OPD Management System</div>
+            <div class="client-meta-item">📅 Version 1.4.1</div>
+            <div class="client-meta-item">🌐 192.168.34.246 (OPD)</div>
+            <div class="client-meta-item">🏥 ระบบงานผู้ป่วยนอก</div>
+          </div>
+          <p style="font-size:.87rem;color:var(--muted);line-height:1.7;margin-bottom:1rem">ระบบจัดการยา OPD รวมทั้ง Process การจ่ายยา, Mederror, Delivery (EMS/ไปรษณีย์), Stock, Report และ Log</p>
+          <div class="client-tags">
+            <span class="tag blue">Process</span><span class="tag blue">Mederror</span><span class="tag blue">Delivery</span><span class="tag blue">EMS Queue</span><span class="tag blue">SE-Med</span>
+          </div>
+        </div>
+      </div>
 
-                // --- Filter Button Logic ---
-                filterButtons.addEventListener('click', (e) => {
-                    if (e.target.classList.contains('filter-btn')) {
-                        document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-                        e.target.classList.add('active');
-                        currentProject = e.target.dataset.project;
-                        renderProjects(projectsData, currentProject);
-                    }
-                });
+      <!-- Client 3: โรงพยาบาลนครพิงค์ IPD -->
+      <div class="client-card" style="border-color:rgba(34,197,94,.25)">
+        <span class="client-badge badge-green">IPD Management</span>
+        <div class="client-header">
+          <div class="client-icon green">🛏️</div>
+          <div class="client-info">
+            <h3>โรงพยาบาลนครพิงค์</h3>
+            <p>จังหวัดเชียงใหม่ • IPD System</p>
+          </div>
+        </div>
+        <div class="client-body">
+          <div class="client-meta">
+            <div class="client-meta-item">⚙️ IPD Management System</div>
+            <div class="client-meta-item">📅 Version 1.4.1</div>
+            <div class="client-meta-item">🌐 192.168.34.246 (IPD)</div>
+            <div class="client-meta-item">🏥 ระบบงานผู้ป่วยใน</div>
+          </div>
+          <p style="font-size:.87rem;color:var(--muted);line-height:1.7;margin-bottom:1rem">ระบบจัดการยา IPD (ผู้ป่วยใน) รวม Process เตรียมยา, WAED, Stock Robot, รายงาน Waiting Time, กราฟวิเคราะห์</p>
+          <div class="client-tags">
+            <span class="tag green">IPD</span><span class="tag green">WAED</span><span class="tag green">เตรียมยา</span><span class="tag green">Waiting Time</span><span class="tag green">Location</span>
+          </div>
+        </div>
+      </div>
+    </div>
 
-                // --- 2. Modal Logic ---
-                const openModal = (projectId) => {
-                    const project = projectsData.find(p => p.id == projectId);
-                    if (!project) return;
-                    const mainImage = document.getElementById('modal-main-image');
-                    mainImage.src = project.coverImage;
-                    document.getElementById('modal-title').textContent = project.title;
-                    document.getElementById('modal-category').textContent = project.category;
-                    document.getElementById('modal-description').textContent = project.description;
-                    const techContainer = document.getElementById('modal-technologies');
-                    techContainer.innerHTML = '';
-                    project.technologies.forEach(tech => {
-                        const tag = document.createElement('span');
-                        tag.className = 'tech-tag';
-                        tag.textContent = tech;
-                        techContainer.appendChild(tag);
-                    });
-                    const galleryContainer = document.getElementById('modal-gallery');
-                    galleryContainer.innerHTML = '';
-                    project.gallery.forEach(imgSrc => {
-                        const img = document.createElement('img');
-                        img.src = imgSrc;
-                        img.alt = 'Gallery thumbnail';
-                        img.addEventListener('click', () => {
-                            mainImage.style.opacity = 0;
-                            setTimeout(() => { mainImage.src = imgSrc; mainImage.style.opacity = 1; }, 200);
-                            galleryContainer.querySelectorAll('img').forEach(i => i.classList.remove('selected'));
-                            img.classList.add('selected');
-                        });
-                        galleryContainer.appendChild(img);
-                    });
-                    mainImage.style.transition = 'opacity 0.2s ease-in-out';
-                    if (galleryContainer.firstChild) galleryContainer.firstChild.classList.add('selected');
-                    const modalLink = document.getElementById('modal-link');
-                    if (project.link) {
-                        modalLink.href = project.link;
-                        modalLink.style.display = 'inline-block';
-                    } else {
-                        modalLink.style.display = 'none';
-                    }
-                    modal.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                };
+    <!-- Comparison Table -->
+    <div class="comparison-wrap fade">
+      <div class="comparison-head">📊 เปรียบเทียบ 3 ระบบ</div>
+      <div style="overflow-x:auto">
+        <table>
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th style="color:#fca5a5">OPD Robot<br><small style="font-weight:400">จุฬาฯ</small></th>
+              <th style="color:#93c5fd">OPD Mgmt<br><small style="font-weight:400">นครพิงค์</small></th>
+              <th style="color:#86efac">IPD Mgmt<br><small style="font-weight:400">นครพิงค์</small></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>หุ่นยนต์จ่ายยา (Robot)</td><td>✅</td><td>✅</td><td>✅</td></tr>
+            <tr><td>ใบสั่งยา / Job Queue</td><td>✅</td><td>✅</td><td>✅</td></tr>
+            <tr><td>Mederror / Error Report</td><td>✅ (5 ประเภท)</td><td>✅</td><td>—</td></tr>
+            <tr><td>Delivery / ไปรษณีย์</td><td>—</td><td>✅ (EMS)</td><td>—</td></tr>
+            <tr><td>Prepack Management</td><td>✅</td><td>—</td><td>—</td></tr>
+            <tr><td>Conveyor / IoT Control</td><td>✅</td><td>✅</td><td>—</td></tr>
+            <tr><td>Stock Robot</td><td>✅</td><td>✅</td><td>✅</td></tr>
+            <tr><td>Waiting Time Report</td><td>—</td><td>✅</td><td>✅ (+ กราฟ)</td></tr>
+            <tr><td>WAED (Ward)</td><td>—</td><td>—</td><td>✅</td></tr>
+            <tr><td>LDAP Authentication</td><td>✅</td><td>—</td><td>—</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
-                const closeModal = () => {
-                    modal.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                };
+    <!-- Project Tabs -->
+    <div class="fade">
+      <div class="project-tabs">
+        <button class="project-tab active" data-tab="tab-chula">🏥 OPD Robot จุฬาฯ</button>
+        <button class="project-tab" data-tab="tab-npk-opd">🏨 OPD นครพิงค์</button>
+        <button class="project-tab" data-tab="tab-npk-ipd">🛏️ IPD นครพิงค์</button>
+      </div>
 
-                portfolioGrid.addEventListener('click', (e) => {
-                    const card = e.target.closest('.portfolio-card');
-                    if (card) openModal(card.dataset.id);
-                });
+      <!-- Tab 1: OPD Robot จุฬาฯ -->
+      <div class="project-panel active" id="tab-chula">
+        <div class="split" style="margin-bottom:2rem">
+          <div class="split-info">
+            <div style="color:#ef4444;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.6rem">OVERVIEW</div>
+            <h2>OPD Robot<br>Management</h2>
+            <p>ระบบ Web Application ครบวงจรสำหรับบริหารจัดการหุ่นยนต์จ่ายยาผู้ป่วยนอก ติดตามสถานะแบบ Realtime, บริหารคลังยา, จัดการข้อผิดพลาด และรายงานสถิติ</p>
+            <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem">
+              <span class="tag red">45 Routes</span><span class="tag red">Vue 3 + Vite</span><span class="tag red">LDAP</span><span class="tag red">IoT</span><span class="tag red">Prepack</span>
+            </div>
+            <div style="margin-top:1.25rem;display:grid;grid-template-columns:1fr 1fr;gap:.75rem">
+              <div style="background:var(--dark3);border-radius:10px;padding:.875rem;border:1px solid rgba(220,38,38,.2)"><div style="font-size:1.5rem;font-weight:800;color:#ef4444">34,923</div><div style="font-size:.72rem;color:var(--muted)">ใบสั่งยา/เดือน</div></div>
+              <div style="background:var(--dark3);border-radius:10px;padding:.875rem;border:1px solid rgba(34,197,94,.2)"><div style="font-size:1.5rem;font-weight:800;color:#22c55e">101,827</div><div style="font-size:.72rem;color:var(--muted)">รายการยา</div></div>
+              <div style="background:var(--dark3);border-radius:10px;padding:.875rem;border:1px solid rgba(245,158,11,.2)"><div style="font-size:1.5rem;font-weight:800;color:#f59e0b">459</div><div style="font-size:.72rem;color:var(--muted)">ข้อผิดพลาด</div></div>
+              <div style="background:var(--dark3);border-radius:10px;padding:.875rem;border:1px solid rgba(139,92,246,.2)"><div style="font-size:1.5rem;font-weight:800;color:#a78bfa">296+</div><div style="font-size:.72rem;color:var(--muted)">ผู้ใช้งาน</div></div>
+            </div>
+          </div>
+          <div class="split-screen">
+            <div class="screen-bar"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div><span class="screen-url">kcmh-pharma.chula.or.th/v2-web</span></div>
+            <div class="screen-content" style="background:linear-gradient(135deg,#0f172a,#1a0505)">
+              <div style="display:flex;gap:.5rem;margin-bottom:.75rem">
+                <div style="background:#1e293b;width:80px;height:130px;border-radius:6px;padding:.5rem;flex-shrink:0">
+                  <div style="font-size:.45rem;color:#ef4444;font-weight:700;margin-bottom:.4rem">PROCESS</div>
+                  <div style="font-size:.42rem;color:#64748b;margin-bottom:.25rem;line-height:1.3">สร้างใบสั่งยา</div>
+                  <div style="font-size:.42rem;color:#64748b;margin-bottom:.25rem;line-height:1.3">ตรวจสอบแพ้ยา</div>
+                  <div style="font-size:.42rem;color:#ef444430;background:#ef444410;padding:2px 4px;border-radius:3px;margin-bottom:.4rem">ตำแหน่งยา</div>
+                  <div style="font-size:.45rem;color:#ef4444;font-weight:700;margin-bottom:.3rem">Report</div>
+                  <div style="font-size:.42rem;color:#64748b;line-height:1.3">รายงานจ่ายยา</div>
+                </div>
+                <div style="flex:1">
+                  <div style="font-size:.6rem;font-weight:700;color:white;margin-bottom:.4rem">แดชบอร์ดสรุป</div>
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:.3rem;margin-bottom:.4rem">
+                    <div style="background:#ef444415;border-radius:5px;padding:.3rem;text-align:center"><div style="font-size:.75rem;font-weight:800;color:#ef4444">34K</div><div style="font-size:.35rem;color:#64748b">ใบสั่งยา</div></div>
+                    <div style="background:#22c55e15;border-radius:5px;padding:.3rem;text-align:center"><div style="font-size:.75rem;font-weight:800;color:#22c55e">101K</div><div style="font-size:.35rem;color:#64748b">รายการ</div></div>
+                  </div>
+                  <div style="background:#1e293b;border-radius:5px;padding:.4rem">
+                    <div style="font-size:.45rem;color:#ef4444;margin-bottom:.3rem">📊 Heatmap รายชั่วโมง</div>
+                    <div style="display:flex;gap:2px;align-items:flex-end;height:28px">
+                      <div style="background:#ef444430;width:6%;border-radius:1px;height:20%"></div>
+                      <div style="background:#ef444460;width:6%;border-radius:1px;height:50%"></div>
+                      <div style="background:#ef4444;width:6%;border-radius:1px;height:100%"></div>
+                      <div style="background:#ef4444cc;width:6%;border-radius:1px;height:80%"></div>
+                      <div style="background:#ef444460;width:6%;border-radius:1px;height:60%"></div>
+                      <div style="background:#ef444430;width:6%;border-radius:1px;height:30%"></div>
+                      <div style="background:#ef444415;width:6%;border-radius:1px;height:10%"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div style="font-size:.5rem;color:#475569;text-align:center">Production • v1.0.6 • Auto-refresh 5min</div>
+            </div>
+          </div>
+        </div>
+        <h3 style="font-weight:700;margin-bottom:1.25rem;font-size:1.1rem">📋 45 Routes / Modules</h3>
+        <div class="modules-grid">
+          <div class="mod-group">
+            <div class="mod-head"><span>⚙️</span>Process<span class="mod-count">5</span></div>
+            <div class="mod-list">
+              <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">ใบสั่งยา (Job Queue)</span><span class="mod-path">/pse-createprescription</span></div>
+              <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">สร้างใบสั่งยา</span><span class="mod-path">/pse-createprescriptionbuild</span></div>
+              <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">ค้นหาตะกร้ายา</span><span class="mod-path">/searchmedicinebasket</span></div>
+              <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">ตำแหน่งยา</span><span class="mod-path">/location</span></div>
+              <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">ตรวจสอบแพ้ยา</span><span class="mod-path">/checkallergies</span></div>
+            </div>
+          </div>
+          <div class="mod-group">
+            <div class="mod-head"><span>⚠️</span>Error Reports<span class="mod-count">5</span></div>
+            <div class="mod-list">
+              <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">Pre-dispensing Error</span></div>
+              <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">Screening Error</span></div>
+              <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">Transcribing Error</span></div>
+              <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">Compliance Error</span></div>
+              <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">Prescribing Error</span></div>
+            </div>
+          </div>
+          <div class="mod-group">
+            <div class="mod-head"><span>🏪</span>Stock<span class="mod-count">7</span></div>
+            <div class="mod-list">
+              <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">Stock Dashboard (Monitor)</span></div>
+              <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">ยอดคงเหลือ</span></div>
+              <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">รายการรับ-จ่าย</span></div>
+              <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">การเคลื่อนไหว</span></div>
+              <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">Stock Location</span></div>
+              <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">Forecast</span></div>
+              <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">คลังยา (Warehouse)</span></div>
+            </div>
+          </div>
+          <div class="mod-group">
+            <div class="mod-head"><span>📦</span>Prepack<span class="mod-count">4</span></div>
+            <div class="mod-list">
+              <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">Prepack Dashboard</span></div>
+              <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">สต็อก Prepack</span></div>
+              <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">กล่อง/สติกเกอร์</span></div>
+              <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">รายงาน Prepack</span></div>
+            </div>
+          </div>
+          <div class="mod-group">
+            <div class="mod-head"><span>🤖</span>Conveyor/IoT<span class="mod-count">4</span></div>
+            <div class="mod-list">
+              <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">Alarm Messenger (LED)</span></div>
+              <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">Zone Management</span></div>
+              <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">Log Conveyor</span></div>
+              <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">Counter Dispensing</span></div>
+            </div>
+          </div>
+          <div class="mod-group">
+            <div class="mod-head"><span>⚙️</span>Setting<span class="mod-count">9</span></div>
+            <div class="mod-list">
+              <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">กำหนดสิทธิ์ผู้ใช้</span></div>
+              <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">จัดการผู้ใช้ (296+)</span></div>
+              <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">กลุ่มผู้ใช้</span></div>
+              <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">ข้อมูลยา</span></div>
+              <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">ตั้งค่า SE-MED</span></div>
+              <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">+ รายงาน/Log อีก 11</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-                modalClose.addEventListener('click', closeModal);
-                modal.addEventListener('click', (e) => {
-                    if (e.target === modal) closeModal();
-                });
-                document.addEventListener('keydown', (e) => {
-                    if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
-                });
+      <!-- Tab 2: OPD นครพิงค์ -->
+      <div class="project-panel" id="tab-npk-opd">
+        <div class="split" style="margin-bottom:2rem">
+          <div class="split-info">
+            <div style="color:#3b82f6;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.6rem">OVERVIEW</div>
+            <h2>OPD Management<br><span style="color:#3b82f6">นครพิงค์</span></h2>
+            <p>ระบบจัดการยาผู้ป่วยนอก ครอบคลุมกระบวนการค้นหาตะกร้า/ตำแหน่งยา, Mederror, Delivery (EMS + ไปรษณีย์), Stock Robot, และรายงานครบถ้วน 13 รายงาน</p>
+            <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem">
+              <span class="tag blue">v1.4.1</span><span class="tag blue">OPD</span><span class="tag blue">EMS</span><span class="tag blue">Mederror</span><span class="tag blue">SE-Med</span>
+            </div>
+          </div>
+          <div class="split-screen">
+            <div class="screen-bar"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div><span class="screen-url">192.168.34.246/home — OPD</span></div>
+            <div class="screen-content" style="background:#f8fafc;padding:1rem">
+              <div style="display:flex;gap:.4rem;margin-bottom:.5rem">
+                <div style="background:#0ea5e9;color:white;border-radius:6px;padding:.3rem .6rem;font-size:.55rem;font-weight:700">OPD</div>
+                <div style="font-size:.55rem;color:#64748b;display:flex;align-items:center">โรงพยาบาลนครพิงค์</div>
+                <div style="margin-left:auto;background:#ef4444;color:white;border-radius:4px;padding:.2rem .5rem;font-size:.5rem">Logout</div>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:.3rem;margin-bottom:.5rem">
+                <div style="background:#0ea5e9;border-radius:5px;padding:.4rem;text-align:center"><div style="font-size:.8rem;font-weight:800;color:white">0</div><div style="font-size:.38rem;color:#bfdbfe">รอปรึกษาแพทย์</div></div>
+                <div style="background:#22c55e;border-radius:5px;padding:.4rem;text-align:center"><div style="font-size:.8rem;font-weight:800;color:white">0</div><div style="font-size:.38rem;color:#bbf7d0">เรียกไม่พบ</div></div>
+                <div style="background:#f59e0b;border-radius:5px;padding:.4rem;text-align:center"><div style="font-size:.8rem;font-weight:800;color:white">0</div><div style="font-size:.38rem;color:#fde68a">รอเบิก</div></div>
+                <div style="background:#ef4444;border-radius:5px;padding:.4rem;text-align:center"><div style="font-size:.8rem;font-weight:800;color:white">0</div><div style="font-size:.38rem;color:#fecaca">ยาผลิต</div></div>
+              </div>
+              <div style="background:#1e3a5f;border-radius:5px;padding:.4rem">
+                <div style="font-size:.5rem;color:#93c5fd;margin-bottom:.25rem">📋 Sidebar Menu (OPD)</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;font-size:.42rem;color:#94a3b8">
+                  <div>Process →</div><div>Mederror →</div>
+                  <div>Delivery →</div><div>Stock →</div>
+                  <div>Report →</div><div>Log →</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h3 style="font-weight:700;margin-bottom:1.25rem;font-size:1.1rem">📋 Modules — OPD Nakhon Ping</h3>
+        <div class="modules-grid">
+          <div class="mod-group">
+            <div class="mod-head"><span>⚙️</span>Process<span class="mod-count" style="background:#3b82f6">3</span></div>
+            <div class="mod-list">
+              <div class="mod-item"><span class="mod-dot" style="background:#3b82f6"></span><span class="mod-name">ค้นหาตะกร้ายา</span></div>
+              <div class="mod-item"><span class="mod-dot" style="background:#3b82f6"></span><span class="mod-name">ค้นหาตำแหน่งยา</span></div>
+              <div class="mod-item"><span class="mod-dot" style="background:#3b82f6"></span><span class="mod-name">จัดการใบสั่งยา</span></div>
+            </div>
+          </div>
+          <div class="mod-group">
+            <div class="mod-head"><span>🚚</span>Delivery<span class="mod-count" style="background:#3b82f6">2</span></div>
+            <div class="mod-list">
+              <div class="mod-item"><span class="mod-dot" style="background:#3b82f6"></span><span class="mod-name">QueueEMS — คิว EMS</span></div>
+              <div class="mod-item"><span class="mod-dot" style="background:#3b82f6"></span><span class="mod-name">จัดการใบสั่งยาไปรษณีย์</span></div>
+            </div>
+          </div>
+          <div class="mod-group">
+            <div class="mod-head"><span>⚠️</span>Mederror<span class="mod-count" style="background:#3b82f6">1</span></div>
+            <div class="mod-list">
+              <div class="mod-item"><span class="mod-dot" style="background:#3b82f6"></span><span class="mod-name">บันทึก Mederror</span></div>
+            </div>
+          </div>
+          <div class="mod-group">
+            <div class="mod-head"><span>🏪</span>Stock<span class="mod-count" style="background:#3b82f6">2</span></div>
+            <div class="mod-list">
+              <div class="mod-item"><span class="mod-dot" style="background:#3b82f6"></span><span class="mod-name">Stock Robot</span></div>
+              <div class="mod-item"><span class="mod-dot" style="background:#3b82f6"></span><span class="mod-name">คาดการณ์ (Forecast)</span></div>
+            </div>
+          </div>
+          <div class="mod-group">
+            <div class="mod-head"><span>📊</span>Report (13 รายงาน)<span class="mod-count" style="background:#3b82f6">13</span></div>
+            <div class="mod-list">
+              <div class="mod-item"><span class="mod-dot" style="background:#3b82f6"></span><span class="mod-name">การรับ / การเบิก / การจ่ายยา</span></div>
+              <div class="mod-item"><span class="mod-dot" style="background:#3b82f6"></span><span class="mod-name">ภาระงาน / การคาดเคลื่อนทางยา</span></div>
+              <div class="mod-item"><span class="mod-dot" style="background:#3b82f6"></span><span class="mod-name">การจ่ายยาควบคุมพิเศษ</span></div>
+              <div class="mod-item"><span class="mod-dot" style="background:#3b82f6"></span><span class="mod-name">การจ่ายยา se-med</span></div>
+              <div class="mod-item"><span class="mod-dot" style="background:#3b82f6"></span><span class="mod-name">นับจำนวนยา / ต่อชั่วโมง</span></div>
+              <div class="mod-item"><span class="mod-dot" style="background:#3b82f6"></span><span class="mod-name">การจ่ายยาไปรษณีย์</span></div>
+              <div class="mod-item"><span class="mod-dot" style="background:#3b82f6"></span><span class="mod-name">รายงาน WaitingTime / LED</span></div>
+              <div class="mod-item"><span class="mod-dot" style="background:#3b82f6"></span><span class="mod-name">จำนวนยาที่จ่าย 1-3 เดือน</span></div>
+            </div>
+          </div>
+          <div class="mod-group">
+            <div class="mod-head"><span>📋</span>Log &amp; Setting<span class="mod-count" style="background:#3b82f6">3</span></div>
+            <div class="mod-list">
+              <div class="mod-item"><span class="mod-dot" style="background:#3b82f6"></span><span class="mod-name">ประวัติการใช้งาน</span></div>
+              <div class="mod-item"><span class="mod-dot" style="background:#3b82f6"></span><span class="mod-name">Log Conveyor</span></div>
+              <div class="mod-item"><span class="mod-dot" style="background:#3b82f6"></span><span class="mod-name">Setting</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-                // --- 3. Animation and Active Nav Observers ---
-                const setupScrollObservers = () => {
-                    // Observer for reveal animations
-                    const revealElements = document.querySelectorAll('.reveal');
-                    const revealObserver = new IntersectionObserver((entries) => {
-                        entries.forEach((entry) => {
-                            if (entry.isIntersecting) {
-                                entry.target.classList.add('visible');
-                                // No unobserve, so it can re-animate if needed, or unobserve if you want one-time animation
-                                // revealObserver.unobserve(entry.target);
-                            }
-                        });
-                    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-                    revealElements.forEach(el => revealObserver.observe(el));
+      <!-- Tab 3: IPD นครพิงค์ -->
+      <div class="project-panel" id="tab-npk-ipd">
+        <div class="split" style="margin-bottom:2rem">
+          <div class="split-info">
+            <div style="color:#22c55e;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.6rem">OVERVIEW</div>
+            <h2>IPD Management<br><span style="color:#22c55e">นครพิงค์</span></h2>
+            <p>ระบบจัดการยาผู้ป่วยใน (Inpatient) รองรับการเตรียมยา, สถานะใบสั่งยา WAED, Stock Robot, รายงานยาตาม Location, Waiting Time พร้อมกราฟวิเคราะห์แบบ Interactive</p>
+            <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem">
+              <span class="tag green">v1.4.1</span><span class="tag green">IPD</span><span class="tag green">WAED</span><span class="tag green">Waiting Time</span><span class="tag green">Location</span>
+            </div>
+            <div style="margin-top:1.25rem;background:var(--dark3);border-radius:10px;padding:1rem;border:1px solid rgba(34,197,94,.2)">
+              <div style="font-size:.8rem;font-weight:700;margin-bottom:.75rem;color:#22c55e">🔑 ความแตกต่างจาก OPD</div>
+              <div style="font-size:.82rem;color:var(--muted);line-height:1.8">
+                ✅ เพิ่ม <strong style="color:white">สถานะใบสั่งยา WAED</strong> (Ward)<br>
+                ✅ เพิ่ม <strong style="color:white">เตรียมยา</strong> สำหรับ IPD<br>
+                ✅ รายงาน <strong style="color:white">ยาตาม Location</strong><br>
+                ✅ <strong style="color:white">กราฟ Waiting Time</strong> แบบ Interactive<br>
+                ✅ <strong style="color:white">ระยะเวลาการจ่ายยา</strong><br>
+                ❌ ไม่มี Mederror, Delivery
+              </div>
+            </div>
+          </div>
+          <div class="split-screen">
+            <div class="screen-bar"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div><span class="screen-url">192.168.34.246/home — IPD</span></div>
+            <div class="screen-content" style="background:#f8fafc;padding:1rem">
+              <div style="display:flex;gap:.4rem;margin-bottom:.5rem">
+                <div style="background:#22c55e;color:white;border-radius:6px;padding:.3rem .6rem;font-size:.55rem;font-weight:700">IPD</div>
+                <div style="font-size:.55rem;color:#64748b;display:flex;align-items:center">โรงพยาบาลนครพิงค์</div>
+                <div style="margin-left:auto;background:#ef4444;color:white;border-radius:4px;padding:.2rem .5rem;font-size:.5rem">Logout</div>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:.3rem;margin-bottom:.5rem">
+                <div style="background:#0ea5e9;border-radius:5px;padding:.4rem;text-align:center"><div style="font-size:.8rem;font-weight:800;color:white">0</div><div style="font-size:.38rem;color:#bfdbfe">รอปรึกษา</div></div>
+                <div style="background:#22c55e;border-radius:5px;padding:.4rem;text-align:center"><div style="font-size:.8rem;font-weight:800;color:white">0</div><div style="font-size:.38rem;color:#bbf7d0">เรียกไม่พบ</div></div>
+                <div style="background:#f59e0b;border-radius:5px;padding:.4rem;text-align:center"><div style="font-size:.8rem;font-weight:800;color:white">0</div><div style="font-size:.38rem;color:#fde68a">รอเบิก</div></div>
+                <div style="background:#ef4444;border-radius:5px;padding:.4rem;text-align:center"><div style="font-size:.8rem;font-weight:800;color:white">0</div><div style="font-size:.38rem;color:#fecaca">ยาผลิต</div></div>
+              </div>
+              <div style="background:#1e3a5f;border-radius:5px;padding:.4rem">
+                <div style="font-size:.5rem;color:#86efac;margin-bottom:.25rem">📋 Sidebar Menu (IPD)</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;font-size:.42rem;color:#94a3b8">
+                  <div>Process → WAED</div><div>เตรียมยา</div>
+                  <div>Stock Robot</div><div>Report (10)</div>
+                  <div>Waiting Time</div><div>กราฟ Chart</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h3 style="font-weight:700;margin-bottom:1.25rem;font-size:1.1rem">📋 Modules — IPD Nakhon Ping</h3>
+        <div class="modules-grid">
+          <div class="mod-group">
+            <div class="mod-head"><span>⚙️</span>Process<span class="mod-count" style="background:#22c55e">4</span></div>
+            <div class="mod-list">
+              <div class="mod-item"><span class="mod-dot" style="background:#22c55e"></span><span class="mod-name">ค้นหาตะกร้ายา</span></div>
+              <div class="mod-item"><span class="mod-dot" style="background:#22c55e"></span><span class="mod-name">ค้นหาตำแหน่งยา</span></div>
+              <div class="mod-item"><span class="mod-dot" style="background:#22c55e"></span><span class="mod-name">เตรียมยา (IPD)</span></div>
+              <div class="mod-item"><span class="mod-dot" style="background:#22c55e"></span><span class="mod-name">สถานะใบสั่งยา (WAED)</span></div>
+            </div>
+          </div>
+          <div class="mod-group">
+            <div class="mod-head"><span>🏪</span>Stock<span class="mod-count" style="background:#22c55e">1</span></div>
+            <div class="mod-list">
+              <div class="mod-item"><span class="mod-dot" style="background:#22c55e"></span><span class="mod-name">Stock Robot</span></div>
+            </div>
+          </div>
+          <div class="mod-group">
+            <div class="mod-head"><span>📊</span>Report (10 รายงาน)<span class="mod-count" style="background:#22c55e">10</span></div>
+            <div class="mod-list">
+              <div class="mod-item"><span class="mod-dot" style="background:#22c55e"></span><span class="mod-name">การรับ / การเบิก / การจ่ายยา</span></div>
+              <div class="mod-item"><span class="mod-dot" style="background:#22c55e"></span><span class="mod-name">ภาระงาน / การคาดเคลื่อนทางยา</span></div>
+              <div class="mod-item"><span class="mod-dot" style="background:#22c55e"></span><span class="mod-name">การจ่ายยาควบคุมพิเศษ</span></div>
+              <div class="mod-item"><span class="mod-dot" style="background:#22c55e"></span><span class="mod-name">การจ่ายยาตาม Location</span></div>
+              <div class="mod-item"><span class="mod-dot" style="background:#22c55e"></span><span class="mod-name">ระยะเวลาการจ่ายยา</span></div>
+              <div class="mod-item"><span class="mod-dot" style="background:#22c55e"></span><span class="mod-name">Waiting Time Report</span></div>
+              <div class="mod-item"><span class="mod-dot" style="background:#22c55e"></span><span class="mod-name">กราฟ Waiting Time (Chart)</span></div>
+            </div>
+          </div>
+          <div class="mod-group">
+            <div class="mod-head"><span>📋</span>Log &amp; Setting<span class="mod-count" style="background:#22c55e">2</span></div>
+            <div class="mod-list">
+              <div class="mod-item"><span class="mod-dot" style="background:#22c55e"></span><span class="mod-name">ประวัติการใช้งาน</span></div>
+              <div class="mod-item"><span class="mod-dot" style="background:#22c55e"></span><span class="mod-name">Setting</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-                    // Observer for active nav link
-                    const sections = document.querySelectorAll('section, header[id]');
-                    const navLinks = document.querySelectorAll('.nav-link');
-                    const navObserver = new IntersectionObserver((entries) => {
-                        entries.forEach(entry => {
-                            if (entry.isIntersecting) {
-                                navLinks.forEach(link => {
-                                    link.classList.toggle('active', link.getAttribute('href').substring(1) === entry.target.id);
-                                });
-                            }
-                        });
-                    }, { rootMargin: '-50% 0px -50% 0px', threshold: 0 }); // Triggers when section is in middle of viewport
-                    sections.forEach(section => navObserver.observe(section));
-                };
+    <!-- Tech Stack -->
+    <div style="margin-top:4rem" class="fade">
+      <div class="sec-header" style="margin-bottom:2rem">
+        <div class="sec-label">💻 TECH STACK</div>
+        <h2 class="sec-title-ph">เทคโนโลยีที่ใช้</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="tech-grid-ph">
+        <div class="tech-card"><div class="icon">💚</div><div class="name">Vue 3</div><div class="type">Frontend Framework</div></div>
+        <div class="tech-card"><div class="icon">⚡</div><div class="name">Vite</div><div class="type">Build Tool</div></div>
+        <div class="tech-card"><div class="icon">🟢</div><div class="name">Node.js</div><div class="type">Runtime</div></div>
+        <div class="tech-card"><div class="icon">🔷</div><div class="name">TypeScript</div><div class="type">Language</div></div>
+        <div class="tech-card"><div class="icon">🛣️</div><div class="name">Vue Router</div><div class="type">SPA Routing</div></div>
+        <div class="tech-card"><div class="icon">📦</div><div class="name">Pinia</div><div class="type">State Mgmt</div></div>
+        <div class="tech-card"><div class="icon">🎨</div><div class="name">CSS/SCSS</div><div class="type">Styling</div></div>
+        <div class="tech-card"><div class="icon">📊</div><div class="name">Chart.js</div><div class="type">Visualization</div></div>
+        <div class="tech-card"><div class="icon">🔒</div><div class="name">LDAP Auth</div><div class="type">Authentication</div></div>
+        <div class="tech-card"><div class="icon">🌐</div><div class="name">REST API</div><div class="type">Backend</div></div>
+        <div class="tech-card"><div class="icon">🐘</div><div class="name">PostgreSQL</div><div class="type">Database</div></div>
+        <div class="tech-card"><div class="icon">🤖</div><div class="name">IoT API</div><div class="type">Robot Control</div></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-                // --- Initialize ---
-                fetchProjects();
-            });
-        </script>
+<!-- ===== CONTACT ===== -->
+<section id="contact">
+  <div class="container">
+    <h2 class="reveal">Get In Touch</h2>
+    <p class="section-subtitle reveal">Have a project in mind or just want to say hello? Feel free to reach out.</p>
+    <div class="contact-container reveal">
+      <form action="#" class="contact-form">
+        <div class="form-group">
+          <input type="text" name="name" class="form-input" placeholder="Your Name" required>
+        </div>
+        <div class="form-group">
+          <input type="email" name="email" class="form-input" placeholder="Your Email" required>
+        </div>
+        <div class="form-group">
+          <textarea name="message" class="form-input" rows="5" placeholder="Your Message" required></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
 
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo-text">PORT<span style="color:var(--color-primary)">FOLIO</span></div>
+    <p style="color:var(--color-secondary);font-size:.9rem;margin-bottom:.5rem">© 2025 ล้อ'แม็ค | Full-Stack Developer</p>
+    <p style="color:var(--muted);font-size:.83rem;margin-bottom:1rem">Pharmacy Management Systems — Developed by G D FOUR CO., LTD.</p>
+    <div class="footer-badges">
+      <span class="tag red">โรงพยาบาลจุฬาลงกรณ์</span>
+      <span class="tag blue">โรงพยาบาลนครพิงค์ OPD</span>
+      <span class="tag green">โรงพยาบาลนครพิงค์ IPD</span>
+    </div>
+    <div class="footer-badges">
+      <span class="nav-badge" style="font-size:.72rem">v1.4.1</span>
+      <span style="background:rgba(255,255,255,.08);color:#8b949e;padding:.3rem .9rem;border-radius:20px;font-size:.72rem;font-weight:600">v1.0.6</span>
+    </div>
+    <div class="footer-copy">© 2026 G D FOUR CO., LTD. All Rights Reserved.</div>
+  </div>
+</footer>
+
+<!-- ===== PORTFOLIO MODAL ===== -->
+<div class="modal" id="portfolio-modal">
+  <div class="modal-content">
+    <span class="modal-close" id="modal-close">&times;</span>
+    <div class="modal-body">
+      <div class="modal-images">
+        <img src="" alt="Main project image" class="modal-main-image" id="modal-main-image">
+        <div class="modal-gallery" id="modal-gallery"></div>
+      </div>
+      <div class="modal-details">
+        <h3 id="modal-title"></h3>
+        <p><strong>Category:</strong> <span id="modal-category"></span></p>
+        <p id="modal-description"></p>
+        <p><strong>Technologies Used:</strong></p>
+        <div id="modal-technologies"></div>
+        <a href="#" target="_blank" rel="noopener noreferrer" class="modal-link" id="modal-link">Visit Website</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  /* ========== 1. Portfolio Data & Render ========== */
+  const portfolioGrid = document.getElementById('portfolio-grid');
+  const modal         = document.getElementById('portfolio-modal');
+  const modalClose    = document.getElementById('modal-close');
+  const filterButtons = document.getElementById('filter-buttons');
+  let projectsData  = [];
+  let currentFilter = 'all';
+
+  const PROJECTS = [
+    { id:1, projectName:'ระบบจ่ายยา IPD รพ.ในสังกัดสำนักการแพทย์', title:'Service Generate File IRIS', description:'Service Generate File IRIS เป็น Windows Service ที่พัฒนาขึ้นเพื่อรองรับระบบจ่ายยา IPD ของโรงพยาบาลในสังกัดสำนักการแพทย์ ทำหน้าที่สร้างไฟล์ข้อมูลในรูปแบบ XML จากฐานข้อมูลระบบจ่ายยา และส่งต่อให้เครื่อง IRIS เพื่อใช้ตรวจสอบความถูกต้องของรายการยา', category:'Windows Service', technologies:['VB.NET','Windows Service'], year:2023, coverImage:'img/NPK-WEB_MANAGEMENT/Medical_Office_Service Generate File IRIS.png', gallery:['img/NPK-WEB_MANAGEMENT/Medical_Office_Service Generate File IRIS.png'], link:null },
+    { id:2, projectName:'ระบบจ่ายยา IPD รพ.ในสังกัดสำนักการแพทย์', title:'Service Sync Abstract', description:'Service Sync Abstract เป็น Windows Service ที่พัฒนาขึ้นเพื่อเชื่อมต่อและซิงโครไนซ์ข้อมูลการสั่งยาระหว่างระบบโรงพยาบาล (HIS) กับระบบจัดยาแบบอัตโนมัติ', category:'Windows Service', technologies:['VB.NET','Windows Service'], year:2023, coverImage:'img/NPK-WEB_MANAGEMENT/Medical_Office_Service Sync Abstract.png', gallery:['img/NPK-WEB_MANAGEMENT/Medical_Office_Service Sync Abstract.png'], link:null },
+    { id:11, projectName:'NPK Automation', title:'RFID Basket Tracking System', description:'A web application designed to track baskets on a conveyor belt using RFID technology. It provides real-time location, status visualization, and a comprehensive dashboard for monitoring the entire process.', category:'Web Application', technologies:['HTML','CSS','JavaScript','Node.js','WebSocket'], year:2025, coverImage:'img/NPK-WEB_MANAGEMENT/ค้นหาตะกร้ายา1.png', gallery:['img/NPK-WEB_MANAGEMENT/ค้นหาตะกร้ายา1.png','img/NPK-WEB_MANAGEMENT/ค้นหาตะกร้ายา2.png','img/NPK-WEB_MANAGEMENT/ค้นหาตะกร้ายา3.png','img/NPK-WEB_MANAGEMENT/ค้นหาตะกร้ายา4.png'], link:null },
+    { id:12, projectName:'NPK Automation', title:'Modern Kiosk UI/UX Design', description:'A complete redesign of a self-service kiosk interface for a retail environment, featuring large touch targets and clear visual hierarchy.', category:'UI/UX Design', technologies:['Figma','User Research','Prototyping'], year:2024, coverImage:'img/NPK-WEB_MANAGEMENT/จัดการผู้ใช้งาน.png', gallery:['img/NPK-WEB_MANAGEMENT/จัดการผู้ใช้งาน.png','img/NPK-WEB_MANAGEMENT/จัดการผู้ใช้งาน1.png','img/NPK-WEB_MANAGEMENT/จัดการผู้ใช้งาน2.png'], link:'https://www.figma.com/your-prototype-link' },
+    { id:13, projectName:'Personal Portfolio', title:'Professional Portfolio Website', description:'A personal portfolio landing page built from scratch to showcase projects and skills. Designed with a modern, minimal aesthetic.', category:'Web Development', technologies:['HTML5','CSS3','Vanilla JS','Responsive Design'], year:2025, coverImage:'img/NPK-WEB_MANAGEMENT/login.png', gallery:['img/NPK-WEB_MANAGEMENT/login.png','img/NPK-WEB_MANAGEMENT/Configuration.png'], link:'#' },
+    { id:14, projectName:'NPK Automation', title:'Automated Pharmacy System', description:'An internal management system for an automated pharmacy, controlling drug dispensing robots, managing inventory, and generating reports.', category:'System Development', technologies:['Vue.js','Express.js','MySQL','Chart.js'], year:2023, coverImage:'img/NPK-WEB_MANAGEMENT/Stock Robot.png', gallery:['img/NPK-WEB_MANAGEMENT/Stock Robot.png','img/NPK-WEB_MANAGEMENT/รายงานการเบิก.png','img/NPK-WEB_MANAGEMENT/รายงานการคาดเคลื่อนทางยา.png'], link:null }
+  ];
+
+  function renderFilters(projects) {
+    const names = [...new Set(projects.map(p => p.projectName))];
+    filterButtons.innerHTML = `<button class="filter-btn${currentFilter==='all'?' active':''}" data-project="all">All</button>`;
+    names.forEach(n => {
+      filterButtons.innerHTML += `<button class="filter-btn${currentFilter===n?' active':''}" data-project="${n}">${n}</button>`;
+    });
+  }
+
+  function renderProjects(projects, filter = 'all') {
+    const list = filter === 'all' ? projects : projects.filter(p => p.projectName === filter);
+    portfolioGrid.innerHTML = '';
+    list.forEach(p => {
+      const card = document.createElement('div');
+      card.className = 'portfolio-card reveal';
+      card.dataset.id = p.id;
+      card.innerHTML = `<div class="card-image"><img src="${p.coverImage}" alt="${p.title}" loading="lazy"></div><div class="card-content"><h3>${p.title}</h3><p class="card-category">${p.category}</p></div>`;
+      portfolioGrid.appendChild(card);
+    });
+    setupRevealObserver();
+  }
+
+  filterButtons.addEventListener('click', e => {
+    if (!e.target.classList.contains('filter-btn')) return;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    e.target.classList.add('active');
+    currentFilter = e.target.dataset.project;
+    renderProjects(projectsData, currentFilter);
+  });
+
+  /* ========== 2. Modal Logic ========== */
+  function openModal(id) {
+    const p = projectsData.find(x => x.id == id);
+    if (!p) return;
+    const mainImg = document.getElementById('modal-main-image');
+    mainImg.src = p.coverImage;
+    document.getElementById('modal-title').textContent      = p.title;
+    document.getElementById('modal-category').textContent   = p.category;
+    document.getElementById('modal-description').textContent = p.description;
+    const techWrap = document.getElementById('modal-technologies');
+    techWrap.innerHTML = '';
+    p.technologies.forEach(t => {
+      const s = document.createElement('span');
+      s.className = 'tech-tag'; s.textContent = t;
+      techWrap.appendChild(s);
+    });
+    const galWrap = document.getElementById('modal-gallery');
+    galWrap.innerHTML = '';
+    p.gallery.forEach(src => {
+      const img = document.createElement('img');
+      img.src = src; img.alt = 'Gallery thumbnail';
+      img.addEventListener('click', () => {
+        mainImg.style.opacity = 0;
+        setTimeout(() => { mainImg.src = src; mainImg.style.opacity = 1; }, 200);
+        galWrap.querySelectorAll('img').forEach(i => i.classList.remove('selected'));
+        img.classList.add('selected');
+      });
+      galWrap.appendChild(img);
+    });
+    mainImg.style.transition = 'opacity 0.2s ease-in-out';
+    if (galWrap.firstChild) galWrap.firstChild.classList.add('selected');
+    const link = document.getElementById('modal-link');
+    if (p.link) { link.href = p.link; link.style.display = 'inline-block'; }
+    else { link.style.display = 'none'; }
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+  }
+
+  portfolioGrid.addEventListener('click', e => {
+    const card = e.target.closest('.portfolio-card');
+    if (card) openModal(card.dataset.id);
+  });
+  modalClose.addEventListener('click', closeModal);
+  modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('active')) closeModal(); });
+
+  /* ========== 3. IntersectionObserver for .reveal & .fade ========== */
+  function setupRevealObserver() {
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal, .fade').forEach(el => obs.observe(el));
+  }
+
+  /* ========== 4. Nav Active Link (IntersectionObserver) ========== */
+  const navLinks  = document.querySelectorAll('.nav-link');
+  const sections  = document.querySelectorAll('section[id], header[id]');
+  const navObs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(a => {
+          a.classList.toggle('active', a.getAttribute('href') === '#' + entry.target.id);
+        });
+      }
+    });
+  }, { rootMargin: '-50% 0px -50% 0px', threshold: 0 });
+  sections.forEach(s => navObs.observe(s));
+
+  /* ========== 5. Project Tabs (Pharmacy Section) ========== */
+  document.querySelectorAll('.project-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const targetId = tab.dataset.tab;
+      document.querySelectorAll('.project-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.project-panel').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      const panel = document.getElementById(targetId);
+      if (panel) panel.classList.add('active');
+    });
+  });
+
+  /* ========== Initialize ========== */
+  projectsData = PROJECTS;
+  renderFilters(projectsData);
+  renderProjects(projectsData, currentFilter);
+  setupRevealObserver();
+
+});
+</script>
 </body>
-
 </html>
