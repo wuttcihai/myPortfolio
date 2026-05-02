@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — Pharmacy Robot Management Systems</title>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700;800&family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--red:#dc2626;--red-dark:#b91c1c;--dark:#0a0a12;--dark2:#13131f;--dark3:#1e1e2e;--dark4:#252535;--teal:#0d9488;--blue:#3b82f6;--gold:#f59e0b;--green:#22c55e;--purple:#8b5cf6;--text:#f1f5f9;--muted:#64748b;}
+html{scroll-behavior:smooth}
+body{font-family:'Sarabun','Inter',sans-serif;background:var(--dark);color:var(--text);line-height:1.6}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,18,0.96);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,0.07);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:60px}
+.nav-logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.1rem;color:var(--text);text-decoration:none}
+.nav-logo span{color:var(--red)}
+.nav-links{display:flex;gap:1.2rem;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:0.85rem;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.nav-badge{background:linear-gradient(135deg,var(--red),#f87171);color:white;padding:.3rem .9rem;border-radius:20px;font-size:.75rem;font-weight:700}
+
+/* HERO */
+.hero{min-height:100vh;background:radial-gradient(ellipse 90% 60% at 50% 30%,rgba(220,38,38,.12) 0%,transparent 70%),var(--dark);display:flex;align-items:center;justify-content:center;text-align:center;padding:5rem 2rem 3rem;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent)}
+.hero-content{position:relative;z-index:1;max-width:960px}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);color:var(--muted);padding:.45rem 1.1rem;border-radius:30px;font-size:.8rem;letter-spacing:.08em;margin-bottom:1.75rem}
+.hero h1{font-size:clamp(2.2rem,5.5vw,4rem);font-weight:800;line-height:1.1;margin-bottom:1.25rem;letter-spacing:-.02em}
+.hero h1 .hl{color:var(--red)}
+.hero-sub{font-size:1.05rem;color:var(--muted);max-width:620px;margin:0 auto 2.5rem;line-height:1.8}
+.hero-btns{display:flex;gap:.875rem;justify-content:center;flex-wrap:wrap;margin-bottom:3.5rem}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 1.75rem;border-radius:10px;font-weight:700;font-size:.95rem;text-decoration:none;transition:all .2s;cursor:pointer;border:none}
+.btn-red{background:var(--red);color:white}
+.btn-red:hover{background:var(--red-dark);transform:translateY(-2px);box-shadow:0 8px 24px rgba(220,38,38,.3)}
+.btn-ghost{background:rgba(255,255,255,.05);color:var(--text);border:1px solid rgba(255,255,255,.1)}
+.btn-ghost:hover{background:rgba(255,255,255,.09)}
+.kpi-row{display:flex;gap:2.5rem;justify-content:center;flex-wrap:wrap}
+.kpi{text-align:center}
+.kpi-val{font-size:2.2rem;font-weight:800;background:linear-gradient(135deg,#fff,#94a3b8);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.kpi-label{font-size:.78rem;color:var(--muted);letter-spacing:.05em}
+
+/* SECTIONS */
+section{padding:5rem 2rem}
+.container{max-width:1200px;margin:0 auto}
+.sec-label{display:inline-block;color:var(--red);font-size:.73rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin-bottom:.6rem}
+.sec-title{font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:800;margin-bottom:.9rem;letter-spacing:-.01em}
+.sec-desc{color:var(--muted);font-size:.98rem;max-width:580px;margin:0 auto;line-height:1.85}
+.sec-header{text-align:center;margin-bottom:3rem}
+.divider{width:48px;height:3px;background:var(--red);border-radius:4px;margin:.75rem auto 0}
+
+/* CLIENTS SECTION */
+.clients-section{background:var(--dark2)}
+.clients-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin-bottom:3rem}
+.client-card{background:var(--dark3);border:1px solid rgba(255,255,255,.06);border-radius:20px;overflow:hidden;transition:all .3s;position:relative}
+.client-card:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(0,0,0,.4)}
+.client-header{padding:2rem;display:flex;align-items:center;gap:1rem;border-bottom:1px solid rgba(255,255,255,.05)}
+.client-icon{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0}
+.client-icon.red{background:rgba(220,38,38,.15)}
+.client-icon.blue{background:rgba(59,130,246,.15)}
+.client-icon.green{background:rgba(34,197,94,.15)}
+.client-info h3{font-size:1.1rem;font-weight:700;margin-bottom:.2rem}
+.client-info p{font-size:.8rem;color:var(--muted)}
+.client-badge{position:absolute;top:1rem;right:1rem;font-size:.68rem;font-weight:700;padding:.25rem .7rem;border-radius:20px}
+.badge-red{background:rgba(220,38,38,.2);color:#fca5a5;border:1px solid rgba(220,38,38,.3)}
+.badge-blue{background:rgba(59,130,246,.2);color:#93c5fd;border:1px solid rgba(59,130,246,.3)}
+.badge-green{background:rgba(34,197,94,.2);color:#86efac;border:1px solid rgba(34,197,94,.3)}
+.client-body{padding:1.5rem}
+.client-meta{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1.25rem}
+.client-meta-item{display:flex;align-items:center;gap:.4rem;font-size:.8rem;color:var(--muted)}
+.client-meta-icon{font-size:.9rem}
+.client-tags{display:flex;gap:.4rem;flex-wrap:wrap}
+.tag{background:rgba(255,255,255,.05);color:var(--muted);padding:.2rem .65rem;border-radius:20px;font-size:.72rem}
+.tag.red{background:rgba(220,38,38,.1);color:#fca5a5}
+.tag.blue{background:rgba(59,130,246,.1);color:#93c5fd}
+.tag.green{background:rgba(34,197,94,.1);color:#86efac}
+
+/* PROJECT DETAIL CARDS */
+.project-tabs{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center;margin-bottom:2.5rem}
+.project-tab{padding:.6rem 1.4rem;border-radius:8px;font-size:.87rem;font-weight:600;cursor:pointer;transition:all .2s;border:1px solid rgba(255,255,255,.1);background:transparent;color:var(--muted)}
+.project-tab.active,.project-tab:hover{color:var(--text);border-color:var(--red);background:rgba(220,38,38,.1)}
+
+/* PROJECT PANELS */
+.project-panel{display:none;animation:fadeIn .3s ease}
+.project-panel.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* SPLIT LAYOUT */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start}
+@media(max-width:768px){.split{grid-template-columns:1fr}}
+.split-info{}
+.split-info h2{font-size:1.6rem;font-weight:800;margin-bottom:.75rem}
+.split-info p{color:var(--muted);line-height:1.8;margin-bottom:1rem;font-size:.95rem}
+.split-screen{background:var(--dark3);border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.08)}
+.screen-bar{background:var(--dark4);padding:.6rem 1rem;display:flex;align-items:center;gap:.4rem;border-bottom:1px solid rgba(255,255,255,.06)}
+.dot{width:10px;height:10px;border-radius:50%}
+.dot-r{background:#ff5f57}.dot-y{background:#febc2e}.dot-g{background:#28c840}
+.screen-url{font-size:.7rem;color:var(--muted);margin-left:.75rem;font-family:monospace}
+.screen-content{padding:1.5rem}
+
+/* MODULES */
+.modules-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}
+.mod-group{background:var(--dark3);border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.06)}
+.mod-head{padding:.875rem 1rem;display:flex;align-items:center;gap:.6rem;font-weight:700;font-size:.87rem;background:rgba(255,255,255,.03);border-bottom:1px solid rgba(255,255,255,.05)}
+.mod-head-icon{font-size:1.1rem}
+.mod-count{margin-left:auto;background:var(--red);color:white;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.68rem;font-weight:700;flex-shrink:0}
+.mod-list{padding:.6rem}
+.mod-item{display:flex;align-items:center;gap:.6rem;padding:.4rem .65rem;border-radius:7px;cursor:default}
+.mod-item:hover{background:rgba(255,255,255,.04)}
+.mod-dot{width:6px;height:6px;border-radius:50%;background:var(--red);flex-shrink:0}
+.mod-name{font-size:.83rem}
+.mod-path{font-size:.68rem;color:var(--muted);font-family:monospace;margin-left:auto}
+
+/* SCREENSHOTS GALLERY */
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.25rem}
+.gal-item{background:var(--dark3);border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.06);transition:all .3s}
+.gal-item:hover{border-color:rgba(220,38,38,.35);transform:translateY(-3px)}
+.gal-img{width:100%;height:190px;object-fit:cover;object-position:top;display:block}
+.gal-body{padding:1.1rem}
+.gal-num{font-size:.68rem;color:var(--red);font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.3rem}
+.gal-body h3{font-size:.95rem;font-weight:700;margin-bottom:.4rem}
+.gal-body p{font-size:.82rem;color:var(--muted);line-height:1.6}
+
+/* TECH GRID */
+.tech-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:.875rem}
+.tech-card{background:var(--dark3);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:1.25rem 1rem;text-align:center;transition:all .3s}
+.tech-card:hover{border-color:rgba(220,38,38,.35);transform:translateY(-3px)}
+.tech-card .icon{font-size:2rem;margin-bottom:.5rem}
+.tech-card .name{font-size:.85rem;font-weight:700;margin-bottom:.2rem}
+.tech-card .type{font-size:.7rem;color:var(--muted)}
+
+/* FOOTER */
+footer{background:var(--dark2);border-top:1px solid rgba(255,255,255,.05);padding:3rem 2rem;text-align:center}
+.footer-logo{font-size:1.3rem;font-weight:800;margin-bottom:.75rem}
+.footer-desc{color:var(--muted);font-size:.87rem;margin-bottom:1.25rem}
+.footer-copy{color:rgba(255,255,255,.15);font-size:.75rem;margin-top:1.25rem}
+
+/* FADE IN ANIMATION */
+.fade{opacity:0;transform:translateY(24px);transition:all .55s ease}
+.fade.show{opacity:1;transform:translateY(0)}
+
+@media(max-width:768px){.nav-links{display:none}.kpi-row{gap:1.25rem}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="7" fill="#dc2626"/><path d="M14 7v14M7 14h14" stroke="white" stroke-width="3" stroke-linecap="round"/></svg>
+    GD4 <span>Pharma</span> Portfolio
+  </a>
+  <ul class="nav-links">
+    <li><a href="#clients">สถานประกอบการ</a></li>
+    <li><a href="#project1">OPD Robot</a></li>
+    <li><a href="#project2">OPD Nakhon Ping</a></li>
+    <li><a href="#project3">IPD Nakhon Ping</a></li>
+    <li><a href="#tech">Tech Stack</a></li>
+  </ul>
+  <span class="nav-badge">v 1.4.1 / 1.0.6</span>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content fade">
+    <div class="hero-eyebrow">🏥 Healthcare Pharmacy Management Systems</div>
+    <h1>Pharmacy Robot<br><span class="hl">Management Portfolio</span></h1>
+    <p class="hero-sub">ระบบบริหารจัดการเภสัชกรรมอัตโนมัติ ครอบคลุม 2 สถานประกอบการ 3 ระบบ — OPD Robot (จุฬาฯ), OPD Management และ IPD Management (นครพิงค์)</p>
+    <div class="hero-btns">
+      <a href="#clients" class="btn btn-red">🏥 ดูสถานประกอบการ</a>
+      <a href="#project1" class="btn btn-ghost">📋 รายละเอียด Project</a>
+    </div>
+    <div class="kpi-row">
+      <div class="kpi"><div class="kpi-val">3</div><div class="kpi-label">SYSTEMS</div></div>
+      <div class="kpi"><div class="kpi-val">2</div><div class="kpi-label">สถานประกอบการ</div></div>
+      <div class="kpi"><div class="kpi-val">70+</div><div class="kpi-label">MODULES</div></div>
+      <div class="kpi"><div class="kpi-val">1.4.1</div><div class="kpi-label">LATEST VERSION</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CLIENTS SECTION ===== -->
+<section id="clients" class="clients-section">
+<div class="container">
+  <div class="sec-header fade">
+    <div class="sec-label">🏥 สถานประกอบการ</div>
+    <h2 class="sec-title">Clients & Organizations</h2>
+    <div class="divider"></div>
+    <p class="sec-desc" style="margin-top:1rem">ระบบถูกติดตั้งและใช้งานจริงใน 2 สถานพยาบาลชั้นนำของประเทศ ทั้งโรงพยาบาลระดับมหาวิทยาลัยและโรงพยาบาลประจำจังหวัด</p>
+  </div>
+
+  <div class="clients-grid fade">
+
+    <!-- Client 1: โรงพยาบาลจุฬาลงกรณ์ -->
+    <div class="client-card" style="border-color:rgba(220,38,38,.25)">
+      <span class="client-badge badge-red">OPD Robot</span>
+      <div class="client-header">
+        <div class="client-icon red">🏥</div>
+        <div class="client-info">
+          <h3>โรงพยาบาลจุฬาลงกรณ์</h3>
+          <p>สภากาชาดไทย • กรุงเทพฯ</p>
+        </div>
+      </div>
+      <div class="client-body">
+        <div class="client-meta">
+          <div class="client-meta-item"><span class="client-meta-icon">⚙️</span>OPD Robot Management System</div>
+          <div class="client-meta-item"><span class="client-meta-icon">📅</span>Version 1.0.6</div>
+          <div class="client-meta-item"><span class="client-meta-icon">🌐</span>kcmh-pharma.chula.or.th</div>
+          <div class="client-meta-item"><span class="client-meta-icon">👥</span>296+ Users</div>
+        </div>
+        <p style="font-size:.87rem;color:var(--muted);line-height:1.7;margin-bottom:1rem">ระบบบริหารจัดการหุ่นยนต์จ่ายยาผู้ป่วยนอก ครอบคลุมทั้งกระบวนการ รับ-จัด-จ่ายยา, คลังยา, Prepack และรายงานสถิติ</p>
+        <div class="client-tags">
+          <span class="tag red">Vue 3</span><span class="tag red">Vite</span><span class="tag red">45 Routes</span><span class="tag red">LDAP Auth</span><span class="tag red">IoT/Robot</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Client 2: โรงพยาบาลนครพิงค์ — OPD -->
+    <div class="client-card" style="border-color:rgba(59,130,246,.25)">
+      <span class="client-badge badge-blue">OPD Management</span>
+      <div class="client-header">
+        <div class="client-icon blue">🏨</div>
+        <div class="client-info">
+          <h3>โรงพยาบาลนครพิงค์</h3>
+          <p>จังหวัดเชียงใหม่ • OPD System</p>
+        </div>
+      </div>
+      <div class="client-body">
+        <div class="client-meta">
+          <div class="client-meta-item"><span class="client-meta-icon">⚙️</span>OPD Management System</div>
+          <div class="client-meta-item"><span class="client-meta-icon">📅</span>Version 1.4.1</div>
+          <div class="client-meta-item"><span class="client-meta-icon">🌐</span>192.168.34.246 (OPD)</div>
+          <div class="client-meta-item"><span class="client-meta-icon">🏥</span>ระบบงานผู้ป่วยนอก</div>
+        </div>
+        <p style="font-size:.87rem;color:var(--muted);line-height:1.7;margin-bottom:1rem">ระบบจัดการยา OPD รวมทั้ง Process การจ่ายยา, Mederror, Delivery (EMS/ไปรษณีย์), Stock, Report และ Log</p>
+        <div class="client-tags">
+          <span class="tag blue">Process</span><span class="tag blue">Mederror</span><span class="tag blue">Delivery</span><span class="tag blue">EMS Queue</span><span class="tag blue">SE-Med</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Client 3: โรงพยาบาลนครพิงค์ — IPD -->
+    <div class="client-card" style="border-color:rgba(34,197,94,.25)">
+      <span class="client-badge badge-green">IPD Management</span>
+      <div class="client-header">
+        <div class="client-icon green">🛏️</div>
+        <div class="client-info">
+          <h3>โรงพยาบาลนครพิงค์</h3>
+          <p>จังหวัดเชียงใหม่ • IPD System</p>
+        </div>
+      </div>
+      <div class="client-body">
+        <div class="client-meta">
+          <div class="client-meta-item"><span class="client-meta-icon">⚙️</span>IPD Management System</div>
+          <div class="client-meta-item"><span class="client-meta-icon">📅</span>Version 1.4.1</div>
+          <div class="client-meta-item"><span class="client-meta-icon">🌐</span>192.168.34.246 (IPD)</div>
+          <div class="client-meta-item"><span class="client-meta-icon">🏥</span>ระบบงานผู้ป่วยใน</div>
+        </div>
+        <p style="font-size:.87rem;color:var(--muted);line-height:1.7;margin-bottom:1rem">ระบบจัดการยา IPD (ผู้ป่วยใน) รวม Process เตรียมยา, WAED, Stock Robot, รายงาน Waiting Time, กราฟวิเคราะห์</p>
+        <div class="client-tags">
+          <span class="tag green">IPD</span><span class="tag green">WAED</span><span class="tag green">เตรียมยา</span><span class="tag green">Waiting Time</span><span class="tag green">Location</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Comparison Table -->
+  <div style="background:var(--dark3);border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.06)" class="fade">
+    <div style="padding:1.25rem 1.5rem;border-bottom:1px solid rgba(255,255,255,.06);font-weight:700;font-size:.95rem">📊 เปรียบเทียบ 3 ระบบ</div>
+    <div style="overflow-x:auto">
+      <table style="width:100%;border-collapse:collapse;font-size:.85rem">
+        <thead>
+          <tr style="background:rgba(255,255,255,.03)">
+            <th style="padding:.875rem 1.5rem;text-align:left;color:var(--muted);font-weight:600">Feature</th>
+            <th style="padding:.875rem 1rem;text-align:center;color:#fca5a5">OPD Robot<br><small style="font-weight:400">จุฬาฯ</small></th>
+            <th style="padding:.875rem 1rem;text-align:center;color:#93c5fd">OPD Mgmt<br><small style="font-weight:400">นครพิงค์</small></th>
+            <th style="padding:.875rem 1rem;text-align:center;color:#86efac">IPD Mgmt<br><small style="font-weight:400">นครพิงค์</small></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-top:1px solid rgba(255,255,255,.04)">
+            <td style="padding:.75rem 1.5rem;color:var(--muted)">หุ่นยนต์จ่ายยา (Robot)</td>
+            <td style="text-align:center">✅</td><td style="text-align:center">✅</td><td style="text-align:center">✅</td>
+          </tr>
+          <tr style="border-top:1px solid rgba(255,255,255,.04)">
+            <td style="padding:.75rem 1.5rem;color:var(--muted)">ใบสั่งยา / Job Queue</td>
+            <td style="text-align:center">✅</td><td style="text-align:center">✅</td><td style="text-align:center">✅</td>
+          </tr>
+          <tr style="border-top:1px solid rgba(255,255,255,.04)">
+            <td style="padding:.75rem 1.5rem;color:var(--muted)">Mederror / Error Report</td>
+            <td style="text-align:center">✅ (5 ประเภท)</td><td style="text-align:center">✅</td><td style="text-align:center">—</td>
+          </tr>
+          <tr style="border-top:1px solid rgba(255,255,255,.04)">
+            <td style="padding:.75rem 1.5rem;color:var(--muted)">Delivery / ไปรษณีย์</td>
+            <td style="text-align:center">—</td><td style="text-align:center">✅ (EMS)</td><td style="text-align:center">—</td>
+          </tr>
+          <tr style="border-top:1px solid rgba(255,255,255,.04)">
+            <td style="padding:.75rem 1.5rem;color:var(--muted)">Prepack Management</td>
+            <td style="text-align:center">✅</td><td style="text-align:center">—</td><td style="text-align:center">—</td>
+          </tr>
+          <tr style="border-top:1px solid rgba(255,255,255,.04)">
+            <td style="padding:.75rem 1.5rem;color:var(--muted)">Conveyor / IoT Control</td>
+            <td style="text-align:center">✅</td><td style="text-align:center">✅</td><td style="text-align:center">—</td>
+          </tr>
+          <tr style="border-top:1px solid rgba(255,255,255,.04)">
+            <td style="padding:.75rem 1.5rem;color:var(--muted)">Stock Robot</td>
+            <td style="text-align:center">✅</td><td style="text-align:center">✅</td><td style="text-align:center">✅</td>
+          </tr>
+          <tr style="border-top:1px solid rgba(255,255,255,.04)">
+            <td style="padding:.75rem 1.5rem;color:var(--muted)">Waiting Time Report</td>
+            <td style="text-align:center">—</td><td style="text-align:center">✅</td><td style="text-align:center">✅ (+ กราฟ)</td>
+          </tr>
+          <tr style="border-top:1px solid rgba(255,255,255,.04)">
+            <td style="padding:.75rem 1.5rem;color:var(--muted)">WAED (Ward)</td>
+            <td style="text-align:center">—</td><td style="text-align:center">—</td><td style="text-align:center">✅</td>
+          </tr>
+          <tr style="border-top:1px solid rgba(255,255,255,.04)">
+            <td style="padding:.75rem 1.5rem;color:var(--muted)">LDAP Authentication</td>
+            <td style="text-align:center">✅</td><td style="text-align:center">—</td><td style="text-align:center">—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</section>
+<!-- ===== PROJECT 1: OPD ROBOT (จุฬาฯ) ===== -->
+<section id="project1" style="background:var(--dark)">
+<div class="container">
+  <div class="sec-header fade">
+    <div class="sec-label" style="color:#ef4444">🏥 PROJECT 1 — โรงพยาบาลจุฬาลงกรณ์</div>
+    <h2 class="sec-title">OPD Robot Management System</h2>
+    <div class="divider"></div>
+    <p class="sec-desc" style="margin-top:1rem">ระบบบริหารจัดการหุ่นยนต์จ่ายยาผู้ป่วยนอก สำหรับโรงพยาบาลจุฬาลงกรณ์ สภากาชาดไทย</p>
+  </div>
+
+  <div class="split fade" style="margin-bottom:3rem">
+    <div class="split-info">
+      <div style="color:#ef4444;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.6rem">OVERVIEW</div>
+      <h2>OPD Robot<br>Management</h2>
+      <p>ระบบ Web Application ครบวงจรสำหรับบริหารจัดการหุ่นยนต์จ่ายยาผู้ป่วยนอก ติดตามสถานะแบบ Realtime, บริหารคลังยา, จัดการข้อผิดพลาด และรายงานสถิติ</p>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem">
+        <span class="tag red">45 Routes</span><span class="tag red">Vue 3 + Vite</span><span class="tag red">LDAP</span><span class="tag red">IoT</span><span class="tag red">Prepack</span>
+      </div>
+      <div style="margin-top:1.25rem;display:grid;grid-template-columns:1fr 1fr;gap:.75rem">
+        <div style="background:var(--dark3);border-radius:10px;padding:.875rem;border:1px solid rgba(220,38,38,.2)">
+          <div style="font-size:1.5rem;font-weight:800;color:#ef4444">34,923</div>
+          <div style="font-size:.72rem;color:var(--muted)">ใบสั่งยา/เดือน</div>
+        </div>
+        <div style="background:var(--dark3);border-radius:10px;padding:.875rem;border:1px solid rgba(34,197,94,.2)">
+          <div style="font-size:1.5rem;font-weight:800;color:#22c55e">101,827</div>
+          <div style="font-size:.72rem;color:var(--muted)">รายการยา</div>
+        </div>
+        <div style="background:var(--dark3);border-radius:10px;padding:.875rem;border:1px solid rgba(245,158,11,.2)">
+          <div style="font-size:1.5rem;font-weight:800;color:#f59e0b">459</div>
+          <div style="font-size:.72rem;color:var(--muted)">ข้อผิดพลาด</div>
+        </div>
+        <div style="background:var(--dark3);border-radius:10px;padding:.875rem;border:1px solid rgba(139,92,246,.2)">
+          <div style="font-size:1.5rem;font-weight:800;color:#a78bfa">296+</div>
+          <div style="font-size:.72rem;color:var(--muted)">ผู้ใช้งาน</div>
+        </div>
+      </div>
+    </div>
+    <div class="split-screen">
+      <div class="screen-bar"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div><span class="screen-url">kcmh-pharma.chula.or.th/v2-web</span></div>
+      <div class="screen-content" style="background:linear-gradient(135deg,#0f172a,#1a0505)">
+        <div style="display:flex;gap:.5rem;margin-bottom:.75rem">
+          <div style="background:#1e293b;width:80px;height:130px;border-radius:6px;padding:.5rem;flex-shrink:0">
+            <div style="font-size:.45rem;color:#ef4444;font-weight:700;margin-bottom:.4rem">PROCESS</div>
+            <div style="font-size:.42rem;color:#64748b;margin-bottom:.25rem;line-height:1.3">สร้างใบสั่งยา</div>
+            <div style="font-size:.42rem;color:#64748b;margin-bottom:.25rem;line-height:1.3">ตรวจสอบแพ้ยา</div>
+            <div style="font-size:.42rem;color:#ef444430;background:#ef444410;padding:2px 4px;border-radius:3px;margin-bottom:.4rem">ตำแหน่งยา</div>
+            <div style="font-size:.45rem;color:#ef4444;font-weight:700;margin-bottom:.3rem">Report</div>
+            <div style="font-size:.42rem;color:#64748b;line-height:1.3">รายงานจ่ายยา</div>
+          </div>
+          <div style="flex:1">
+            <div style="font-size:.6rem;font-weight:700;color:white;margin-bottom:.4rem">แดชบอร์ดสรุป</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:.3rem;margin-bottom:.4rem">
+              <div style="background:#ef444415;border-radius:5px;padding:.3rem;text-align:center"><div style="font-size:.75rem;font-weight:800;color:#ef4444">34K</div><div style="font-size:.35rem;color:#64748b">ใบสั่งยา</div></div>
+              <div style="background:#22c55e15;border-radius:5px;padding:.3rem;text-align:center"><div style="font-size:.75rem;font-weight:800;color:#22c55e">101K</div><div style="font-size:.35rem;color:#64748b">รายการ</div></div>
+            </div>
+            <div style="background:#1e293b;border-radius:5px;padding:.4rem;">
+              <div style="font-size:.45rem;color:#ef4444;margin-bottom:.3rem">📊 Heatmap รายชั่วโมง</div>
+              <div style="display:flex;gap:2px;align-items:flex-end;height:28px;">
+                <div style="background:#ef444430;width:6%;border-radius:1px;height:20%"></div>
+                <div style="background:#ef444460;width:6%;border-radius:1px;height:50%"></div>
+                <div style="background:#ef4444;width:6%;border-radius:1px;height:100%"></div>
+                <div style="background:#ef4444cc;width:6%;border-radius:1px;height:80%"></div>
+                <div style="background:#ef444460;width:6%;border-radius:1px;height:60%"></div>
+                <div style="background:#ef444430;width:6%;border-radius:1px;height:30%"></div>
+                <div style="background:#ef444415;width:6%;border-radius:1px;height:10%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="font-size:.5rem;color:#475569;text-align:center">Production • v1.0.6 • Auto-refresh 5min</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OPD Robot Modules -->
+  <div class="fade">
+    <h3 style="font-weight:700;margin-bottom:1.25rem;font-size:1.1rem">📋 45 Routes / Modules</h3>
+    <div class="modules-grid">
+      <div class="mod-group">
+        <div class="mod-head"><span class="mod-head-icon">⚙️</span>Process<span class="mod-count">5</span></div>
+        <div class="mod-list">
+          <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">ใบสั่งยา (Job Queue)</span><span class="mod-path">/pse-createprescription</span></div>
+          <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">สร้างใบสั่งยา</span><span class="mod-path">/pse-createprescriptionbuild</span></div>
+          <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">ค้นหาตะกร้ายา</span><span class="mod-path">/searchmedicinebasket</span></div>
+          <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">ตำแหน่งยา</span><span class="mod-path">/location</span></div>
+          <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">ตรวจสอบแพ้ยา</span><span class="mod-path">/checkallergies</span></div>
+        </div>
+      </div>
+      <div class="mod-group">
+        <div class="mod-head"><span class="mod-head-icon">⚠️</span>Error Reports<span class="mod-count">5</span></div>
+        <div class="mod-list">
+          <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">Pre-dispensing Error</span></div>
+          <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">Screening Error</span></div>
+          <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">Transcribing Error</span></div>
+          <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">Compliance Error</span></div>
+          <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">Prescribing Error</span></div>
+        </div>
+      </div>
+      <div class="mod-group">
+        <div class="mod-head"><span class="mod-head-icon">🏪</span>Stock<span class="mod-count">7</span></div>
+        <div class="mod-list">
+          <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">Stock Dashboard (Monitor)</span></div>
+          <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">ยอดคงเหลือ</span></div>
+          <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">รายการรับ-จ่าย</span></div>
+          <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">การเคลื่อนไหว</span></div>
+          <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">Stock Location</span></div>
+          <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">Forecast</span></div>
+          <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">คลังยา (Warehouse)</span></div>
+        </div>
+      </div>
+      <div class="mod-group">
+        <div class="mod-head"><span class="mod-head-icon">📦</span>Prepack<span class="mod-count">4</span></div>
+        <div class="mod-list">
+          <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">Prepack Dashboard</span></div>
+          <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">สต็อก Prepack</span></div>
+          <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">กล่อง/สติกเกอร์</span></div>
+          <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">รายงาน Prepack</span></div>
+        </div>
+      </div>
+      <div class="mod-group">
+        <div class="mod-head"><span class="mod-head-icon">🤖</span>Conveyor/IoT<span class="mod-count">4</span></div>
+        <div class="mod-list">
+          <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">Alarm Messenger (LED)</span></div>
+          <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">Zone Management</span></div>
+          <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">Log Conveyor</span></div>
+          <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">Counter Dispensing</span></div>
+        </div>
+      </div>
+      <div class="mod-group">
+        <div class="mod-head"><span class="mod-head-icon">⚙️</span>Setting<span class="mod-count">9</span></div>
+        <div class="mod-list">
+          <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">กำหนดสิทธิ์ผู้ใช้</span></div>
+          <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">จัดการผู้ใช้ (296+)</span></div>
+          <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">กลุ่มผู้ใช้</span></div>
+          <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">ข้อมูลยา</span></div>
+          <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">ตั้งค่า SE-MED</span></div>
+          <div class="mod-item"><span class="mod-dot"></span><span class="mod-name">+ รายงาน/Log อีก 11</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<!-- ===== PROJECT 2: OPD Nakhon Ping ===== -->
+<section id="project2" style="background:var(--dark2)">
+<div class="container">
+  <div class="sec-header fade">
+    <div class="sec-label" style="color:#3b82f6">🏨 PROJECT 2 — โรงพยาบาลนครพิงค์</div>
+    <h2 class="sec-title">OPD Management System</h2>
+    <div class="divider" style="background:#3b82f6"></div>
+    <p class="sec-desc" style="margin-top:1rem">ระบบบริหารจัดการยาผู้ป่วยนอก โรงพยาบาลนครพิงค์ จังหวัดเชียงใหม่</p>
+  </div>
+
+  <div class="split fade" style="margin-bottom:3rem">
+    <div class="split-info">
+      <div style="color:#3b82f6;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.6rem">OVERVIEW</div>
+      <h2>OPD Management<br><span style="color:#3b82f6">นครพิงค์</span></h2>
+      <p>ระบบจัดการยาผู้ป่วยนอก ครอบคลุมกระบวนการค้นหาตะกร้า/ตำแหน่งยา, Mederror, Delivery (EMS + ไปรษณีย์), Stock Robot, และรายงานครบถ้วน 13 รายงาน</p>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem">
+        <span class="tag blue">v1.4.1</span><span class="tag blue">OPD</span><span class="tag blue">EMS</span><span class="tag blue">Mederror</span><span class="tag blue">SE-Med</span>
+      </div>
+    </div>
+    <div class="split-screen">
+      <div class="screen-bar"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div><span class="screen-url">192.168.34.246/home — OPD</span></div>
+      <div class="screen-content" style="background:#f8fafc;padding:1rem">
+        <div style="display:flex;gap:.4rem;margin-bottom:.5rem">
+          <div style="background:#0ea5e9;color:white;border-radius:6px;padding:.3rem .6rem;font-size:.55rem;font-weight:700">OPD</div>
+          <div style="font-size:.55rem;color:#64748b;display:flex;align-items:center">โรงพยาบาลนครพิงค์</div>
+          <div style="margin-left:auto;background:#ef4444;color:white;border-radius:4px;padding:.2rem .5rem;font-size:.5rem">Logout</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:.3rem;margin-bottom:.5rem">
+          <div style="background:#0ea5e9;border-radius:5px;padding:.4rem;text-align:center"><div style="font-size:.8rem;font-weight:800;color:white">0</div><div style="font-size:.38rem;color:#bfdbfe">รอปรึกษาแพทย์</div></div>
+          <div style="background:#22c55e;border-radius:5px;padding:.4rem;text-align:center"><div style="font-size:.8rem;font-weight:800;color:white">0</div><div style="font-size:.38rem;color:#bbf7d0">เรียกไม่พบ</div></div>
+          <div style="background:#f59e0b;border-radius:5px;padding:.4rem;text-align:center"><div style="font-size:.8rem;font-weight:800;color:white">0</div><div style="font-size:.38rem;color:#fde68a">รอเบิก</div></div>
+          <div style="background:#ef4444;border-radius:5px;padding:.4rem;text-align:center"><div style="font-size:.8rem;font-weight:800;color:white">0</div><div style="font-size:.38rem;color:#fecaca">ยาผลิต</div></div>
+        </div>
+        <div style="background:#1e3a5f;border-radius:5px;padding:.4rem">
+          <div style="font-size:.5rem;color:#93c5fd;margin-bottom:.25rem">📋 Sidebar Menu (OPD)</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;font-size:.42rem;color:#94a3b8">
+            <div>Process →</div><div>Mederror →</div>
+            <div>Delivery →</div><div>Stock →</div>
+            <div>Report →</div><div>Log →</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OPD Nakhon Ping Modules -->
+  <div class="fade">
+    <h3 style="font-weight:700;margin-bottom:1.25rem;font-size:1.1rem">📋 Modules — OPD Nakhon Ping</h3>
+    <div class="modules-grid">
+      <div class="mod-group">
+        <div class="mod-head"><span class="mod-head-icon">⚙️</span>Process<span class="mod-count">3</span></div>
+        <div class="mod-list">
+          <div class="mod-item"><span class="mod-dot" style="background:#3b82f6"></span><span class="mod-name">ค้นหาตะกร้ายา</span></div>
+          <div class="mod-item"><span class="mod-dot" style="background:#3b82f6"></span><span class="mod-name">ค้นหาตำแหน่งยา</span></div>
+          <div class="mod-item"><span class="mod-dot" style="background:#3b82f6"></span><span class="mod-name">จัดการใบสั่งยา</span></div>
+        </div>
+      </div>
+      <div class="mod-group">
+        <div class="mod-head"><span class="mod-head-icon">🚚</span>Delivery<span class="mod-count">2</span></div>
+        <div class="mod-list">
+          <div class="mod-item"><span class="mod-dot" style="background:#3b82f6"></span><span class="mod-name">QueueEMS — คิว EMS</span></div>
+          <div class="mod-item"><span class="mod-dot" style="background:#3b82f6"></span><span class="mod-name">จัดการใบสั่งยาไปรษณีย์</span></div>
+        </div>
+      </div>
+      <div class="mod-group">
+        <div class="mod-head"><span class="mod-head-icon">⚠️</span>Mederror<span class="mod-count">1</span></div>
+        <div class="mod-list">
+          <div class="mod-item"><span class="mod-dot" style="background:#3b82f6"></span><span class="mod-name">บันทึก Mederror</span></div>
+        </div>
+      </div>
+      <div class="mod-group">
+        <div class="mod-head"><span class="mod-head-icon">🏪</span>Stock<span class="mod-count">2</span></div>
+        <div class="mod-list">
+          <div class="mod-item"><span class="mod-dot" style="background:#3b82f6"></span><span class="mod-name">Stock Robot</span></div>
+          <div class="mod-item"><span class="mod-dot" style="background:#3b82f6"></span><span class="mod-name">คาดการณ์ (Forecast)</span></div>
+        </div>
+      </div>
+      <div class="mod-group">
+        <div class="mod-head"><span class="mod-head-icon">📊</span>Report (13 รายงาน)<span class="mod-count">13</span></div>
+        <div class="mod-list">
+          <div class="mod-item"><span class="mod-dot" style="background:#3b82f6"></span><span class="mod-name">การรับ / การเบิก / การจ่ายยา</span></div>
+          <div class="mod-item"><span class="mod-dot" style="background:#3b82f6"></span><span class="mod-name">ภาระงาน / การคาดเคลื่อนทางยา</span></div>
+          <div class="mod-item"><span class="mod-dot" style="background:#3b82f6"></span><span class="mod-name">การจ่ายยาควบคุมพิเศษ</span></div>
+          <div class="mod-item"><span class="mod-dot" style="background:#3b82f6"></span><span class="mod-name">การจ่ายยา se-med</span></div>
+          <div class="mod-item"><span class="mod-dot" style="background:#3b82f6"></span><span class="mod-name">นับจำนวนยา / ต่อชั่วโมง</span></div>
+          <div class="mod-item"><span class="mod-dot" style="background:#3b82f6"></span><span class="mod-name">การจ่ายยาไปรษณีย์</span></div>
+          <div class="mod-item"><span class="mod-dot" style="background:#3b82f6"></span><span class="mod-name">รายงาน WaitingTime / LED</span></div>
+          <div class="mod-item"><span class="mod-dot" style="background:#3b82f6"></span><span class="mod-name">จำนวนยาที่จ่าย 1-3 เดือน</span></div>
+        </div>
+      </div>
+      <div class="mod-group">
+        <div class="mod-head"><span class="mod-head-icon">📋</span>Log & Setting<span class="mod-count">3</span></div>
+        <div class="mod-list">
+          <div class="mod-item"><span class="mod-dot" style="background:#3b82f6"></span><span class="mod-name">ประวัติการใช้งาน</span></div>
+          <div class="mod-item"><span class="mod-dot" style="background:#3b82f6"></span><span class="mod-name">Log Conveyor</span></div>
+          <div class="mod-item"><span class="mod-dot" style="background:#3b82f6"></span><span class="mod-name">Setting</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ===== PROJECT 3: IPD Nakhon Ping ===== -->
+<section id="project3" style="background:var(--dark)">
+<div class="container">
+  <div class="sec-header fade">
+    <div class="sec-label" style="color:#22c55e">🛏️ PROJECT 3 — โรงพยาบาลนครพิงค์</div>
+    <h2 class="sec-title">IPD Management System</h2>
+    <div class="divider" style="background:#22c55e"></div>
+    <p class="sec-desc" style="margin-top:1rem">ระบบบริหารจัดการยาผู้ป่วยใน (IPD) โรงพยาบาลนครพิงค์ จังหวัดเชียงใหม่</p>
+  </div>
+
+  <div class="split fade" style="margin-bottom:3rem">
+    <div class="split-info">
+      <div style="color:#22c55e;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.6rem">OVERVIEW</div>
+      <h2>IPD Management<br><span style="color:#22c55e">นครพิงค์</span></h2>
+      <p>ระบบจัดการยาผู้ป่วยใน (Inpatient) รองรับการเตรียมยา, สถานะใบสั่งยา WAED, Stock Robot, รายงานยาตาม Location, Waiting Time พร้อมกราฟวิเคราะห์แบบ Interactive</p>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem">
+        <span class="tag green">v1.4.1</span><span class="tag green">IPD</span><span class="tag green">WAED</span><span class="tag green">Waiting Time</span><span class="tag green">Location</span>
+      </div>
+      <div style="margin-top:1.25rem;background:var(--dark3);border-radius:10px;padding:1rem;border:1px solid rgba(34,197,94,.2)">
+        <div style="font-size:.8rem;font-weight:700;margin-bottom:.75rem;color:#22c55e">🔑 ความแตกต่างจาก OPD</div>
+        <div style="font-size:.82rem;color:var(--muted);line-height:1.8">
+          ✅ เพิ่ม <strong style="color:white">สถานะใบสั่งยา WAED</strong> (Ward)<br>
+          ✅ เพิ่ม <strong style="color:white">เตรียมยา</strong> สำหรับ IPD<br>
+          ✅ รายงาน <strong style="color:white">ยาตาม Location</strong><br>
+          ✅ <strong style="color:white">กราฟ Waiting Time</strong> แบบ Interactive<br>
+          ✅ <strong style="color:white">ระยะเวลาการจ่ายยา</strong><br>
+          ❌ ไม่มี Mederror, Delivery
+        </div>
+      </div>
+    </div>
+    <div class="split-screen">
+      <div class="screen-bar"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div><span class="screen-url">192.168.34.246/home — IPD</span></div>
+      <div class="screen-content" style="background:#f8fafc;padding:1rem">
+        <div style="display:flex;gap:.4rem;margin-bottom:.5rem">
+          <div style="background:#22c55e;color:white;border-radius:6px;padding:.3rem .6rem;font-size:.55rem;font-weight:700">IPD</div>
+          <div style="font-size:.55rem;color:#64748b;display:flex;align-items:center">โรงพยาบาลนครพิงค์</div>
+          <div style="margin-left:auto;background:#ef4444;color:white;border-radius:4px;padding:.2rem .5rem;font-size:.5rem">Logout</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:.3rem;margin-bottom:.5rem">
+          <div style="background:#0ea5e9;border-radius:5px;padding:.4rem;text-align:center"><div style="font-size:.8rem;font-weight:800;color:white">0</div><div style="font-size:.38rem;color:#bfdbfe">รอปรึกษา</div></div>
+          <div style="background:#22c55e;border-radius:5px;padding:.4rem;text-align:center"><div style="font-size:.8rem;font-weight:800;color:white">0</div><div style="font-size:.38rem;color:#bbf7d0">เรียกไม่พบ</div></div>
+          <div style="background:#f59e0b;border-radius:5px;padding:.4rem;text-align:center"><div style="font-size:.8rem;font-weight:800;color:white">0</div><div style="font-size:.38rem;color:#fde68a">รอเบิก</div></div>
+          <div style="background:#ef4444;border-radius:5px;padding:.4rem;text-align:center"><div style="font-size:.8rem;font-weight:800;color:white">0</div><div style="font-size:.38rem;color:#fecaca">ยาผลิต</div></div>
+        </div>
+        <div style="background:#1e3a5f;border-radius:5px;padding:.4rem">
+          <div style="font-size:.5rem;color:#86efac;margin-bottom:.25rem">📋 Sidebar Menu (IPD)</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;font-size:.42rem;color:#94a3b8">
+            <div>Process → WAED</div><div>เตรียมยา</div>
+            <div>Stock Robot</div><div>Report (10)</div>
+            <div>Waiting Time</div><div>กราฟ Chart</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- IPD Nakhon Ping Modules -->
+  <div class="fade">
+    <h3 style="font-weight:700;margin-bottom:1.25rem;font-size:1.1rem">📋 Modules — IPD Nakhon Ping</h3>
+    <div class="modules-grid">
+      <div class="mod-group">
+        <div class="mod-head"><span class="mod-head-icon">⚙️</span>Process<span class="mod-count" style="background:#22c55e">4</span></div>
+        <div class="mod-list">
+          <div class="mod-item"><span class="mod-dot" style="background:#22c55e"></span><span class="mod-name">ค้นหาตะกร้ายา</span></div>
+          <div class="mod-item"><span class="mod-dot" style="background:#22c55e"></span><span class="mod-name">ค้นหาตำแหน่งยา</span></div>
+          <div class="mod-item"><span class="mod-dot" style="background:#22c55e"></span><span class="mod-name">เตรียมยา (IPD)</span></div>
+          <div class="mod-item"><span class="mod-dot" style="background:#22c55e"></span><span class="mod-name">สถานะใบสั่งยา (WAED)</span></div>
+        </div>
+      </div>
+      <div class="mod-group">
+        <div class="mod-head"><span class="mod-head-icon">🏪</span>Stock<span class="mod-count" style="background:#22c55e">1</span></div>
+        <div class="mod-list">
+          <div class="mod-item"><span class="mod-dot" style="background:#22c55e"></span><span class="mod-name">Stock Robot</span></div>
+        </div>
+      </div>
+      <div class="mod-group">
+        <div class="mod-head"><span class="mod-head-icon">📊</span>Report (10 รายงาน)<span class="mod-count" style="background:#22c55e">10</span></div>
+        <div class="mod-list">
+          <div class="mod-item"><span class="mod-dot" style="background:#22c55e"></span><span class="mod-name">การรับ / การเบิก / การจ่ายยา</span></div>
+          <div class="mod-item"><span class="mod-dot" style="background:#22c55e"></span><span class="mod-name">ภาระงาน / การคาดเคลื่อนทางยา</span></div>
+          <div class="mod-item"><span class="mod-dot" style="background:#22c55e"></span><span class="mod-name">การจ่ายยาควบคุมพิเศษ</span></div>
+          <div class="mod-item"><span class="mod-dot" style="background:#22c55e"></span><span class="mod-name">การจ่ายยาตาม Location</span></div>
+          <div class="mod-item"><span class="mod-dot" style="background:#22c55e"></span><span class="mod-name">ระยะเวลาการจ่ายยา</span></div>
+          <div class="mod-item"><span class="mod-dot" style="background:#22c55e"></span><span class="mod-name">Waiting Time Report</span></div>
+          <div class="mod-item"><span class="mod-dot" style="background:#22c55e"></span><span class="mod-name">กราฟ Waiting Time (Chart)</span></div>
+        </div>
+      </div>
+      <div class="mod-group">
+        <div class="mod-head"><span class="mod-head-icon">📋</span>Log & Setting<span class="mod-count" style="background:#22c55e">2</span></div>
+        <div class="mod-list">
+          <div class="mod-item"><span class="mod-dot" style="background:#22c55e"></span><span class="mod-name">ประวัติการใช้งาน</span></div>
+          <div class="mod-item"><span class="mod-dot" style="background:#22c55e"></span><span class="mod-name">Setting</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<!-- TECH STACK -->
+<section id="tech" style="background:var(--dark2)">
+<div class="container">
+  <div class="sec-header fade">
+    <div class="sec-label">💻 TECH STACK</div>
+    <h2 class="sec-title">เทคโนโลยีที่ใช้</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="tech-grid fade">
+    <div class="tech-card"><div class="icon">💚</div><div class="name">Vue 3</div><div class="type">Frontend Framework</div></div>
+    <div class="tech-card"><div class="icon">⚡</div><div class="name">Vite</div><div class="type">Build Tool</div></div>
+    <div class="tech-card"><div class="icon">🟢</div><div class="name">Node.js</div><div class="type">Runtime</div></div>
+    <div class="tech-card"><div class="icon">🔷</div><div class="name">TypeScript</div><div class="type">Language</div></div>
+    <div class="tech-card"><div class="icon">🛣️</div><div class="name">Vue Router</div><div class="type">SPA Routing</div></div>
+    <div class="tech-card"><div class="icon">📦</div><div class="name">Pinia</div><div class="type">State Mgmt</div></div>
+    <div class="tech-card"><div class="icon">🎨</div><div class="name">CSS/SCSS</div><div class="type">Styling</div></div>
+    <div class="tech-card"><div class="icon">📊</div><div class="name">Chart.js</div><div class="type">Visualization</div></div>
+    <div class="tech-card"><div class="icon">🔒</div><div class="name">LDAP Auth</div><div class="type">Authentication</div></div>
+    <div class="tech-card"><div class="icon">🌐</div><div class="name">REST API</div><div class="type">Backend</div></div>
+    <div class="tech-card"><div class="icon">🐘</div><div class="name">PostgreSQL</div><div class="type">Database</div></div>
+    <div class="tech-card"><div class="icon">🤖</div><div class="name">IoT API</div><div class="type">Robot Control</div></div>
+  </div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div style="max-width:560px;margin:0 auto">
+    <div class="footer-logo">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" style="display:inline-block;vertical-align:middle;margin-right:8px"><rect width="28" height="28" rx="7" fill="#dc2626"/><path d="M14 7v14M7 14h14" stroke="white" stroke-width="3" stroke-linecap="round"/></svg>
+      GD4 Pharma Management Portfolio
+    </div>
+    <div class="footer-desc">ระบบบริหารจัดการเภสัชกรรมอัตโนมัติ<br>Developed by G D FOUR CO., LTD.</div>
+    <div style="display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;margin-bottom:1rem">
+      <span class="tag red">โรงพยาบาลจุฬาลงกรณ์</span>
+      <span class="tag blue">โรงพยาบาลนครพิงค์ OPD</span>
+      <span class="tag green">โรงพยาบาลนครพิงค์ IPD</span>
+    </div>
+    <div class="footer-copy">© 2026 G D FOUR CO., LTD. • Version 1.4.1 / 1.0.6</div>
+  </div>
+</footer>
+
+<script>
+// Scroll animation
+const obs = new IntersectionObserver(e => e.forEach(el => { if(el.isIntersecting) el.target.classList.add('show') }), {threshold:.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.fade').forEach(el => obs.observe(el));
+
+// Nav active
+const secs = document.querySelectorAll('section[id]');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  secs.forEach(s => { if(window.scrollY >= s.offsetTop - 90) cur = s.id });
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.style.color = a.getAttribute('href') === '#'+cur ? 'var(--text)' : '';
+  });
+});
+</script>
+</body></html>
