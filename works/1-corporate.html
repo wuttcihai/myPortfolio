@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Siriphat Engineering — เว็บไซต์บริษัทรับเหมาก่อสร้าง | PIXELCRAFT</title>
+<link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@300;400;500;600;700&family=Archivo:wght@400;600;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#13283a;--navy2:#0d1d2b;--gold:#f3b53f;--cream:#f5f1e8;--gray:#9fb0bd}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"Anuphan",sans-serif;background:var(--navy);color:#fff;line-height:1.6;overflow-x:hidden}
+.dn{font-family:"Archivo",sans-serif}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+
+/* portfolio bar */
+.pf-bar{position:fixed;top:0;left:0;right:0;z-index:999;background:#0a0a0a;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:.5rem 1.2rem;font-size:.82rem;font-family:"Archivo"}
+.pf-bar a{color:#f3b53f}
+.pf-bar .pf-tag{opacity:.6}
+
+/* nav */
+.nav{position:fixed;top:34px;left:0;right:0;z-index:900;display:flex;justify-content:space-between;align-items:center;padding:1.1rem clamp(1.2rem,5vw,4rem);transition:.4s;backdrop-filter:blur(0)}
+.nav.scrolled{background:rgba(13,29,43,.92);backdrop-filter:blur(10px);box-shadow:0 1px 0 rgba(255,255,255,.06);padding-top:.7rem;padding-bottom:.7rem}
+.logo{display:flex;align-items:center;gap:.7rem;font-family:"Archivo";font-weight:900;letter-spacing:.02em;font-size:1.15rem}
+.logo b{width:34px;height:34px;background:var(--gold);color:var(--navy);display:grid;place-items:center;border-radius:7px;transform:rotate(-8deg)}
+.nav ul{display:flex;gap:2.2rem;list-style:none;font-size:.95rem}
+.nav ul a{position:relative;opacity:.85}
+.nav ul a:hover{opacity:1;color:var(--gold)}
+.nav .quote{background:var(--gold);color:var(--navy);padding:.6rem 1.3rem;border-radius:6px;font-weight:600}
+@media(max-width:860px){.nav ul{display:none}}
+
+/* hero */
+.hero{min-height:100vh;padding:9rem clamp(1.2rem,5vw,4rem) 4rem;display:grid;grid-template-columns:1.1fr .9fr;gap:3rem;align-items:center;position:relative}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(800px 500px at 80% 10%,rgba(243,181,63,.12),transparent),var(--navy2);z-index:-1}
+.eyebrow{display:inline-flex;align-items:center;gap:.6rem;color:var(--gold);font-family:"Archivo";font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;margin-bottom:1.4rem}
+.eyebrow::before{content:"";width:34px;height:1px;background:var(--gold)}
+.hero h1{font-family:"Archivo";font-weight:900;font-size:clamp(2.6rem,6.5vw,5rem);line-height:1.02;letter-spacing:-.01em}
+.hero h1 span{color:var(--gold)}
+.hero p{margin:1.6rem 0 2.2rem;color:var(--gray);max-width:46ch;font-size:1.08rem}
+.hero .cta{display:flex;gap:1rem;flex-wrap:wrap}
+.btn{padding:.95rem 1.8rem;border-radius:7px;font-weight:600;transition:.25s;display:inline-flex;align-items:center;gap:.5rem}
+.btn--gold{background:var(--gold);color:var(--navy)}
+.btn--gold:hover{transform:translateY(-3px);box-shadow:0 12px 30px -10px rgba(243,181,63,.6)}
+.btn--ghost{border:1px solid rgba(255,255,255,.25)}
+.btn--ghost:hover{border-color:var(--gold);color:var(--gold)}
+.hero__visual{position:relative}
+.hero__img{aspect-ratio:4/5;border-radius:16px;background:
+  linear-gradient(180deg,rgba(13,29,43,0),rgba(13,29,43,.8)),
+  repeating-linear-gradient(135deg,#21384a 0 22px,#1a2f40 22px 44px);
+  position:relative;overflow:hidden;box-shadow:0 30px 70px -30px #000}
+.hero__img::after{content:"🏗️";position:absolute;inset:0;display:grid;place-items:center;font-size:7rem;opacity:.25}
+.hero__badge{position:absolute;bottom:-22px;left:-22px;background:#fff;color:var(--navy);padding:1.1rem 1.4rem;border-radius:12px;box-shadow:0 20px 40px -15px rgba(0,0,0,.5)}
+.hero__badge b{font-family:"Archivo";font-size:2rem;display:block;line-height:1}
+.hero__badge span{font-size:.82rem;color:#5b6b78}
+.hero__stats{position:absolute;top:20px;right:-10px;background:rgba(13,29,43,.85);backdrop-filter:blur(6px);border:1px solid rgba(243,181,63,.3);padding:.8rem 1.1rem;border-radius:10px;font-size:.85rem}
+.hero__stats b{color:var(--gold);font-family:"Archivo"}
+@media(max-width:860px){.hero{grid-template-columns:1fr}.hero__visual{display:none}}
+
+/* trusted strip */
+.trust{border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);padding:1.6rem clamp(1.2rem,5vw,4rem);display:flex;align-items:center;gap:2.5rem;flex-wrap:wrap;background:var(--navy2)}
+.trust span{color:var(--gray);font-size:.85rem;font-family:"Archivo";letter-spacing:.1em}
+.trust .brands{display:flex;gap:2.5rem;flex-wrap:wrap;font-family:"Archivo";font-weight:800;opacity:.4;font-size:1.1rem}
+
+/* services */
+.sec{padding:clamp(4rem,8vw,7rem) clamp(1.2rem,5vw,4rem)}
+.sec__head{max-width:640px;margin-bottom:3rem}
+.sec__head .eyebrow{margin-bottom:1rem}
+.sec__head h2{font-family:"Archivo";font-weight:900;font-size:clamp(2rem,4.5vw,3.4rem);line-height:1.05}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.svc{padding:2rem;border:1px solid rgba(255,255,255,.1);border-radius:14px;transition:.3s;background:linear-gradient(180deg,rgba(255,255,255,.03),transparent)}
+.svc:hover{border-color:var(--gold);transform:translateY(-6px);background:linear-gradient(180deg,rgba(243,181,63,.07),transparent)}
+.svc .ico{width:54px;height:54px;border-radius:12px;background:rgba(243,181,63,.15);display:grid;place-items:center;font-size:1.6rem;margin-bottom:1.2rem}
+.svc h3{font-size:1.25rem;margin-bottom:.5rem}
+.svc p{color:var(--gray);font-size:.95rem}
+@media(max-width:860px){.svc-grid{grid-template-columns:1fr}}
+
+/* projects */
+.proj{background:var(--navy2)}
+.proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.4rem;margin-top:2.5rem}
+.card{border-radius:16px;overflow:hidden;position:relative;aspect-ratio:16/10;cursor:pointer}
+.card .ph{position:absolute;inset:0;transition:transform .6s}
+.card:hover .ph{transform:scale(1.08)}
+.card .ph--1{background:linear-gradient(135deg,#2c4a5e,#16202b)}
+.card .ph--2{background:linear-gradient(135deg,#3a4a3a,#1b231b)}
+.card .ph--3{background:linear-gradient(135deg,#4a3a2c,#231b16)}
+.card .ph--4{background:linear-gradient(135deg,#2c2c4a,#16162b)}
+.card .ov{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:1.6rem;background:linear-gradient(0deg,rgba(8,16,24,.9),transparent 60%)}
+.card .ov small{color:var(--gold);font-family:"Archivo";font-size:.78rem;letter-spacing:.1em}
+.card .ov h4{font-size:1.4rem;margin-top:.2rem}
+.card .ov i{position:absolute;top:1.4rem;right:1.4rem;width:42px;height:42px;border-radius:50%;background:var(--gold);color:var(--navy);display:grid;place-items:center;font-style:normal;transform:scale(0) rotate(-45deg);transition:.4s}
+.card:hover .ov i{transform:scale(1) rotate(0)}
+@media(max-width:680px){.proj-grid{grid-template-columns:1fr}}
+
+/* stats band */
+.band{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.1);border-top:1px solid rgba(255,255,255,.1);border-bottom:1px solid rgba(255,255,255,.1)}
+.band div{background:var(--navy);padding:2.5rem 1.5rem;text-align:center}
+.band b{font-family:"Archivo";font-size:clamp(2rem,5vw,3.4rem);color:var(--gold);display:block;line-height:1}
+.band span{color:var(--gray);font-size:.88rem}
+@media(max-width:680px){.band{grid-template-columns:1fr 1fr}}
+
+/* quote form */
+.qt{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.qt h2{font-family:"Archivo";font-weight:900;font-size:clamp(2rem,4.5vw,3.4rem);line-height:1.05;margin-bottom:1rem}
+.qt p{color:var(--gray);margin-bottom:1.5rem}
+.qt ul{list-style:none;display:grid;gap:.8rem}
+.qt ul li{display:flex;gap:.7rem;align-items:center}
+.qt ul li::before{content:"✓";color:var(--gold);font-weight:700}
+.form{background:#fff;color:var(--navy);padding:2.2rem;border-radius:18px;box-shadow:0 30px 60px -25px #000}
+.form h3{font-family:"Archivo";font-size:1.4rem;margin-bottom:1.2rem}
+.form label{display:block;font-size:.82rem;font-weight:600;margin-bottom:.3rem;color:#3a4a55}
+.form input,.form select,.form textarea{width:100%;padding:.8rem;border:1px solid #d8dde2;border-radius:8px;margin-bottom:1rem;font-family:inherit;font-size:.95rem}
+.form input:focus,.form select:focus,.form textarea:focus{outline:2px solid var(--gold);border-color:var(--gold)}
+.form button{width:100%;background:var(--navy);color:#fff;border:none;padding:1rem;border-radius:8px;font-family:"Anuphan";font-weight:600;font-size:1rem;cursor:pointer;transition:.25s}
+.form button:hover{background:var(--gold);color:var(--navy)}
+.form .ok{display:none;text-align:center;padding:1rem;background:#e8f8ee;color:#1c7a43;border-radius:8px;font-weight:600;margin-top:.5rem}
+@media(max-width:860px){.qt{grid-template-columns:1fr}}
+
+/* footer */
+.ft{background:var(--navy2);padding:3rem clamp(1.2rem,5vw,4rem);border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;color:var(--gray);font-size:.9rem}
+
+/* case study */
+.cs{background:#0a0a0a;color:#eee;padding:3.5rem clamp(1.2rem,5vw,4rem)}
+.cs h5{font-family:"Archivo";color:#f3b53f;letter-spacing:.15em;font-size:.8rem;margin-bottom:1.4rem}
+.cs-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem}
+.cs-grid h6{font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:#888;margin-bottom:.5rem;font-family:"Archivo"}
+.cs-grid p{font-size:.95rem}
+@media(max-width:860px){.cs-grid{grid-template-columns:1fr 1fr}}
+
+.fade{opacity:0;transform:translateY(28px);transition:.8s}
+.fade.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<div class="pf-bar">
+  <a href="../index.html">← กลับไปที่ Portfolio</a>
+  <span class="pf-tag">ผลงาน 01 · Corporate Website — เดโมจริง</span>
+</div>
+
+<nav class="nav" id="nav">
+  <div class="logo"><b>SE</b> SIRIPHAT<span style="color:var(--gold)">.</span></div>
+  <ul>
+    <li><a href="#svc">บริการ</a></li>
+    <li><a href="#proj">ผลงาน</a></li>
+    <li><a href="#about">เกี่ยวกับเรา</a></li>
+    <li><a href="#quote">ติดต่อ</a></li>
+  </ul>
+  <a href="#quote" class="quote dn">ขอใบเสนอราคา</a>
+</nav>
+
+<header class="hero">
+  <div>
+    <span class="eyebrow">รับเหมาก่อสร้างครบวงจร · ตั้งแต่ปี 2008</span>
+    <h1>สร้างอนาคต<br>ด้วยรากฐาน<br>ที่<span>มั่นคง</span></h1>
+    <p>บริษัทรับเหมาก่อสร้างอาคาร โรงงาน และงานโครงสร้างขนาดใหญ่ ทีมวิศวกรมืออาชีพ ส่งมอบงานตรงเวลา ภายใต้มาตรฐานความปลอดภัยระดับสากล</p>
+    <div class="cta">
+      <a href="#quote" class="btn btn--gold">ขอใบเสนอราคาฟรี →</a>
+      <a href="#proj" class="btn btn--ghost">ดูผลงานที่ผ่านมา</a>
+    </div>
+  </div>
+  <div class="hero__visual">
+    <div class="hero__img"></div>
+    <div class="hero__stats">มาตรฐาน <b>ISO 9001</b></div>
+    <div class="hero__badge"><b>15+</b><span>ปีของประสบการณ์</span></div>
+  </div>
+</header>
+
+<div class="trust">
+  <span>ได้รับความไว้วางใจจาก</span>
+  <div class="brands"><span>SCG</span><span>PTT</span><span>CPF</span><span>AOT</span><span>BTS</span></div>
+</div>
+
+<section class="sec" id="svc">
+  <div class="sec__head fade">
+    <span class="eyebrow">บริการของเรา</span>
+    <h2>ครอบคลุมทุกขั้นตอน<br>ของงานก่อสร้าง</h2>
+  </div>
+  <div class="svc-grid">
+    <div class="svc fade"><div class="ico">🏢</div><h3>ก่อสร้างอาคาร</h3><p>อาคารสำนักงาน คอนโด อาคารพาณิชย์ ตั้งแต่ออกแบบจนส่งมอบ</p></div>
+    <div class="svc fade"><div class="ico">🏭</div><h3>โรงงานอุตสาหกรรม</h3><p>งานโครงสร้างเหล็ก โรงงานขนาดใหญ่ พร้อมระบบครบครัน</p></div>
+    <div class="svc fade"><div class="ico">📐</div><h3>ออกแบบโครงสร้าง</h3><p>ทีมวิศวกรออกแบบและคำนวณโครงสร้างตามหลักวิศวกรรม</p></div>
+    <div class="svc fade"><div class="ico">🛣️</div><h3>งานโยธา</h3><p>ถนน สะพาน ระบบระบายน้ำ และงานสาธารณูปโภค</p></div>
+    <div class="svc fade"><div class="ico">🔧</div><h3>ปรับปรุง / ต่อเติม</h3><p>รีโนเวทอาคารเดิม ต่อเติม เสริมความแข็งแรง</p></div>
+    <div class="svc fade"><div class="ico">🛡️</div><h3>ที่ปรึกษา</h3><p>ให้คำปรึกษาด้านวิศวกรรม ควบคุมงาน บริหารโครงการ</p></div>
+  </div>
+</section>
+
+<section class="sec proj" id="proj">
+  <div class="sec__head fade">
+    <span class="eyebrow">ผลงานที่ภาคภูมิใจ</span>
+    <h2>โครงการที่เราส่งมอบ</h2>
+  </div>
+  <div class="proj-grid">
+    <div class="card fade"><div class="ph ph--1"></div><div class="ov"><i>↗</i><small>อาคารสำนักงาน · 2024</small><h4>The Vertex Tower</h4></div></div>
+    <div class="card fade"><div class="ph ph--2"></div><div class="ov"><i>↗</i><small>โรงงาน · 2023</small><h4>CPF Logistics Hub</h4></div></div>
+    <div class="card fade"><div class="ph ph--3"></div><div class="ov"><i>↗</i><small>คอนโดมิเนียม · 2023</small><h4>Riverside Residence</h4></div></div>
+    <div class="card fade"><div class="ph ph--4"></div><div class="ov"><i>↗</i><small>งานโยธา · 2022</small><h4>สะพานข้ามแยกบางนา</h4></div></div>
+  </div>
+</section>
+
+<div class="band" id="about">
+  <div class="fade"><b data-c="240">0</b><span>โครงการสำเร็จ</span></div>
+  <div class="fade"><b data-c="15">0</b><span>ปีประสบการณ์</span></div>
+  <div class="fade"><b data-c="180">0</b><span>วิศวกร &amp; ช่าง</span></div>
+  <div class="fade"><b data-c="100">0</b><span>% ส่งมอบตรงเวลา</span></div>
+</div>
+
+<section class="sec" id="quote">
+  <div class="qt">
+    <div class="fade">
+      <span class="eyebrow">เริ่มต้นโครงการของคุณ</span>
+      <h2>ขอใบเสนอราคา<br>ฟรี ไม่มีค่าใช้จ่าย</h2>
+      <p>กรอกข้อมูลโครงการเบื้องต้น ทีมงานจะติดต่อกลับภายใน 24 ชั่วโมง พร้อมประเมินราคาเบื้องต้นให้ฟรี</p>
+      <ul>
+        <li>ประเมินหน้างานฟรี</li>
+        <li>ใบเสนอราคาละเอียด โปร่งใส</li>
+        <li>มีทีมวิศวกรดูแลตลอดโครงการ</li>
+        <li>รับประกันงานก่อสร้าง</li>
+      </ul>
+    </div>
+    <form class="form fade" id="qform">
+      <h3>กรอกรายละเอียดโครงการ</h3>
+      <label>ชื่อ-นามสกุล</label><input required placeholder="คุณสมชาย ใจดี">
+      <label>เบอร์โทรศัพท์</label><input required placeholder="08X-XXX-XXXX">
+      <label>ประเภทโครงการ</label>
+      <select><option>อาคารสำนักงาน</option><option>โรงงาน</option><option>บ้าน / ต่อเติม</option><option>งานโยธา</option><option>อื่น ๆ</option></select>
+      <label>รายละเอียดเพิ่มเติม</label><textarea rows="3" placeholder="เล่าเกี่ยวกับโครงการของคุณ..."></textarea>
+      <button type="submit">ส่งคำขอใบเสนอราคา</button>
+      <div class="ok" id="ok">✓ ส่งสำเร็จ! ทีมงานจะติดต่อกลับเร็ว ๆ นี้</div>
+    </form>
+  </div>
+</section>
+
+<footer class="ft">
+  <div><strong class="dn">SIRIPHAT ENGINEERING</strong><br>123 ถ.พระราม 9 กรุงเทพฯ 10310</div>
+  <div>โทร 02-XXX-XXXX<br>info@siriphat.co.th</div>
+  <div>จ-ส 08:00–17:00<br>© 2026 สงวนลิขสิทธิ์</div>
+</footer>
+
+<script>
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40));
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+const io2=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const el=e.target.querySelector('[data-c]');if(!el)return;const t=+el.dataset.c;let v=0,s=Math.max(1,Math.ceil(t/40));const k=setInterval(()=>{v+=s;if(v>=t){v=t;clearInterval(k)}el.textContent=v},28);io2.unobserve(e.target)}),{threshold:.5});
+document.querySelectorAll('.band div').forEach(el=>io2.observe(el));
+document.getElementById('qform').addEventListener('submit',e=>{e.preventDefault();document.getElementById('ok').style.display='block';e.target.querySelector('button').textContent='✓ ส่งแล้ว';});
+</script>
+
+<section class="cs">
+  <h5>◆ CASE STUDY — รายละเอียดผลงาน</h5>
+  <div class="cs-grid">
+    <div><h6>ประเภทงาน</h6><p>เว็บไซต์บริษัท / องค์กร (Corporate Website)</p></div>
+    <div><h6>โจทย์ลูกค้า</h6><p>ต้องการเว็บที่ดูน่าเชื่อถือ สร้างความมั่นใจให้ลูกค้าองค์กร และมีระบบขอใบเสนอราคา</p></div>
+    <div><h6>สิ่งที่ทำ</h6><p>ออกแบบ UX/UI, ระบบโชว์โปรเจกต์, ฟอร์มขอใบเสนอราคา, รองรับมือถือ, SEO เบื้องต้น</p></div>
+    <div><h6>เทคโนโลยี</h6><p>HTML5 · CSS3 · JavaScript · Responsive Design · Form handling</p></div>
+  </div>
+</section>
+
+</body>
+</html>

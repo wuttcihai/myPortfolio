@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GLOWUP Serum — Landing Page ขายเซรั่ม | PIXELCRAFT</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0c0c10;--lime:#c6f24e;--pink:#ff5b8a;--card:#16161d;--gray:#9a9aa5}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"IBM Plex Sans Thai",sans-serif;background:var(--bg);color:#fff;line-height:1.6;overflow-x:hidden}
+.h{font-family:"Syne",sans-serif}
+a{color:inherit;text-decoration:none}
+
+.pf-bar{position:fixed;top:0;left:0;right:0;z-index:1000;background:#000;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:.5rem 1.2rem;font-size:.82rem}
+.pf-bar a{color:var(--lime)}.pf-bar .pf-tag{opacity:.6}
+
+/* urgency bar */
+.urg{position:fixed;top:34px;left:0;right:0;z-index:950;background:var(--pink);color:#fff;text-align:center;padding:.55rem;font-size:.9rem;font-weight:600}
+.urg b{font-variant-numeric:tabular-nums}
+
+/* hero */
+.wrap{max-width:1100px;margin:0 auto;padding:0 1.2rem}
+.hero{padding:6.5rem 0 3rem;text-align:center;position:relative;overflow:hidden}
+.glow{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(198,242,78,.18),transparent 65%);top:-15%;left:50%;transform:translateX(-50%);z-index:-1}
+.pill{display:inline-flex;align-items:center;gap:.5rem;background:rgba(198,242,78,.12);border:1px solid rgba(198,242,78,.4);color:var(--lime);padding:.45rem 1rem;border-radius:50px;font-size:.85rem;margin-bottom:1.6rem}
+.stars{color:#ffcf3f;letter-spacing:2px}
+.hero h1{font-family:"Syne";font-weight:800;font-size:clamp(2.4rem,7vw,4.6rem);line-height:1.02;letter-spacing:-.02em}
+.hero h1 em{font-style:normal;color:var(--lime);position:relative;white-space:nowrap}
+.hero h1 em::after{content:"";position:absolute;left:0;right:0;bottom:6px;height:10px;background:rgba(198,242,78,.25);z-index:-1}
+.hero p{color:var(--gray);font-size:1.15rem;max-width:46ch;margin:1.4rem auto 0}
+.prod{margin:2.5rem auto 0;width:min(340px,80%);aspect-ratio:1;border-radius:30px;position:relative;
+  background:radial-gradient(circle at 35% 30%,#2a2f1a,#0c0c10);display:grid;place-items:center;border:1px solid #23231d}
+.prod .bottle{font-size:7rem;animation:float 4s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-14px)}}
+.prod .tagp{position:absolute;background:var(--lime);color:#0c0c10;font-weight:700;font-size:.82rem;padding:.4rem .8rem;border-radius:50px}
+.prod .t1{top:18%;left:-6%;transform:rotate(-8deg)}
+.prod .t2{bottom:14%;right:-4%;transform:rotate(6deg)}
+.buy{display:inline-flex;align-items:center;gap:.6rem;background:var(--lime);color:#0c0c10;font-family:"Syne";font-weight:800;font-size:1.15rem;padding:1.1rem 2.6rem;border-radius:50px;margin-top:2.5rem;transition:.25s;box-shadow:0 0 0 0 rgba(198,242,78,.5)}
+.buy:hover{transform:scale(1.05);box-shadow:0 16px 40px -12px rgba(198,242,78,.6)}
+.priced{margin-top:1rem;color:var(--gray);font-size:.95rem}
+.priced s{opacity:.5}.priced b{color:#fff;font-size:1.2rem}
+
+/* social proof strip */
+.proof{display:flex;justify-content:center;gap:2.5rem;flex-wrap:wrap;padding:2rem 0;border-top:1px solid #1d1d25;border-bottom:1px solid #1d1d25;margin-top:3rem;text-align:center}
+.proof div b{display:block;font-family:"Syne";font-size:1.8rem;color:var(--lime)}
+.proof div span{font-size:.85rem;color:var(--gray)}
+
+/* benefits */
+.sec{padding:4.5rem 0}
+.sec h2{font-family:"Syne";font-weight:800;font-size:clamp(1.8rem,4.5vw,3rem);text-align:center;margin-bottom:.6rem}
+.sec .sub{text-align:center;color:var(--gray);margin-bottom:3rem}
+.ben{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.ben div{background:var(--card);border:1px solid #1d1d25;border-radius:18px;padding:2rem;transition:.3s}
+.ben div:hover{border-color:var(--lime);transform:translateY(-5px)}
+.ben .e{font-size:2.4rem;margin-bottom:.8rem}
+.ben h3{font-size:1.2rem;margin-bottom:.4rem}
+.ben p{color:var(--gray);font-size:.95rem}
+@media(max-width:760px){.ben{grid-template-columns:1fr}}
+
+/* before after */
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;max-width:600px;margin:2rem auto 0}
+.ba div{border-radius:18px;padding:2.5rem 1rem;text-align:center;font-family:"Syne";font-weight:700}
+.ba .b4{background:#1c1c24;color:var(--gray)}
+.ba .af{background:linear-gradient(135deg,var(--lime),#9bd02f);color:#0c0c10}
+.ba .e{font-size:3rem;display:block;margin-bottom:.5rem}
+
+/* reviews */
+.rev{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.rev div{background:var(--card);border:1px solid #1d1d25;border-radius:16px;padding:1.6rem}
+.rev .stars{font-size:.9rem;margin-bottom:.6rem}
+.rev p{font-size:.95rem}
+.rev .who{display:flex;align-items:center;gap:.7rem;margin-top:1rem}
+.rev .av{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--lime));display:grid;place-items:center;font-weight:700;color:#0c0c10}
+.rev .who b{font-size:.9rem}.rev .who span{font-size:.78rem;color:var(--gray)}
+@media(max-width:760px){.rev{grid-template-columns:1fr}}
+
+/* offer */
+.offer{background:linear-gradient(135deg,#1a1f10,#0c0c10);border:1px solid rgba(198,242,78,.3);border-radius:26px;padding:3rem;text-align:center;max-width:640px;margin:0 auto}
+.offer .cd{display:flex;justify-content:center;gap:.8rem;margin:1.5rem 0}
+.offer .cd div{background:#000;border-radius:12px;padding:.9rem 1.1rem;min-width:74px}
+.offer .cd b{font-family:"Syne";font-size:2rem;display:block;color:var(--lime);font-variant-numeric:tabular-nums}
+.offer .cd span{font-size:.72rem;color:var(--gray)}
+.offer .pp{font-size:1rem;color:var(--gray);margin-top:.5rem}
+.offer .pp .big{font-family:"Syne";font-size:2.6rem;color:#fff;display:block}
+.offer .pp s{opacity:.5}
+
+/* faq */
+.faq{max-width:680px;margin:0 auto}
+.q{border-bottom:1px solid #1d1d25;padding:1.2rem 0;cursor:pointer}
+.q summary{font-weight:600;list-style:none;display:flex;justify-content:space-between;align-items:center}
+.q summary::-webkit-details-marker{display:none}
+.q summary::after{content:"+";color:var(--lime);font-size:1.4rem}
+.q[open] summary::after{content:"–"}
+.q p{color:var(--gray);margin-top:.8rem;font-size:.95rem}
+
+/* sticky buy */
+.sticky{position:fixed;bottom:0;left:0;right:0;z-index:900;background:rgba(12,12,16,.95);backdrop-filter:blur(10px);border-top:1px solid #1d1d25;
+  display:flex;justify-content:space-between;align-items:center;padding:.8rem 1.2rem;transform:translateY(120%);transition:.4s}
+.sticky.show{transform:translateY(0)}
+.sticky .pp b{font-family:"Syne";font-size:1.3rem;color:var(--lime)}.sticky .pp s{color:var(--gray);font-size:.9rem;margin-left:.4rem}
+.sticky .pp span{display:block;font-size:.78rem;color:var(--gray)}
+.sticky a{background:var(--lime);color:#0c0c10;font-family:"Syne";font-weight:800;padding:.8rem 1.8rem;border-radius:50px}
+.ft{text-align:center;padding:3rem 1rem 6rem;color:var(--gray);font-size:.85rem}
+
+.cs{background:#000;color:#eee;padding:3.5rem 1.2rem;margin-bottom:64px}
+.cs .wrap{max-width:1000px;margin:0 auto}
+.cs h5{font-family:"Syne";color:var(--lime);letter-spacing:.1em;font-size:.85rem;margin-bottom:1.4rem}
+.cs-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem}
+.cs-grid h6{font-size:.78rem;text-transform:uppercase;color:#888;margin-bottom:.5rem;font-family:"Syne"}
+.cs-grid p{font-size:.95rem}
+@media(max-width:760px){.cs-grid{grid-template-columns:1fr 1fr}}
+
+.fade{opacity:0;transform:translateY(26px);transition:.7s}.fade.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<div class="pf-bar">
+  <a href="../index.html">← กลับไปที่ Portfolio</a>
+  <span class="pf-tag">ผลงาน 02 · Landing Page — เดโมจริง</span>
+</div>
+
+<div class="urg">⚡ โปรหมดใน <b id="urg">02:59:59</b> — ส่งฟรีทั่วไทย + แถมเซรั่มทดลอง</div>
+
+<section class="hero">
+  <div class="glow"></div>
+  <div class="wrap">
+    <span class="pill"><span class="stars">★★★★★</span> 4.9 จาก 2,847 รีวิว</span>
+    <h1 class="h">ผิวกระจ่างใส<br>ใน <em>14 วัน</em></h1>
+    <p>GLOWUP Serum เซรั่มวิตามินซีเข้มข้น ลดจุดด่างดำ ฟื้นฟูผิวให้เปล่งประกายจากภายใน</p>
+    <div class="prod">
+      <span class="tagp t1">วิตามินซี 20%</span>
+      <span class="bottle">🧴</span>
+      <span class="tagp t2">ไม่แต่งสี ไม่ผสมแอลกอฮอล์</span>
+    </div>
+    <a href="#offer" class="buy">สั่งซื้อเลย — ลด 50% 🔥</a>
+    <div class="priced">เพียง <b>490.-</b> <s>980.-</s> · ส่งฟรี</div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="proof">
+    <div><b>2,847+</b><span>รีวิวจริง 5 ดาว</span></div>
+    <div><b>98%</b><span>เห็นผลใน 2 สัปดาห์</span></div>
+    <div><b>50,000+</b><span>ขวดที่ขายไปแล้ว</span></div>
+  </div>
+</div>
+
+<section class="sec wrap fade">
+  <h2 class="h">ทำไมต้อง GLOWUP?</h2>
+  <p class="sub">ส่วนผสมที่คัดมาแล้วว่าเห็นผลจริง</p>
+  <div class="ben">
+    <div><div class="e">✨</div><h3>กระจ่างใสไว</h3><p>วิตามินซีเข้มข้น 20% ช่วยลดเลือนจุดด่างดำและรอยสิว</p></div>
+    <div><div class="e">💧</div><h3>ชุ่มชื้นยาวนาน</h3><p>ไฮยาลูรอนิคกักเก็บน้ำให้ผิวอิ่มฟูตลอดวัน</p></div>
+    <div><div class="e">🌿</div><h3>อ่อนโยน ปลอดภัย</h3><p>ผ่านการทดสอบโดยแพทย์ผิวหนัง ใช้ได้แม้ผิวแพ้ง่าย</p></div>
+  </div>
+</section>
+
+<section class="sec wrap fade">
+  <h2 class="h">ผลลัพธ์ที่เห็นได้จริง</h2>
+  <p class="sub">ลากดูความเปลี่ยนแปลงก่อน–หลัง 14 วัน</p>
+  <div class="ba">
+    <div class="b4"><span class="e">😟</span>ก่อนใช้<br><small style="font-weight:400;color:#777">หมองคล้ำ จุดด่างดำ</small></div>
+    <div class="af"><span class="e">😍</span>หลังใช้<br><small style="font-weight:400">กระจ่างใส เนียนเรียบ</small></div>
+  </div>
+</section>
+
+<section class="sec wrap fade">
+  <h2 class="h">ลูกค้าพูดถึงเรา</h2>
+  <p class="sub">รีวิวจากผู้ใช้จริง</p>
+  <div class="rev">
+    <div><div class="stars">★★★★★</div><p>"ใช้แค่อาทิตย์เดียวหน้าใสขึ้นจริง เพื่อนทักเลยว่าหน้าดูดีขึ้น 😆"</p><div class="who"><div class="av">น</div><div><b>น้ำฝน ส.</b><span>กรุงเทพฯ</span></div></div></div>
+    <div><div class="stars">★★★★★</div><p>"จุดด่างดำจางลงเยอะมาก เนื้อเซรั่มซึมไว ไม่เหนียวเหนอะ คุ้มสุด ๆ"</p><div class="who"><div class="av">ก</div><div><b>กิตติ พ.</b><span>เชียงใหม่</span></div></div></div>
+    <div><div class="stars">★★★★★</div><p>"กลัวแพ้เพราะผิวบอบบาง แต่ตัวนี้อ่อนโยนมาก ใช้แล้วไม่ระคายเลย"</p><div class="who"><div class="av">ม</div><div><b>มะลิ ว.</b><span>ภูเก็ต</span></div></div></div>
+  </div>
+</section>
+
+<section class="sec wrap fade" id="offer">
+  <div class="offer">
+    <span class="pill" style="margin:0 auto 1rem">🔥 โปรพิเศษวันนี้เท่านั้น</span>
+    <h2 class="h" style="font-size:2rem">ลด 50% + ส่งฟรี</h2>
+    <div class="cd">
+      <div><b id="h">02</b><span>ชั่วโมง</span></div>
+      <div><b id="m">59</b><span>นาที</span></div>
+      <div><b id="s">59</b><span>วินาที</span></div>
+    </div>
+    <div class="pp"><span class="big">490.- <s>980.-</s></span>ราคาต่อขวด · ซื้อ 2 แถม 1</div>
+    <a href="#" class="buy" style="margin-top:1.6rem">🛒 สั่งซื้อตอนนี้</a>
+    <p style="color:var(--gray);font-size:.82rem;margin-top:1rem">🔒 ชำระปลายทางได้ · รับประกันคืนเงิน 30 วัน</p>
+  </div>
+</section>
+
+<section class="sec wrap fade">
+  <h2 class="h">คำถามที่พบบ่อย</h2>
+  <div class="faq" style="margin-top:2rem">
+    <details class="q"><summary>ใช้นานแค่ไหนถึงเห็นผล?</summary><p>ส่วนใหญ่เริ่มเห็นผิวกระจ่างขึ้นภายใน 7–14 วัน และเห็นชัดเจนใน 1 เดือน</p></details>
+    <details class="q"><summary>ผิวแพ้ง่ายใช้ได้ไหม?</summary><p>ได้ สูตรอ่อนโยน ผ่านการทดสอบโดยแพทย์ผิวหนัง แต่แนะนำให้ทดสอบที่ท้องแขนก่อน</p></details>
+    <details class="q"><summary>เก็บเงินปลายทางได้ไหม?</summary><p>ได้ครับ ชำระเงินปลายทางได้ทั่วประเทศ พร้อมรับประกันคืนเงินภายใน 30 วัน</p></details>
+  </div>
+</section>
+
+<div class="ft">© 2026 GLOWUP Cosmetics · จดแจ้ง อย. เลขที่ XX-X-XXXXXXXXX</div>
+
+<div class="sticky" id="sticky">
+  <div class="pp"><b>490.-</b><s>980.-</s><span>ส่งฟรี · เก็บเงินปลายทาง</span></div>
+  <a href="#offer">สั่งซื้อ 🔥</a>
+</div>
+
+<script>
+function tick(){
+  let end=3*3600; // demo countdown loop
+  setInterval(()=>{
+    end=end<=0?3*3600:end-1;
+    const h=String(Math.floor(end/3600)).padStart(2,'0');
+    const m=String(Math.floor(end%3600/60)).padStart(2,'0');
+    const s=String(end%60).padStart(2,'0');
+    document.getElementById('urg').textContent=h+':'+m+':'+s;
+    if(document.getElementById('h')){document.getElementById('h').textContent=h;document.getElementById('m').textContent=m;document.getElementById('s').textContent=s;}
+  },1000);
+}tick();
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+const st=document.getElementById('sticky');
+addEventListener('scroll',()=>st.classList.toggle('show',scrollY>700));
+</script>
+
+<section class="cs">
+  <div class="wrap">
+    <h5>◆ CASE STUDY — รายละเอียดผลงาน</h5>
+    <div class="cs-grid">
+      <div><h6>ประเภทงาน</h6><p>Landing Page หน้าเดียว เน้น Conversion สำหรับยิงแอด</p></div>
+      <div><h6>โจทย์ลูกค้า</h6><p>ต้องการหน้าขายที่ปิดการขายได้ ใช้กับโฆษณา Facebook / TikTok</p></div>
+      <div><h6>ลูกเล่นที่ใส่</h6><p>Countdown สร้างความเร่งด่วน, รีวิว, ปุ่มซื้อหนึบติดล่าง, ก่อน-หลัง, FAQ</p></div>
+      <div><h6>เทคโนโลยี</h6><p>HTML5 · CSS3 · Vanilla JS · Sticky CTA · Animated Counter</p></div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

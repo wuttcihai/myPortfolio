@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smile Dental — ปรับปรุงเว็บเดิม Before/After | PIXELCRAFT</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0f1c2b;--bg2:#0a141f;--teal:#4dd6c1;--blue:#3aa0ff;--ink:#eef4f8;--gray:#90a4b4;--card:#15273a}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"IBM Plex Sans Thai",sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;overflow-x:hidden}
+.o{font-family:"Outfit",sans-serif}
+a{color:inherit;text-decoration:none}
+
+.pf-bar{position:fixed;top:0;left:0;right:0;z-index:1000;background:#000;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:.5rem 1.2rem;font-size:.82rem}
+.pf-bar a{color:var(--teal)}.pf-bar .pf-tag{opacity:.6}
+
+.hwrap{max-width:1100px;margin:0 auto;padding:0 1.2rem}
+.intro{padding:6rem 0 2rem;text-align:center}
+.intro .eye{color:var(--teal);font-weight:600;letter-spacing:.1em;text-transform:uppercase;font-size:.82rem}
+.intro h1{font-family:"Outfit";font-weight:800;font-size:clamp(2.2rem,5.5vw,4rem);line-height:1.05;margin:1rem 0}
+.intro h1 span{color:var(--teal)}
+.intro p{color:var(--gray);max-width:52ch;margin:0 auto;font-size:1.08rem}
+
+/* the before/after slider — star feature */
+.compare{max-width:920px;margin:2.5rem auto 0;padding:0 1.2rem}
+.ba{position:relative;aspect-ratio:16/10;border-radius:18px;overflow:hidden;user-select:none;box-shadow:0 30px 70px -30px #000;cursor:ew-resize}
+.ba__side{position:absolute;inset:0;display:flex;flex-direction:column}
+/* OLD design */
+.ba__old{background:#d9dde2;color:#333}
+.ba__old .top{background:#1f6cb5;color:#fff;padding:.7rem 1rem;font-family:"Times New Roman",serif;display:flex;justify-content:space-between;align-items:center}
+.ba__old .top b{font-size:1.1rem}
+.ba__old .topnav{display:flex;gap:.8rem;font-size:.75rem;text-decoration:underline}
+.ba__old .body{flex:1;padding:1rem;font-family:"Times New Roman",serif}
+.ba__old .ban{background:#ffe27a;border:2px ridge #caa;color:#a33;padding:.4rem;text-align:center;font-weight:700;font-size:.8rem;margin-bottom:.6rem}
+.ba__old h3{color:#1f6cb5;font-size:1.1rem;text-decoration:underline}
+.ba__old .txt{font-size:.72rem;color:#444;margin-top:.3rem;line-height:1.35}
+.ba__old .imgrow{display:flex;gap:.4rem;margin-top:.5rem}
+.ba__old .imgrow div{width:50px;height:38px;background:#bbb;border:1px solid #999;display:grid;place-items:center;font-size:1rem}
+.ba__old .blink{color:#c00;font-size:.7rem;margin-top:.4rem;font-weight:700}
+/* NEW design */
+.ba__new{background:linear-gradient(160deg,#15273a,#0a141f);clip-path:inset(0 0 0 50%);}
+.ba__new .top{padding:.8rem 1.2rem;display:flex;justify-content:space-between;align-items:center}
+.ba__new .top b{font-family:"Outfit";font-weight:800;color:var(--teal);font-size:1.1rem}
+.ba__new .topnav{display:flex;gap:1rem;font-size:.72rem;color:var(--gray)}
+.ba__new .body{flex:1;padding:1.4rem;display:flex;flex-direction:column;justify-content:center}
+.ba__new h3{font-family:"Outfit";font-weight:800;font-size:1.5rem;line-height:1.1}
+.ba__new h3 span{color:var(--teal)}
+.ba__new .txt{font-size:.78rem;color:var(--gray);margin:.5rem 0 .8rem;max-width:30ch}
+.ba__new .cta{background:var(--teal);color:#08131d;font-weight:700;font-size:.78rem;padding:.5rem 1rem;border-radius:50px;width:max-content}
+.ba__new .cards{display:flex;gap:.5rem;margin-top:.8rem}
+.ba__new .cards div{flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(77,214,193,.25);border-radius:8px;padding:.5rem;text-align:center;font-size:1.3rem}
+/* handle */
+.ba__handle{position:absolute;top:0;bottom:0;left:50%;width:3px;background:#fff;z-index:5;transform:translateX(-50%)}
+.ba__handle::after{content:"⇆";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:42px;height:42px;border-radius:50%;background:#fff;color:#0f1c2b;display:grid;place-items:center;font-size:1.1rem;box-shadow:0 6px 16px rgba(0,0,0,.4)}
+.ba__lbl{position:absolute;top:14px;z-index:6;font-family:"Outfit";font-weight:700;font-size:.78rem;padding:.3rem .8rem;border-radius:50px;backdrop-filter:blur(4px)}
+.ba__lbl.old{left:14px;background:rgba(60,60,70,.8);color:#fff}
+.ba__lbl.new{right:14px;background:rgba(77,214,193,.9);color:#08131d}
+.hint{text-align:center;color:var(--gray);font-size:.88rem;margin-top:1rem}
+
+/* metrics */
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;max-width:920px;margin:3rem auto;padding:0 1.2rem}
+.metric{background:var(--card);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:1.6rem;text-align:center}
+.metric .big{font-family:"Outfit";font-weight:800;font-size:2.4rem;line-height:1}
+.metric .up{color:var(--teal)}.metric .down{color:#ff7a7a}
+.metric span{color:var(--gray);font-size:.86rem;display:block;margin-top:.3rem}
+.metric small{color:var(--gray);font-size:.72rem;text-decoration:line-through;opacity:.6}
+@media(max-width:760px){.metrics{grid-template-columns:1fr 1fr}}
+
+/* what we fixed */
+.sec{max-width:1000px;margin:0 auto;padding:clamp(3rem,6vw,5rem) 1.2rem}
+.sec h2{font-family:"Outfit";font-weight:800;font-size:clamp(1.8rem,4vw,2.8rem);text-align:center;margin-bottom:2.5rem}
+.fixes{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.fix{display:flex;gap:1rem;background:var(--card);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:1.4rem}
+.fix .ic{width:46px;height:46px;border-radius:12px;background:rgba(77,214,193,.15);display:grid;place-items:center;font-size:1.4rem;flex-shrink:0}
+.fix h4{font-size:1.05rem;margin-bottom:.2rem}
+.fix p{color:var(--gray);font-size:.9rem}
+@media(max-width:680px){.fixes{grid-template-columns:1fr}}
+
+/* testimonial */
+.quote{max-width:760px;margin:0 auto;padding:0 1.2rem 4rem;text-align:center}
+.quote .stars{color:#ffcf3f;font-size:1.2rem}
+.quote p{font-family:"Outfit";font-weight:600;font-size:clamp(1.3rem,3vw,2rem);line-height:1.35;margin:1rem 0}
+.quote .who{color:var(--gray)}
+.quote .who b{color:var(--ink)}
+
+.cta-band{background:linear-gradient(135deg,#103d3a,#0a141f);text-align:center;padding:clamp(3rem,6vw,5rem) 1.2rem;border-top:1px solid rgba(77,214,193,.2)}
+.cta-band h2{font-family:"Outfit";font-weight:800;font-size:clamp(1.8rem,4vw,2.8rem)}
+.cta-band p{color:var(--gray);margin:.6rem 0 1.6rem}
+.cta-band a{display:inline-block;background:var(--teal);color:#08131d;font-weight:700;padding:1rem 2.4rem;border-radius:50px;transition:.25s}
+.cta-band a:hover{transform:translateY(-3px);box-shadow:0 16px 36px -14px rgba(77,214,193,.5)}
+
+.cs{background:#06101a;color:#dfe8ef;padding:3.5rem 1.2rem}
+.cs .hwrap{max-width:1000px;margin:0 auto}
+.cs h5{font-family:"Outfit";color:var(--teal);font-size:.9rem;letter-spacing:.1em;margin-bottom:1.4rem}
+.cs-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem}
+.cs-grid h6{font-size:.78rem;text-transform:uppercase;color:#7d93a3;margin-bottom:.5rem}
+.cs-grid p{font-size:.95rem}
+@media(max-width:760px){.cs-grid{grid-template-columns:1fr 1fr}}
+
+.fade{opacity:0;transform:translateY(24px);transition:.6s}.fade.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<div class="pf-bar">
+  <a href="../index.html">← กลับไปที่ Portfolio</a>
+  <span class="pf-tag">ผลงาน 05 · Redesign — ลากสไลเดอร์ดูก่อน/หลัง</span>
+</div>
+
+<section class="intro">
+  <div class="hwrap">
+    <span class="eye">Website Redesign · Before / After</span>
+    <h1 class="o">เว็บเก่าโหลดช้า<br>เราทำให้มัน <span>เร็ว สวย ใหม่</span></h1>
+    <p>คลินิกทันตกรรม Smile มีเว็บเดิมที่ดูล้าสมัย เปิดบนมือถือไม่ได้ และโหลดนานกว่า 8 วินาที — ลากแถบด้านล่างเพื่อดูความเปลี่ยนแปลง</p>
+  </div>
+</section>
+
+<div class="compare">
+  <div class="ba" id="ba">
+    <span class="ba__lbl old">⟵ ของเดิม (2016)</span>
+    <span class="ba__lbl new">ของใหม่ ⟶</span>
+    <!-- OLD -->
+    <div class="ba__side ba__old">
+      <div class="top"><b>คลินิกทันตกรรม Smile</b><div class="topnav"><a>หน้าแรก</a><a>บริการ</a><a>ติดต่อ</a></div></div>
+      <div class="body">
+        <div class="ban">★★★ ยินดีต้อนรับสู่เว็บไซต์ของเรา ★★★</div>
+        <h3>บริการของเรา</h3>
+        <p class="txt">คลินิกทันตกรรมของเราให้บริการดูแลรักษาฟันอย่างครบวงจร โดยทันตแพทย์ผู้เชี่ยวชาญ เปิดให้บริการมานานกว่า 20 ปี สามารถติดต่อได้ที่เบอร์โทรศัพท์ด้านล่าง หรือเดินทางมาที่คลินิกได้โดยตรง</p>
+        <div class="imgrow"><div>🦷</div><div>🦷</div><div>🦷</div></div>
+        <p class="blink">▶ โทรจองคิว 02-XXX-XXXX (สายไม่ว่างกรุณาโทรใหม่)</p>
+      </div>
+    </div>
+    <!-- NEW -->
+    <div class="ba__side ba__new" id="newSide">
+      <div class="top"><b>🦷 Smile Dental</b><div class="topnav"><span>บริการ</span><span>ทีมแพทย์</span><span>รีวิว</span><span>จองคิว</span></div></div>
+      <div class="body">
+        <h3 class="o">รอยยิ้มที่<span>มั่นใจ</span><br>เริ่มที่นี่</h3>
+        <p class="txt">ทันตกรรมครบวงจร โดยทีมแพทย์เฉพาะทาง จองคิวออนไลน์ได้ 24 ชม.</p>
+        <div class="cta">จองคิวออนไลน์ →</div>
+        <div class="cards"><div>🦷</div><div>✨</div><div>😁</div><div>🪥</div></div>
+      </div>
+    </div>
+    <div class="ba__handle" id="handle"></div>
+  </div>
+  <p class="hint">👆 ลากเพื่อเปรียบเทียบ — ลากซ้ายเพื่อดูเว็บเดิม / ลากขวาเพื่อดูเว็บใหม่</p>
+</div>
+
+<div class="metrics">
+  <div class="metric fade"><div class="big up">1.2s</div><span>เวลาโหลด</span><small>เดิม 8.4s</small></div>
+  <div class="metric fade"><div class="big up">+340%</div><span>ผู้เข้าชมมือถือ</span><small>เดิมเปิดไม่ได้</small></div>
+  <div class="metric fade"><div class="big up">98<small style="font-size:1.2rem"> </small></div><span>คะแนน PageSpeed</span><small>เดิม 34</small></div>
+  <div class="metric fade"><div class="big up">+5 เท่า</div><span>การจองคิวออนไลน์</span><small>เดิมโทรอย่างเดียว</small></div>
+</div>
+
+<section class="sec">
+  <h2 class="o fade">เราแก้อะไรไปบ้าง</h2>
+  <div class="fixes">
+    <div class="fix fade"><div class="ic">📱</div><div><h4>รองรับมือถือ 100%</h4><p>เว็บเดิมเปิดบนมือถือแล้วล้น จอเลื่อนไปมา เราทำใหม่ให้สวยทุกขนาดจอ</p></div></div>
+    <div class="fix fade"><div class="ic">⚡</div><div><h4>โหลดเร็วขึ้น 7 เท่า</h4><p>บีบอัดรูป ปรับโครงสร้างโค้ด จาก 8.4 วินาที เหลือ 1.2 วินาที</p></div></div>
+    <div class="fix fade"><div class="ic">📅</div><div><h4>ระบบจองคิวออนไลน์</h4><p>เพิ่มระบบจองคิวที่คนไข้ทำเองได้ ลดงานรับโทรศัพท์ของคลินิก</p></div></div>
+    <div class="fix fade"><div class="ic">🎨</div><div><h4>ดีไซน์ทันสมัย น่าเชื่อถือ</h4><p>ปรับโทนสี ฟอนต์ และเลย์เอาต์ใหม่ทั้งหมด ให้ดูสะอาด มืออาชีพ</p></div></div>
+    <div class="fix fade"><div class="ic">🔍</div><div><h4>ทำ SEO ใหม่</h4><p>ปรับโครงสร้างให้ Google เข้าใจ ติดอันดับค้นหา "ทำฟัน + ย่าน" ได้</p></div></div>
+    <div class="fix fade"><div class="ic">⭐</div><div><h4>เพิ่มรีวิวคนไข้จริง</h4><p>เพิ่มส่วนรีวิวและก่อน-หลังการรักษา สร้างความมั่นใจให้คนไข้ใหม่</p></div></div>
+  </div>
+</section>
+
+<div class="quote fade">
+  <div class="stars">★★★★★</div>
+  <p class="o">"เว็บใหม่ทำให้คนไข้จองคิวออนไลน์เยอะขึ้นมาก จนต้องเพิ่มเก้าอี้ทำฟัน ขอบคุณจริง ๆ"</p>
+  <div class="who"><b>ทพญ. ปรียา</b> — เจ้าของคลินิก Smile Dental</div>
+</div>
+
+<div class="cta-band">
+  <h2 class="o">เว็บเดิมของคุณก็อัปเกรดได้</h2>
+  <p>ส่งลิงก์เว็บเดิมมา เดี๋ยวเราประเมินให้ฟรีว่าควรปรับตรงไหน</p>
+  <a href="../index.html#contact">ขอประเมินเว็บเดิมฟรี →</a>
+</div>
+
+<script>
+const ba=document.getElementById('ba'),newSide=document.getElementById('newSide'),handle=document.getElementById('handle');
+let dragging=false;
+function setPos(x){
+  const r=ba.getBoundingClientRect();
+  let pct=((x-r.left)/r.width)*100;
+  pct=Math.max(2,Math.min(98,pct));
+  newSide.style.clipPath=`inset(0 0 0 ${pct}%)`;
+  handle.style.left=pct+'%';
+}
+ba.addEventListener('mousedown',e=>{dragging=true;setPos(e.clientX);});
+addEventListener('mousemove',e=>{if(dragging)setPos(e.clientX);});
+addEventListener('mouseup',()=>dragging=false);
+ba.addEventListener('touchstart',e=>{dragging=true;setPos(e.touches[0].clientX);},{passive:true});
+ba.addEventListener('touchmove',e=>{if(dragging)setPos(e.touches[0].clientX);},{passive:true});
+addEventListener('touchend',()=>dragging=false);
+// auto demo wiggle on load
+let t=50,dir=1,steps=0;
+const demo=setInterval(()=>{
+  t+=dir*1.5;if(t>72||t<28)dir*=-1;steps++;
+  const r=ba.getBoundingClientRect();setPos(r.left+r.width*t/100);
+  if(steps>40)clearInterval(demo);
+},20);
+ba.addEventListener('mousedown',()=>clearInterval(demo));
+ba.addEventListener('touchstart',()=>clearInterval(demo));
+
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+</script>
+
+<section class="cs">
+  <div class="hwrap">
+    <h5>◆ CASE STUDY — รายละเอียดผลงาน</h5>
+    <div class="cs-grid">
+      <div><h6>ประเภทงาน</h6><p>ปรับปรุง / รื้อเว็บเดิม (Website Redesign &amp; Optimization)</p></div>
+      <div><h6>โจทย์ลูกค้า</h6><p>เว็บเก่าโหลดช้า เปิดมือถือไม่ได้ ดูไม่น่าเชื่อถือ คนไข้ใหม่ไม่กล้าจอง</p></div>
+      <div><h6>สิ่งที่ทำ</h6><p>รื้อดีไซน์ใหม่, ทำ Responsive, เพิ่มความเร็ว, ระบบจองคิว, SEO</p></div>
+      <div><h6>เทคโนโลยี</h6><p>HTML5 · CSS3 · JS · Image Optimization · Before/After Slider</p></div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

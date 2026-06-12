@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HOMMŪ Store — ร้านของแต่งบ้าน (E-commerce) | PIXELCRAFT</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#101216;--card:#191c22;--line:#262a32;--ink:#f3f1ec;--gray:#8c919c;--orange:#ff6a3d;--sand:#cbb89a}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"IBM Plex Sans Thai",sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;overflow-x:hidden}
+.serif{font-family:"Cormorant Garamond",serif}
+a{color:inherit;text-decoration:none}button{font-family:inherit;cursor:pointer}
+
+.pf-bar{position:fixed;top:0;left:0;right:0;z-index:1100;background:#000;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:.5rem 1.2rem;font-size:.82rem}
+.pf-bar a{color:var(--orange)}.pf-bar .pf-tag{opacity:.6}
+
+.nav{position:sticky;top:0;z-index:1000;margin-top:34px;display:flex;align-items:center;justify-content:space-between;padding:1rem clamp(1.2rem,4vw,3rem);background:rgba(16,18,22,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.logo{font-family:"Cormorant Garamond";font-size:1.7rem;font-weight:600;letter-spacing:.05em}
+.logo i{color:var(--orange);font-style:normal}
+.nav ul{display:flex;gap:1.8rem;list-style:none;font-size:.92rem}
+.nav ul a{color:var(--gray)}.nav ul a:hover{color:var(--ink)}
+.nav__right{display:flex;align-items:center;gap:1.2rem}
+.icbtn{background:none;border:none;color:var(--ink);font-size:1.2rem;position:relative}
+.cartcount{position:absolute;top:-8px;right:-10px;background:var(--orange);color:#fff;font-size:.68rem;font-weight:700;min-width:18px;height:18px;border-radius:50px;display:grid;place-items:center;padding:0 4px;transform:scale(0);transition:.2s}
+.cartcount.show{transform:scale(1)}
+@media(max-width:820px){.nav ul{display:none}}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.05fr 1fr;gap:0;min-height:62vh;align-items:stretch}
+.hero__txt{padding:clamp(2.5rem,6vw,5rem) clamp(1.2rem,4vw,3rem);display:flex;flex-direction:column;justify-content:center}
+.hero__txt .eye{color:var(--orange);letter-spacing:.15em;font-size:.82rem;text-transform:uppercase}
+.hero__txt h1{font-family:"Cormorant Garamond";font-weight:600;font-size:clamp(3rem,7vw,6rem);line-height:1;margin:1rem 0}
+.hero__txt p{color:var(--gray);max-width:42ch;font-size:1.08rem}
+.hero__txt a{display:inline-flex;align-items:center;gap:.6rem;margin-top:2rem;width:max-content;border-bottom:1px solid var(--orange);padding-bottom:.3rem;color:var(--orange);font-weight:500}
+.hero__img{background:linear-gradient(160deg,#2a2723,#14140f);display:grid;place-items:center;position:relative;overflow:hidden}
+.hero__img .big{font-size:11rem;filter:drop-shadow(0 30px 50px rgba(0,0,0,.5))}
+.hero__img .tagi{position:absolute;background:rgba(16,18,22,.85);backdrop-filter:blur(6px);border:1px solid var(--line);border-radius:12px;padding:.7rem 1rem;font-size:.85rem}
+.hero__img .ti1{top:14%;left:8%}.hero__img .ti2{bottom:16%;right:8%}
+.hero__img .tagi b{color:var(--orange)}
+@media(max-width:820px){.hero{grid-template-columns:1fr}.hero__img{min-height:300px}}
+
+/* shop */
+.shop{padding:clamp(3rem,6vw,5rem) clamp(1.2rem,4vw,3rem)}
+.shop__head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;margin-bottom:2rem}
+.shop__head h2{font-family:"Cormorant Garamond";font-size:2.6rem;font-weight:600}
+.filters{display:flex;gap:.5rem;flex-wrap:wrap}
+.filters button{background:transparent;border:1px solid var(--line);color:var(--gray);padding:.5rem 1.1rem;border-radius:50px;font-size:.88rem;transition:.2s}
+.filters button.active,.filters button:hover{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.4rem}
+.p{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;transition:.3s;display:flex;flex-direction:column}
+.p:hover{transform:translateY(-6px);border-color:#3a3f49}
+.p__img{aspect-ratio:1;display:grid;place-items:center;font-size:4rem;position:relative}
+.p__img .badge{position:absolute;top:12px;left:12px;background:var(--orange);color:#fff;font-size:.72rem;font-weight:600;padding:.25rem .7rem;border-radius:50px}
+.p__b{padding:1.1rem;display:flex;flex-direction:column;flex:1}
+.p__cat{font-size:.74rem;color:var(--gray);letter-spacing:.06em;text-transform:uppercase}
+.p__b h3{font-size:1.08rem;margin:.25rem 0;font-weight:500}
+.p__rate{font-size:.8rem;color:#ffcf3f;margin-bottom:.6rem}
+.p__rate span{color:var(--gray)}
+.p__bot{display:flex;justify-content:space-between;align-items:center;margin-top:auto}
+.p__price{font-family:"Cormorant Garamond";font-size:1.5rem;font-weight:600}
+.p__price s{font-size:.85rem;color:var(--gray);margin-right:.3rem}
+.add{background:var(--ink);color:var(--bg);border:none;width:40px;height:40px;border-radius:50%;font-size:1.3rem;transition:.2s;display:grid;place-items:center}
+.add:hover{background:var(--orange);color:#fff;transform:rotate(90deg)}
+@media(max-width:980px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.grid{grid-template-columns:1fr}}
+
+/* features band */
+.band{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:3rem}
+.band div{background:var(--bg);padding:1.8rem;text-align:center}
+.band .e{font-size:1.8rem}.band b{display:block;margin:.4rem 0 .1rem}.band span{color:var(--gray);font-size:.85rem}
+@media(max-width:680px){.band{grid-template-columns:1fr 1fr}}
+
+/* cart drawer */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);opacity:0;pointer-events:none;transition:.3s;z-index:1200}
+.overlay.show{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(400px,92vw);background:var(--card);z-index:1300;transform:translateX(100%);transition:.4s cubic-bezier(.76,0,.24,1);display:flex;flex-direction:column;border-left:1px solid var(--line)}
+.drawer.show{transform:none}
+.drawer__h{display:flex;justify-content:space-between;align-items:center;padding:1.4rem;border-bottom:1px solid var(--line)}
+.drawer__h h3{font-family:"Cormorant Garamond";font-size:1.6rem}
+.drawer__h button{background:none;border:none;color:var(--ink);font-size:1.5rem}
+.drawer__items{flex:1;overflow-y:auto;padding:1rem 1.4rem}
+.empty{text-align:center;color:var(--gray);padding:3rem 0}
+.ci{display:flex;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--line)}
+.ci__img{width:60px;height:60px;border-radius:10px;display:grid;place-items:center;font-size:1.8rem;flex-shrink:0}
+.ci__b{flex:1}
+.ci__b h4{font-size:.95rem;font-weight:500}
+.ci__b .price{color:var(--orange);font-weight:600}
+.ci__qty{display:flex;align-items:center;gap:.6rem;margin-top:.4rem}
+.ci__qty button{width:24px;height:24px;border-radius:6px;border:1px solid var(--line);background:none;color:var(--ink)}
+.ci__rm{background:none;border:none;color:var(--gray);font-size:.8rem;margin-left:auto;text-decoration:underline}
+.drawer__f{padding:1.4rem;border-top:1px solid var(--line)}
+.drawer__f .tot{display:flex;justify-content:space-between;font-size:1.2rem;margin-bottom:1rem}
+.drawer__f .tot b{font-family:"Cormorant Garamond";font-size:1.6rem}
+.checkout{width:100%;background:var(--orange);color:#fff;border:none;padding:1rem;border-radius:50px;font-weight:600;font-size:1rem}
+
+/* toast */
+.toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,120%);background:var(--ink);color:var(--bg);padding:.8rem 1.5rem;border-radius:50px;z-index:1400;font-weight:500;transition:.35s;box-shadow:0 14px 30px -12px rgba(0,0,0,.6)}
+.toast.show{transform:translate(-50%,0)}
+
+.ft{padding:2.5rem clamp(1.2rem,4vw,3rem);border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;color:var(--gray);font-size:.9rem}
+
+.cs{background:#07080a;color:#e6e6e6;padding:3.5rem clamp(1.2rem,4vw,3rem)}
+.cs h5{font-family:"Cormorant Garamond";color:var(--orange);font-size:1.1rem;margin-bottom:1.4rem}
+.cs-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem}
+.cs-grid h6{font-size:.78rem;text-transform:uppercase;color:#888;margin-bottom:.5rem;letter-spacing:.08em}
+.cs-grid p{font-size:.95rem}
+@media(max-width:820px){.cs-grid{grid-template-columns:1fr 1fr}}
+
+.fade{opacity:0;transform:translateY(24px);transition:.6s}.fade.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<div class="pf-bar">
+  <a href="../index.html">← กลับไปที่ Portfolio</a>
+  <span class="pf-tag">ผลงาน 04 · E-commerce — ตะกร้าใช้งานได้จริง</span>
+</div>
+
+<nav class="nav">
+  <div class="logo">HOMM<i>Ū</i></div>
+  <ul><li><a href="#shop">สินค้า</a></li><li><a href="#shop">ใหม่ล่าสุด</a></li><li><a href="#shop">ลดราคา</a></li><li><a href="#">เกี่ยวกับเรา</a></li></ul>
+  <div class="nav__right">
+    <button class="icbtn">🔍</button>
+    <button class="icbtn" id="cartBtn">🛒<span class="cartcount" id="cc">0</span></button>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero__txt">
+    <span class="eye">Minimal Living · Free shipping</span>
+    <h1 class="serif">ของแต่งบ้าน<br>ที่เรียบง่าย<br>แต่ไม่ธรรมดา</h1>
+    <p>คัดสรรของใช้ในบ้านดีไซน์มินิมอล วัสดุธรรมชาติ เพิ่มความอบอุ่นให้ทุกมุมในบ้านของคุณ</p>
+    <a href="#shop">เลือกซื้อสินค้า →</a>
+  </div>
+  <div class="hero__img">
+    <span class="big">🏺</span>
+    <div class="tagi ti1">ส่งฟรี เมื่อช้อปครบ <b>590.-</b></div>
+    <div class="tagi ti2"><b>4.9★</b> จาก 1,200+ รีวิว</div>
+  </div>
+</header>
+
+<section class="shop" id="shop">
+  <div class="shop__head fade">
+    <h2 class="serif">สินค้าทั้งหมด</h2>
+    <div class="filters" id="filters">
+      <button class="active" data-f="all">ทั้งหมด</button>
+      <button data-f="ของตกแต่ง">ของตกแต่ง</button>
+      <button data-f="แสงไฟ">แสงไฟ</button>
+      <button data-f="ครัว">ของใช้ในครัว</button>
+      <button data-f="ผ้า">ผ้า &amp; พรม</button>
+    </div>
+  </div>
+  <div class="grid" id="grid"></div>
+
+  <div class="band">
+    <div><div class="e">🚚</div><b>ส่งฟรี</b><span>เมื่อช้อปครบ 590.-</span></div>
+    <div><div class="e">↩️</div><b>คืนได้ 7 วัน</b><span>ไม่พอใจคืนเงิน</span></div>
+    <div><div class="e">🔒</div><b>จ่ายปลอดภัย</b><span>รองรับทุกช่องทาง</span></div>
+    <div><div class="e">💬</div><b>แชทตอบไว</b><span>ทุกวัน 9–21 น.</span></div>
+  </div>
+</section>
+
+<footer class="ft">
+  <div class="logo serif" style="font-size:1.5rem">HOMM<i style="color:var(--orange)">Ū</i></div>
+  <div>ของแต่งบ้านมินิมอล<br>ส่งทั่วไทย</div>
+  <div>Line · IG · Facebook<br>© 2026 HOMMŪ Store</div>
+</footer>
+
+<!-- cart -->
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="drawer">
+  <div class="drawer__h"><h3 class="serif">ตะกร้าของคุณ</h3><button id="closeCart">✕</button></div>
+  <div class="drawer__items" id="items"><div class="empty" id="empty">ยังไม่มีสินค้าในตะกร้า 🛒</div></div>
+  <div class="drawer__f">
+    <div class="tot"><span>รวมทั้งหมด</span><b id="total">฿0</b></div>
+    <button class="checkout" id="checkout">ดำเนินการสั่งซื้อ →</button>
+  </div>
+</aside>
+
+<div class="toast" id="toast">✓ เพิ่มลงตะกร้าแล้ว</div>
+
+<script>
+const PRODUCTS=[
+  {id:1,name:"แจกันเซรามิก Wabi",cat:"ของตกแต่ง",emoji:"🏺",price:390,old:0,rate:4.8,n:124,badge:"",bg:"linear-gradient(160deg,#3a352c,#1c1a14)"},
+  {id:2,name:"โคมไฟหวายทรงโค้ง",cat:"แสงไฟ",emoji:"🪔",price:690,old:890,rate:4.9,n:88,badge:"-22%",bg:"linear-gradient(160deg,#3a2f22,#1c160f)"},
+  {id:3,name:"ชุดถ้วยกาแฟ Stoneware",cat:"ครัว",emoji:"☕",price:450,old:0,rate:4.7,n:203,badge:"ขายดี",bg:"linear-gradient(160deg,#2c3338,#15191c)"},
+  {id:4,name:"พรมทอมือ Berber",cat:"ผ้า",emoji:"🧶",price:1290,old:1590,rate:5.0,n:42,badge:"-19%",bg:"linear-gradient(160deg,#38322a,#1a1610)"},
+  {id:5,name:"เทียนหอม Soy Wax",cat:"ของตกแต่ง",emoji:"🕯️",price:290,old:0,rate:4.9,n:312,badge:"",bg:"linear-gradient(160deg,#332e2a,#181512)"},
+  {id:6,name:"โคมไฟตั้งโต๊ะ Linen",cat:"แสงไฟ",emoji:"💡",price:850,old:0,rate:4.6,n:67,badge:"ใหม่",bg:"linear-gradient(160deg,#2f3033,#161718)"},
+  {id:7,name:"เขียงไม้โอ๊ค",cat:"ครัว",emoji:"🪵",price:520,old:0,rate:4.8,n:145,badge:"",bg:"linear-gradient(160deg,#3a3127,#1c150e)"},
+  {id:8,name:"หมอนอิงผ้าลินิน",cat:"ผ้า",emoji:"🛋️",price:380,old:480,rate:4.7,n:98,badge:"-21%",bg:"linear-gradient(160deg,#34302b,#181613)"},
+];
+const grid=document.getElementById('grid');
+let filter='all';
+function render(){
+  grid.innerHTML='';
+  PRODUCTS.filter(p=>filter==='all'||p.cat===filter).forEach(p=>{
+    const el=document.createElement('div');el.className='p';
+    el.innerHTML=`<div class="p__img" style="background:${p.bg}">${p.badge?`<span class="badge">${p.badge}</span>`:''}${p.emoji}</div>
+      <div class="p__b"><span class="p__cat">${p.cat}</span><h3>${p.name}</h3>
+      <div class="p__rate">★ ${p.rate} <span>(${p.n})</span></div>
+      <div class="p__bot"><div class="p__price">${p.old?`<s>฿${p.old}</s>`:''}฿${p.price}</div>
+      <button class="add" data-id="${p.id}">+</button></div></div>`;
+    grid.appendChild(el);
+  });
+}
+render();
+document.getElementById('filters').addEventListener('click',e=>{
+  if(e.target.tagName!=='BUTTON')return;
+  document.querySelectorAll('#filters button').forEach(b=>b.classList.remove('active'));
+  e.target.classList.add('active');filter=e.target.dataset.f;render();
+});
+
+// cart
+let cart=[];
+const overlay=document.getElementById('overlay'),drawer=document.getElementById('drawer');
+function openCart(){overlay.classList.add('show');drawer.classList.add('show');}
+function closeCart(){overlay.classList.remove('show');drawer.classList.remove('show');}
+document.getElementById('cartBtn').onclick=openCart;
+document.getElementById('closeCart').onclick=closeCart;
+overlay.onclick=closeCart;
+
+grid.addEventListener('click',e=>{
+  const b=e.target.closest('.add');if(!b)return;
+  const p=PRODUCTS.find(x=>x.id==b.dataset.id);
+  const ex=cart.find(c=>c.id==p.id);
+  if(ex)ex.qty++;else cart.push({...p,qty:1});
+  updateCart();toast();
+});
+function toast(){const t=document.getElementById('toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1500);}
+function updateCart(){
+  const cc=document.getElementById('cc'),items=document.getElementById('items');
+  const count=cart.reduce((s,c)=>s+c.qty,0);
+  cc.textContent=count;cc.classList.toggle('show',count>0);
+  if(!cart.length){items.innerHTML='<div class="empty">ยังไม่มีสินค้าในตะกร้า 🛒</div>';}
+  else{
+    items.innerHTML=cart.map(c=>`<div class="ci"><div class="ci__img" style="background:${c.bg}">${c.emoji}</div>
+      <div class="ci__b"><h4>${c.name}</h4><div class="price">฿${c.price}</div>
+      <div class="ci__qty"><button data-m="-1" data-id="${c.id}">−</button><span>${c.qty}</span><button data-m="1" data-id="${c.id}">+</button>
+      <button class="ci__rm" data-rm="${c.id}">ลบ</button></div></div></div>`).join('');
+  }
+  document.getElementById('total').textContent='฿'+cart.reduce((s,c)=>s+c.price*c.qty,0).toLocaleString();
+}
+document.getElementById('items').addEventListener('click',e=>{
+  if(e.target.dataset.rm){cart=cart.filter(c=>c.id!=e.target.dataset.rm);}
+  else if(e.target.dataset.m){const c=cart.find(x=>x.id==e.target.dataset.id);c.qty+=+e.target.dataset.m;if(c.qty<1)cart=cart.filter(x=>x.id!=c.id);}
+  updateCart();
+});
+document.getElementById('checkout').onclick=()=>{
+  if(!cart.length){toast();return;}
+  document.getElementById('items').innerHTML='<div class="empty">🎉 ขอบคุณสำหรับการสั่งซื้อ!<br>(เดโม — ระบบจริงจะเชื่อมต่อชำระเงิน)</div>';
+  cart=[];document.getElementById('total').textContent='฿0';document.getElementById('cc').classList.remove('show');document.getElementById('cc').textContent='0';
+};
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.1});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+</script>
+
+<section class="cs">
+  <h5>◆ CASE STUDY — รายละเอียดผลงาน</h5>
+  <div class="cs-grid">
+    <div><h6>ประเภทงาน</h6><p>ร้านค้าออนไลน์ (E-commerce) พร้อมระบบตะกร้าสินค้า</p></div>
+    <div><h6>โจทย์ลูกค้า</h6><p>อยากได้ร้านที่ลูกค้าเลือกของ ใส่ตะกร้า และสั่งซื้อได้ลื่นไหลบนมือถือ</p></div>
+    <div><h6>ฟีเจอร์</h6><p>กรองหมวดสินค้า, ตะกร้าแบบ Drawer, เพิ่ม/ลด/ลบสินค้า, คำนวณราคาเรียลไทม์</p></div>
+    <div><h6>เทคโนโลยี</h6><p>HTML5 · CSS3 · JavaScript (State management) · Responsive</p></div>
+  </div>
+</section>
+
+</body>
+</html>
